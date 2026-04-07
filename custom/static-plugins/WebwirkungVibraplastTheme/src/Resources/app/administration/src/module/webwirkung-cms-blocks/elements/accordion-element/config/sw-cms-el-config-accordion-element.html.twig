@@ -1,0 +1,34 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template #content="{ active }"
+        >
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+                <sw-text-field
+                        v-model:value="accordionTitle"
+                        label="Titel"
+                ></sw-text-field>
+                <sw-text-editor
+                        v-model:value="accordionText"
+                        label="Text"
+                ></sw-text-editor>
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

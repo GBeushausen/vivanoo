@@ -1,0 +1,16 @@
+{
+  "WebwirkungProductFinder": {
+    "cms": {
+      "blocks": {
+        "productFinder": {
+          "label": "Produkt Finder"
+        }
+      },
+      "elements": {
+        "productFinder": {
+          "label": "Produkt Finder"
+        }
+      }
+    }
+  }
+}

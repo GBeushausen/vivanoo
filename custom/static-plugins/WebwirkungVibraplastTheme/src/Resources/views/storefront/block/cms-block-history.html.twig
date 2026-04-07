@@ -1,0 +1,10 @@
+{% block block_history %}
+    {% set element = block.slots.getSlot('content') %}
+    {% set columns = 1 %}
+
+    <div class="webwirkung-history-block" data-cms-element-id="{{ element.id }}">
+        {% block block_text_inner %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+        {% endblock %}
+    </div>
+{% endblock %}

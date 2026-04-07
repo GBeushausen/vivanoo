@@ -1,0 +1,38 @@
+{% sw_extends '@Storefront/storefront/component/checkout/offcanvas-cart-summary.html.twig' %}
+
+{% block component_offcanvas_summary_total %}
+
+    {% set isTotalPrice = page.cart.extensions.minimumOrderSurcharge.totalPrice is defined
+        and page.cart.extensions.minimumOrderSurcharge.totalPrice is not null
+        and page.cart.extensions.minimumOrderSurcharge.totalPrice > 0 %}
+    {% set positionPrice = isTotalPrice ? page.cart.price.positionPrice - page.cart.extensions.minimumOrderSurcharge.totalPrice : page.cart.price.positionPrice %}
+
+    {% block component_offcanvas_summary_total_label %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block component_offcanvas_summary_total_value %}
+        <dd class="col-5 summary-value summary-total">
+            <strong>{{ positionPrice|currency }}{{ "general.star"|trans|sw_sanitize }}</strong>
+        </dd>
+    {% endblock %}
+
+    {% if isTotalPrice %}
+
+        {% block component_offcanvas_minimum_order_surcharge_label %}
+            <dt class="col-7 summary-label summary-total">
+                {{ "WebwirkungMinimumOrderSurcharge.checkout.minimumOrderSurchargeAmount"|trans|sw_sanitize }}
+            </dt>
+        {% endblock %}
+
+        {% block component_offcanvas_minimum_order_surcharge_value %}
+            <dd class="col-5 summary-value summary-total">
+                <strong>
+                    {{ page.cart.extensions.minimumOrderSurcharge.totalPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+                </strong>
+            </dd>
+        {% endblock %}
+
+    {% endif %}
+
+{% endblock %}

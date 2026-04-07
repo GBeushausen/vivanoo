@@ -1,0 +1,27 @@
+{
+  "name": "webwirkung/vibraplast-theme",
+  "description": "This is the vibraplast theme with webpack and some basic configuration",
+  "type": "shopware-platform-plugin",
+  "version": "2.0.4",
+  "authors": [
+    {
+      "name": "Webwirkung GmbH"
+    }
+  ],
+  "require": {
+    "shopware/core": "~6.6"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Webwirkung\\VibraplastTheme\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Webwirkung\\VibraplastTheme\\WebwirkungVibraplastTheme",
+    "label": {
+      "de-DE": "Webwirkung Vibraplast Theme plugin",
+      "en-GB": "Webwirkung Vibraplast Theme plugin"
+    }
+  }
+}

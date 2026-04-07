@@ -1,0 +1,27 @@
+{
+    "name": "webwirkung/vibraplast-abacus-integration",
+    "description": "Vibraplast Abacus Integration override plugin",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Webwirkung GmbH"
+        }
+    ],
+    "license": "proprietary",
+    "require": {
+        "shopware/core": "~6.6"
+    },
+    "extra": {
+        "shopware-plugin-class": "Webwirkung\\VibraplastAbacusIntegration\\WebwirkungVibraplastAbacusIntegration",
+        "label": {
+            "de-DE": "Vibraplast Abacus Integration-Override-Plugin",
+            "en-GB": "Vibraplast Abacus Integration override plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Webwirkung\\VibraplastAbacusIntegration\\": "src/"
+        }
+    }
+}

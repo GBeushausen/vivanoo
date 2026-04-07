@@ -1,0 +1,12 @@
+{
+  "WebwirkungProductFinder": {
+    "productFinder": {
+      "next": "Suivant",
+      "prev": "Précédent",
+      "reset": "Lancer une nouvelle recherche",
+      "selectCategory": "Sélectionnez une catégorie",
+      "resultLabel": "Résultat",
+      "resultHeading": "Ces produits correspondent à votre choix"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.table {
+  &.table-with-borders {
+    margin-bottom: 0;
+    tr {
+      td, th {
+        padding: 12px 16px;
+        border-right: 1px solid $sw-border-color;
+        border-bottom: 1px solid $sw-border-color;
+        &:last-child {
+          border-right: 0;
+        }
+      }
+      &:last-child {
+        td {
+         border-bottom: 0;
+        }
+      }
+    }
+  }
+}

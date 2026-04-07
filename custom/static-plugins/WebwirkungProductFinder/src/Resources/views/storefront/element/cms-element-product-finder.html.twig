@@ -1,0 +1,19 @@
+{% block product_finder %}
+    {% set options = {
+        config: {
+            categories: element.data.categories,
+            selectedCategoryId: element.data.selectedCategoryId,
+            stepDataUrl: '/product-finder/steps',
+            resultDataUrl: '/product-finder/result',
+            selectCategoryLabel: 'WebwirkungProductFinder.productFinder.selectCategory'|trans,
+            nextLabel: 'WebwirkungProductFinder.productFinder.next'|trans,
+            prevLabel: 'WebwirkungProductFinder.productFinder.prev'|trans,
+            resetLabel: 'WebwirkungProductFinder.productFinder.reset'|trans,
+            resultHeading: 'WebwirkungProductFinder.productFinder.resultHeading'|trans,
+        },
+        elementId: element.id,
+    } %}
+    <div class="product-finder" data-product-finder data-product-finder-options="{{ options|json_encode }}">
+        <div id="product-finder-{{ element.id }}"></div>
+    </div>
+{% endblock %}

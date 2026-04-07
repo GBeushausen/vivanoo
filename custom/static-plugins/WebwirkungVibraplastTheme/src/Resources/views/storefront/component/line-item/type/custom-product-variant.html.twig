@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/component/line-item/type/product.html.twig' %}
+
+{% block component_line_item_type_product_variant_characteristics_wrapper %}
+    <div class="line-item-details-characteristics">
+        {% for configuratorOption in lineItem.payload.configuratorOptions %}
+            {{ configuratorOption.name }}: <span class="line-item-details-characteristics-option">{{ configuratorOption.value }}</span>
+            {% if not loop.last or lineItem.payload.variantPropertyOptionData %} {{ ' <br> ' }} {% endif %}
+        {% endfor %}
+        {% if lineItem.payload.variantPropertyOptionData %}
+            {{ lineItem.payload.variantPropertyOptionData.group.name }}: <span class="line-item-details-characteristics-option">{{ lineItem.payload.variantPropertyOptionData.name }}</span>
+        {% endif %}
+    </div>
+{% endblock %}

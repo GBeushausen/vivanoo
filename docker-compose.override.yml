@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+###> symfony/mailer ###
+  mailer:
+    image: axllent/mailpit
+    ports:
+      - "1025"
+      - "8025"
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+###< symfony/mailer ###
+
+###> shopware/core ###
+  database:
+    image: mariadb:10.11
+    volumes:
+      - "db-data:/var/lib/mysql"
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_DATABASE=shopware
+      - MARIADB_USER=shopware
+      - MARIADB_PASSWORD=shopware
+    ports:
+      - "3306:3306"
+###< shopware/core ###
+
+###> shopware/elasticsearch ###
+  opensearch:
+    image: opensearchproject/opensearch:2.7.0
+    ports:
+      - "9200:9200"
+###< shopware/elasticsearch ###
+
+  redis:
+    image: redis:7.2.1
+    ports:
+      - "6379:6379"
+
+volumes:
+  db-data:

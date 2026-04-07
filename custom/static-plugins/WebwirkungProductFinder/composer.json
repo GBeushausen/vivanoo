@@ -1,0 +1,27 @@
+{
+    "name": "webwirkung/product-finder",
+    "description": "Product finder plugin",
+    "type": "shopware-platform-plugin",
+    "version": "2.0.0",
+    "authors": [
+        {
+            "name": "Webwirkung GmbH"
+        }
+    ],
+    "license": "proprietary",
+    "require": {
+        "shopware/core": "~6.6"
+    },
+    "extra": {
+        "shopware-plugin-class": "Webwirkung\\ProductFinder\\WebwirkungProductFinder",
+        "label": {
+            "de-DE": "Produktfinder-Plugin",
+            "en-GB": "Product finder plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Webwirkung\\ProductFinder\\": "src/"
+        }
+    }
+}

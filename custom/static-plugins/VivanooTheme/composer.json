@@ -1,0 +1,27 @@
+{
+  "name": "vivanoo/theme",
+  "description": "Vivanoo B2C shop theme inheriting from the Vibraplast Theme.",
+  "type": "shopware-platform-plugin",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Gunnar Beushausen"
+    }
+  ],
+  "require": {
+    "shopware/core": "~6.6"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Vivanoo\\VivanooTheme\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Vivanoo\\VivanooTheme\\VivanooTheme",
+    "label": {
+      "de-DE": "Vivanoo Theme",
+      "en-GB": "Vivanoo Theme"
+    }
+  }
+}

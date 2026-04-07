@@ -1,0 +1,20 @@
+{% block block_5_7_column %}
+    {% set left = block.slots.getSlot('left') %}
+    {% set right = block.slots.getSlot('right') %}
+    <div class="block-5-7-column">
+        <div class="block-5-7-column-background">
+        <div class="row">
+            <div class="col-lg-5">
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ left.type ~ ".html.twig" ignore missing with {
+                    element: left
+                }  %}
+            </div>
+            <div class="col-lg-7">
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ right.type ~ ".html.twig" ignore missing with {
+                    element: right
+                }  %}
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}

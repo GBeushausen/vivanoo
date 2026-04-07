@@ -1,0 +1,6 @@
+{% set decidedBy = pendingOrder.decidedBy ?? pendingOrder.customer %}
+Hello {{ pendingOrder.employee.firstName }} {{ pendingOrder.employee.lastName }},
+Your Pending Order at {{ salesChannel.translated.name }} (Pending Order number: {{ pendingOrder.number }}) has been declined by {{ decidedBy.firstName }} {{ decidedBy.lastName }}.
+{% if pendingOrder.reason %}
+    Comment: {{ pendingOrder.reason }}
+{% endif %}

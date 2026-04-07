@@ -1,0 +1,234 @@
+{
+  "name": "WebwirkungPeterHeftiTheme",
+  "author": "Webwirkung GmbH",
+  "views": [
+    "@Storefront",
+    "@Plugins",
+    "@WebwirkungVibraplastTheme",
+    "@WebwirkungPeterHeftiTheme"
+  ],
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@WebwirkungVibraplastTheme",
+    "app/storefront/src/scss/base.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "@WebwirkungVibraplastTheme",
+    "app/storefront/dist/storefront/js/webwirkung-peter-hefti-theme/webwirkung-peter-hefti-theme.js"
+  ],
+  "asset": [
+    "@Storefront",
+    "@WebwirkungVibraplastTheme",
+    "app/storefront/src/assets"
+  ],
+  "configInheritance": [
+    "@Storefront",
+    "@WebwirkungVibraplastTheme",
+    "@WebwirkungPeterHeftiTheme"
+  ],
+  "config": {
+    "blocks": {},
+    "sections": {},
+    "fields": {
+      "sw-color-brand-primary": {
+        "label": {
+          "en_GB": "Primary Color",
+          "de_DE": "Hauptfarbe"
+        },
+        "type": "color",
+        "block": "settings",
+        "section": "overriddenVariables",
+        "value": "#00A276"
+      },
+      "primary-100": {
+        "value": "#CCECE4",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-200": {
+        "value": "#99DAC8",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-300": {
+        "value": "#66C7AD",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-400": {
+        "value": "#33B591",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-600": {
+        "value": "#00825E",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-700": {
+        "value": "#006147",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-800": {
+        "value": "#00412F",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-900": {
+        "value": "#002018",
+        "type": "color",
+        "block": "settings"
+      },
+      "sw-color-brand-secondary": {
+        "value": "#3A564F"
+      },
+      "secondary-100": {
+        "value": "#EBEEED",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-200": {
+        "value": "#B0BBB9",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-300": {
+        "value": "#899A95",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-400": {
+        "value": "#617872",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-600": {
+        "value": "#293C37",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-800": {
+        "value": "#172220",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-900": {
+        "value": "#060908",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "sw-border-color": {
+        "value": "#EBEDED"
+      },
+      "border-dark": {
+        "value": "#C1D4CE",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "border-disabled": {
+        "value": "#DEDEDE",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "surface-overlay-light": {
+        "value": "#F6F6F6",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "surface-overlay-dark": {
+        "value": "#F1F7F5",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "surface-overlay-disabled": {
+        "value": "#F2F2F2",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "sw-font-family-base": {
+        "value": "'Manrope', Arial, sans-serif"
+      },
+      "sw-text-color": {
+        "value": "#18342D"
+      },
+      "text-secondary": {
+        "value": "#7B8B87",
+        "type": "color",
+        "block": "typography"
+      },
+      "text-disabled": {
+        "value": "#A1A1A1",
+        "type": "color",
+        "block": "typography"
+      },
+      "sw-font-family-headline": {
+        "value": "'Manrope', Arial, sans-serif"
+      },
+      "sw-headline-color": {
+        "value": "#18342D"
+      },
+      "sw-color-success": {
+        "value": "#00A276"
+      },
+      "success-border": {
+        "value": "#66C7AD",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "success-background": {
+        "value": "#DCF6F0",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "warning-main": {
+        "value": "#FFBA07",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "warning-border": {
+        "value": "#FCDE86",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "warning-background": {
+        "value": "#FFF9E6",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "info-main": {
+        "value": "#2770AD",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "sw-color-info": {
+        "value": "#85B0D5"
+      },
+      "info-background": {
+        "value": "#E8F3FC",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "sw-color-danger": {
+        "value": "#E04050"
+      },
+      "error-border": {
+        "value": "#EC8C96",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "error-background": {
+        "value": "#FFEDEF",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "sw-color-price": {
+        "value": "#111A24"
+      },
+      "sw-color-buy-button": {
+        "value": "#3A564F"
+      }
+    }
+  }
+}

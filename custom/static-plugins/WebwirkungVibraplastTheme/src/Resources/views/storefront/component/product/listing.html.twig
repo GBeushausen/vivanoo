@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
+
+{% block element_product_listing_col %}
+    {% set products = searchResult %}
+
+    {% if searchResult.sorting == 'pim-sorting' %}
+        {% set products = wwGetPimSortedProducts(searchResult, context.context) %}
+    {% endif %}
+
+    {% for product in products %}
+        <div class="cms-listing-col col-sm-6 col-lg-4 col-xl-4" data-category-filter-categories="{{ product.categoryIds|join(',') }}">
+            {% block element_product_listing_box %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+    {% endfor %}
+{% endblock %}

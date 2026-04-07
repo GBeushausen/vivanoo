@@ -1,0 +1,33 @@
+services:
+  e2e_dockware:
+    restart: always
+    ports:
+      - "443:443"
+    build:
+      context: ../../
+      dockerfile: e2e/docker/dockware/Dockerfile
+    environment:
+      - NODE_VERSION=20
+    volumes:
+      - ./../../e2e/cypress:/var/www/html/e2e/cypress
+      - ./../../e2e/package.json:/var/www/html/e2e/package.json
+      - ./../../e2e/package.lock:/var/www/html/e2e/package.lock
+      - ./../../e2e/cypress.config.js:/var/www/html/e2e/cypress.config.js
+      - ./../../custom:/var/www/html/custom
+      - ./../../public:/var/www/html/public
+      - ./../../bin:/var/www/html/bin
+      - ./../../files:/var/www/html/files
+      - ./../../composer.json:/var/www/html/composer.json
+      - ./../../composer.lock:/var/www/html/composer.lock
+      - ./../../auth.json:/var/www/html/auth.json
+      - ./dockware/.env:/var/www/html/.env
+    working_dir: /var/www/html
+  e2e_db:
+    image: mariadb:10.11
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MYSQL_DATABASE: shopware
+    volumes:
+      - ./db/database/dump.sql.gz:/var/sql/dump.sql.gz
+    working_dir: /var/sql

@@ -1,0 +1,27 @@
+{
+  "name": "webwirkung/peter-hefti-theme",
+  "description": "This is the Peter Hefti theme that inherits from the Webwirkung Vibraplast Theme.",
+  "type": "shopware-platform-plugin",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Webwirkung GmbH"
+    }
+  ],
+  "require": {
+    "shopware/core": "~6.6"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Webwirkung\\PeterHeftiTheme\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Webwirkung\\PeterHeftiTheme\\WebwirkungPeterHeftiTheme",
+    "label": {
+      "de-DE": "Webwirkung Peter Hefti Theme plugin",
+      "en-GB": "Webwirkung Peter Hefti Theme plugin"
+    }
+  }
+}

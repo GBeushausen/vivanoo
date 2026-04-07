@@ -1,0 +1,118 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template
+                #content="{ active }"
+        >
+
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+                <div v-for='(sliderItem, index) in element.config.sliderItems.value' class="sliderItem">
+                    <h3>{{ $tc('sw-cms.elements.header-slider-element.config.slideTitle') }} {{ index+1 }}</h3>
+                    <span>{{ $tc('sw-cms.elements.header-slider-element.config.priceLabel') }}</span>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0 32px;">
+                        <sw-select-field
+                                :label="$tc('sw-cms.elements.header-slider-element.config.pricePosition.label')"
+                                v-model:value="sliderItem.pricePosition"
+                        >
+                            <option value="top">{{ $tc('sw-cms.elements.header-slider-element.config.pricePosition.top') }}</option>
+                            <option value="bottom">{{ $tc('sw-cms.elements.header-slider-element.config.pricePosition.bottom') }}</option>
+                        </sw-select-field>
+                        <sw-text-field
+                                :key='sliderItem.sort'
+                                v-model:value="sliderItem.price"
+                                :label="$tc('sw-cms.elements.header-slider-element.config.priceText')"
+                                :allow-inline-data-mapping="true"
+                        ></sw-text-field>
+                        <sw-text-field
+                                :key='sliderItem.sort'
+                                v-model:value="sliderItem.strikePrice"
+                                :label="$tc('sw-cms.elements.header-slider-element.config.strikePriceText')"
+                                :allow-inline-data-mapping="true"
+                        ></sw-text-field>
+                    </div>
+
+                    <sw-text-field
+                            :key='sliderItem.sort'
+                            v-model:value="sliderItem.label"
+                            :label="$tc('sw-cms.elements.header-slider-element.config.labelText')"
+                            :allow-inline-data-mapping="true"
+                    ></sw-text-field>
+                    <sw-text-editor
+                            :key='sliderItem.sort'
+                            v-model:value="sliderItem.text"
+                            :label="$tc('sw-cms.elements.header-slider-element.config.text')"
+                            :allow-inline-data-mapping="true"
+                    ></sw-text-editor>
+
+{#                  Overlay Image #}
+                    <sw-upload-listener
+                            :upload-tag="'cms-block-media-config-slide-overlay-' + index + '-' + element.id"
+                            auto-upload
+                            @media-upload-finish="onFinishUploadSlideOverlayMedia($event, sliderItem)">
+                    </sw-upload-listener>
+                    <sw-media-compact-upload-v2
+                            :label="$tc('sw-cms.elements.header-slider-element.config.overlayMedia')"
+                            :source="slideOverlayMediaPreviews[index]"
+                            :upload-tag="'cms-block-media-config-slide-overlay-' + index + '-' + element.id"
+                            :default-folder="cmsPageState.pageEntityName"
+                            {# file-accept="image/*,video/*" #}
+                            {# Temporary fix for NEXT-22952 #}
+                            file-accept="*/*"
+                            @media-upload-remove-image="onRemoveSlideOverlayMedia(sliderItem)"
+                            @selection-change="onChangeSlideOverlayMedia($event, sliderItem)">
+                    </sw-media-compact-upload-v2>
+
+{#                  Background Image #}
+                    <sw-upload-listener
+                            :upload-tag="'cms-block-media-config-slide-background-' + index + '-' + element.id"
+                            auto-upload
+                            @media-upload-finish="onFinishUploadSlideBackgroundMedia($event, sliderItem)">
+                    </sw-upload-listener>
+                    <sw-media-compact-upload-v2
+                            :label="$tc('sw-cms.elements.header-slider-element.config.backgroundMedia')"
+                            :source="slideBackgroundMediaPreviews[index]"
+                            :upload-tag="'cms-block-media-config-slide-background-' + index + '-' + element.id"
+                            :default-folder="cmsPageState.pageEntityName"
+                            {# file-accept="image/*,video/*" #}
+                            {# Temporary fix for NEXT-22952 #}
+                            file-accept="*/*"
+                            @media-upload-remove-image="onRemoveSlideBackgroundMedia(sliderItem)"
+                            @selection-change="onChangeSlideBackgroundMedia($event, sliderItem)">
+                    </sw-media-compact-upload-v2>
+                </div>
+                <div>
+                    <sw-button v-if="counter < 8" :disabled="false" :square="false" :block="false" :isLoading="false"
+                               size="small"
+                               @click="onClickAddSlide()"
+                    >
+                        +
+                        {{ $tc('sw-cms.elements.header-slider-element.config.addTextButton') }}
+                    </sw-button>
+                    <sw-button v-if="counter < 8" :disabled="false" :square="false" :block="false" :isLoading="false"
+                               size="small"
+                               @click="onClickRemoveSlide()"
+                    >
+                        -
+                        {{ $tc('sw-cms.elements.header-slider-element.config.removeTextButton') }}
+                    </sw-button>
+                </div>
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

@@ -1,0 +1,34 @@
+.sw-cms-el-preview-faq-category-listing {
+    width: 100%;
+    background: #fff;
+    font-size: 22px;
+    color: grey;
+
+    .sw-cms-el-faq-category-placeholder-listing div {
+        margin: 10px 0;
+        height: 0.4em;
+        border-radius: 25px;
+        background-color: grey;
+
+        &.sw-cms-el-faq-category-navigation__placeholder--subcategory {
+            margin: 7px 20px;
+
+            &:last-of-type {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    hr {
+        max-width: 100%;
+        margin: 10px auto;
+        height: 1px;
+        border: 0 none;
+        background-color: grey;
+    }
+
+    p {
+        font-size: 14px;
+        margin: auto 10px auto 0;
+    }
+}

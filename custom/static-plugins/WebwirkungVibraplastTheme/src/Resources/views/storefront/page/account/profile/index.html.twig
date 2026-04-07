@@ -1,0 +1,54 @@
+{% sw_extends '@Storefront/storefront/page/account/profile/index.html.twig' %}
+
+{% block page_account_profile_personal_welcome_headline %}
+    <h3>{{ "account.profileTitle"|trans|sw_sanitize }}</h3>
+{% endblock %}
+
+{% block page_account_profile_personal_action_button_send %}
+    <button type="submit"
+            class="profile-form-submit btn btn-edit btn-sm"
+            title="{{ "account.profileSaveChanges"|trans|striptags }}">
+        {% sw_icon 'edit' style {'pack' : 'WebwirkungIcons'} %} {{ "account.profileSaveChanges"|trans|sw_sanitize }}
+    </button>
+{% endblock %}
+
+{% block page_account_profile_credentials_change_mail %}
+    <div class="col-12 col-sm-6 col-md-3 mt-2 mt-md-0">
+        <a class="account-profile-change{% if not emailFormViolation %} collapsed{% endif %} btn btn-edit"
+           data-bs-toggle="collapse"
+           href="#profile-email-form"
+           role="button"
+           aria-expanded="{% if emailFormViolation %}true{% else %}false{% endif %}"
+           aria-controls="profile-email-form">
+            {% sw_icon 'edit' style {'pack' : 'WebwirkungIcons'} %} {{ "account.profileChangeEmail"|trans|sw_sanitize }}
+        </a>
+    </div>
+{% endblock %}
+
+{% block page_account_profile_credentials_change_password %}
+    <div class="col-12 col-sm-6 col-md-3 mt-2 mt-md-0">
+        <a class="account-profile-change{% if not passwordFormViolation %} collapsed{% endif %} btn btn-edit"
+           data-bs-toggle="collapse"
+           href="#profile-password-form"
+           role="button"
+           aria-expanded="{% if passwordFormViolation %}true{% else %}false{% endif %}"
+           aria-controls="profile-password-form">
+            {% sw_icon 'edit' style {'pack' : 'WebwirkungIcons'} %} {{ "account.profileChangePassword"|trans|sw_sanitize }}
+        </a>
+    </div>
+{% endblock %}
+
+{% block page_account_profile_mail_action_button_send %}
+    <button type="submit"
+            class="profile-form-submit btn btn-edit btn-sm"
+            title="{{ "account.profileSaveChanges"|trans|striptags }}">
+        {% sw_icon 'edit' style {'pack' : 'WebwirkungIcons'} %} {{ "account.profileSaveChanges"|trans|sw_sanitize }}
+    </button>
+{% endblock %}
+{% block page_account_profile_password_action_button_send %}
+    <button type="submit"
+            class="profile-form-submit btn btn-edit btn-sm"
+            title="{{ "account.profileSaveChanges"|trans|striptags }}">
+        {% sw_icon 'edit' style {'pack' : 'WebwirkungIcons'} %} {{ "account.profileSaveChanges"|trans|sw_sanitize }}
+    </button>
+{% endblock %}

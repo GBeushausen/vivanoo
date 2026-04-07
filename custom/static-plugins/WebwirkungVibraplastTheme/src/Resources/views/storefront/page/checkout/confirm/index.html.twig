@@ -1,0 +1,182 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{% block page_checkout_main_content %}
+    {% block page_checkout_confirm %}
+        {% block page_checkout_confirm_header %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_checkout_confirm_alerts %}
+            {{ parent() }}
+        {% endblock %}
+        <div class="step-navigation-header">
+            <div id="stepNavigation"></div>
+        </div>
+        <div class="wrapper-checkout-confirm-block has-multistep-navigation">
+            <div class="checkout-box-wrapper">
+                <div class="tab" data-tab-title="{{ 'checkout.step-navigation.step-1'|trans }}">
+                    <h4>{{ 'checkout.step-navigation.step-1'|trans }}</h4>
+                    {% block page_checkout_confirm_address_new %}
+                        <div class="confirm-address">
+                            {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-address.html.twig' %}
+                        </div>
+                    {% endblock %}
+                </div>
+                <div class="tab" data-tab-title="{{ 'checkout.step-navigation.step-2'|trans }}">
+                    <h4>{{ 'checkout.step-navigation.step-2'|trans }}</h4>
+                    {% block page_checkout_confirm_shipping_wrapper %}
+                        <div class="confirm-shipping">
+                            <div class="row">
+                                {% block page_checkout_confirm_shipping_new %}
+                                    {% set PHYSICAL_STATE = constant('Shopware\\Core\\Content\\Product\\State::IS_PHYSICAL') %}
+                                    {% if page.cart.lineItems.hasLineItemWithState(PHYSICAL_STATE) %}
+                                        <div class="confirm-shipping">
+                                            {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-shipping.html.twig' %}
+                                        </div>
+                                    {% endif %}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    {% endblock %}
+                </div>
+                <div class="tab" data-tab-title="{{ 'checkout.step-navigation.step-3'|trans }}">
+                    <h4>{{ 'checkout.step-navigation.step-3'|trans }}</h4>
+                    {% block page_checkout_confirm_payment_wrapper %}
+                        <div class="confirm-payment-shipping">
+                            <div class="row">
+                                {% block page_checkout_confirm_payment_confirm %}
+                                    <div class="confirm-payment">
+                                        {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-payment.html.twig' %}
+                                    </div>
+                                {% endblock %}
+                            </div>
+                        </div>
+                    {% endblock %}
+                </div>
+                <div class="tab" data-tab-title="{{ 'checkout.step-navigation.step-4'|trans }}">
+                    <h4>{{ 'checkout.step-navigation.step-4'|trans }}</h4>
+                    <div class="tab-card tab-card-summary">
+                        <div class="tab-card-title">
+                            <h5>{{ 'checkout.step-navigation.summary-card-title-address'|trans }}</h5>
+                        </div>
+                        <div class="tab-card-body">
+                            {% block page_checkout_confirm_address %}
+                                {{ parent() }}
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <div class="tab-card tab-card-summary">
+                        <div class="tab-card-title">
+                            <h5>{{ 'checkout.step-navigation.summary-card-title-shipping'|trans }}</h5>
+                        </div>
+                        <div class="tab-card-body">
+                            <div class="confirm-payment-shipping">
+                                {% block page_checkout_confirm_shipping %}
+                                    {{ context.shippingMethod.translated.name }}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-card tab-card-summary">
+                        <div class="tab-card-title">
+                            <h5>{{ 'checkout.step-navigation.summary-card-title-payment'|trans }}</h5>
+                        </div>
+                        <div class="tab-card-body">
+                            <div class="confirm-payment-shipping confirm-payment-method">
+                                {% block page_checkout_confirm_payment_new %}
+                                    {{ context.paymentMethod.translated.name }}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-card tab-card-summary">
+                        <div class="tab-card-body">
+                            <div class="confirm-additionals">
+                                {% block page_checkout_additional_new %}
+                                    {% if config('core.cart.showCustomerComment') %}
+                                        <div class="checkout-additional">
+                                            {% block page_checkout_finish_customer_comment %}
+                                                <div class="card checkout-card">
+                                                    <div class="card-body">
+                                                        {% block page_checkout_confirm_customer_comment_header %}
+                                                            <div class="card-title">
+                                                                {{ "checkout.customerCommentHeader"|trans|sw_sanitize }}
+                                                            </div>
+                                                        {% endblock %}
+
+                                                        {% block page_checkout_confirm_customer_comment_control %}
+                                                            <div class="checkout-customer-comment-control">
+                                                                {% block page_checkout_confirm_customer_comment_control_textfield_label %}
+                                                                    <label class="form-label" for="{{ constant('Shopware\\Core\\Checkout\\Order\\SalesChannel\\OrderService::CUSTOMER_COMMENT_KEY') }}">
+                                                                        {{ "checkout.customerCommentLabel"|trans|sw_sanitize }}
+                                                                    </label>
+                                                                {% endblock %}
+
+                                                                {% block page_checkout_confirm_customer_comment_control_textfield %}
+                                                                    <textarea class="form-control"
+                                                                              placeholder="{{ "checkout.customerCommentPlaceholder"|trans|sw_sanitize }}"
+                                                                              id="{{ constant('Shopware\\Core\\Checkout\\Order\\SalesChannel\\OrderService::CUSTOMER_COMMENT_KEY') }}"
+                                                                              form="confirmOrderForm"
+                                                                              name="{{ constant('Shopware\\Core\\Checkout\\Order\\SalesChannel\\OrderService::CUSTOMER_COMMENT_KEY') }}"></textarea>
+                                                                {% endblock %}
+                                                            </div>
+                                                        {% endblock %}
+                                                    </div>
+                                                </div>
+                                            {% endblock %}
+                                        </div>
+                                    {% endif %}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                    {% block page_checkout_confirm_tos %}
+                        {{ parent() }}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="step-navigation-footer">
+                {% block page_checkout_aside_actions_new %}
+                    {{ block('page_checkout_confirm_hidden_line_items_information') }}
+                    <div class="checkout-aside-action">
+                        <form id="confirmOrderForm"
+                              action="{{ confirmOrderFormAction }}"
+                              data-form-preserver="true"
+                              data-form-submit-loader="true"
+                              data-form-add-history="true"
+                              data-form-add-history-options='{{ formAddHistoryOptions|json_encode }}'
+                              method="post">
+                            {% block page_checkout_confirm_form_submit %}
+                                <div class="d-grid">
+                                    <button id="confirmFormSubmit"
+                                            class="btn btn-primary"
+                                            form="confirmOrderForm"
+                                            {% if page.cart.errors.blockResubmit %}
+                                                disabled
+                                            {% endif %}
+                                            type="submit">
+                                        {{ "checkout.confirmSubmit"|trans|sw_sanitize }}
+                                    </button>
+                                </div>
+                            {% endblock %}
+                        </form>
+                    </div>
+                {% endblock %}
+                {% block component_account_register_form_six_questions_header %}
+                    {% sw_include '@Storefront/storefront/component/checkout/tab-navigation.html.twig' %}
+                {% endblock %}
+                {% sw_include '@WebwirkungHealthyMenTheme/storefront/component/checkout/tab-controller.html.twig' %}
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
+
+{% block page_checkout_confirm_tos_header %}
+{% endblock %}
+
+{% block page_checkout_confirm_revocation_notice %}
+{% endblock %}
+{% block page_checkout_additional %}
+{% endblock %}
+{#{% block page_checkout_aside_actions %}#}
+{#{% endblock %}#}

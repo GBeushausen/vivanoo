@@ -1,0 +1,24 @@
+{% block element_text_image_stepr %}
+    <div class="cms-element-step-by-step">
+        {% set stepIndex = 1 %}
+        {% for step in element.config.stepByStepItems.value %}
+            <div class="step-by-step-item">
+                {% if step.text %}
+                    <div class="step-by-step-item__number">
+                        <span>{{ stepIndex }}</span>
+                    </div>
+                    <div class="step-by-step-item__content">
+                        <div class="step-by-step-item__title">
+                            <h4>{{ step.title }}</h4>
+                        </div>
+                        <div class="step-by-step-item__text">
+                            {{ step.text|raw }}
+                        </div>
+                    </div>
+                    {# Increment the step index after processing each step #}
+                    {% set stepIndex = stepIndex + 1 %}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

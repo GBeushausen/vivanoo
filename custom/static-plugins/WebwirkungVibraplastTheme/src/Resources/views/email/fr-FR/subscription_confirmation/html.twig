@@ -1,0 +1,9 @@
+<div style="font-family:arial; font-size:12px;">
+    {% if subscription.customer.salutation %}{{ subscription.customer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ subscription.customer.firstName }} {{ subscription.customer.lastName }},<br>
+    <br>
+    Nous vous remercions pour votre abonnement {{ subscription.subscriptionNumber }} pour le produit {{ subscription.lineItem.label }}.<br>
+    <br>
+    Votre abonnement a été activé avec succès.<br>
+    <br>
+    N'hésitez pas à nous contacter pour toute question.
+</div>

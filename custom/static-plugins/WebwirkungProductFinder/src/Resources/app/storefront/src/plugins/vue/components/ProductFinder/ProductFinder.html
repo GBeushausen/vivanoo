@@ -1,0 +1,71 @@
+<div class="product-finder">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="product-finder-category-select">
+                <!--    Todo: add translations for Kategorie -->
+                <label>Kategorie:</label>
+                <select name="categoryId"
+                        id="category-select"
+                        class="form-select"
+                        v-model="selectedCategory"
+                        @change="onChangeCategory"
+                >
+                    <option value="0" disabled>{{ selectCategoryLabel }}</option>
+                    <option v-for="category in categories" :value="category.id">
+                        {{ category.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <product-finder-step-marker
+            v-if="!isLoading && selectedCategory"
+            :steps-labels="stepsLabels" :step-number="activeStep"
+    />
+    <template v-if="activeStep < 4">
+        <template v-if="!isLoading && selectedCategory && stepProperties.length > 0">
+            <product-finder-step
+                    v-if="stepSelectionType === 'single'"
+                    :key="selectedCategory+activeStep"
+                    :step-number="activeStep"
+                    :selected-options="selectedOptions"
+                    :step-label="stepsLabels[activeStep-1]"
+                    :step-question="stepQuestion"
+                    :step1Question2="step1Question2"
+                    :step-properties="stepProperties"
+                    :next-step-label="nextStepLabel"
+                    :previous-step-label="previousStepLabel"
+                    @next-step="onNextStep"
+                    @previous-step="onPreviousStep"
+            />
+            <product-finder-step-multiselect
+                    v-if="stepSelectionType === 'multi'"
+                    :key="selectedCategory+activeStep"
+                    :step-number="activeStep"
+                    :selected-options="selectedOptions"
+                    :step-label="stepsLabels[activeStep-1]"
+                    :step-question="stepQuestion"
+                    :step-properties="stepProperties"
+                    :next-step-label="nextStepLabel"
+                    :previous-step-label="previousStepLabel"
+                    @next-step="onNextStep"
+                    @previous-step="onPreviousStep"/>
+        </template>
+    </template>
+    <template v-else>
+        <template v-if="!isLoading && result">
+            <product-finder-result
+                    ref="resultComponent"
+                    :step-question="resultHeading"
+                    @previous-step="onPreviousStep"
+                    @reset="onReset"
+                    @remove-option="onRemoveOption"
+                    :step-label="stepsLabels[activeStep-1]"
+                    :result="result"
+                    :previous-step-label="previousStepLabel"
+                    :reset-label="resetLabel"
+            />
+        </template>
+    </template>
+</div>

@@ -1,0 +1,296 @@
+{% if data.customizedTemplate %}
+    {% set options = {
+        basePrice: data.product.calculatedPrices|first.unitPrice ?? data.product.calculatedPrice.unitPrice,
+        purchaseUnit: data.product.purchaseUnit ?? 1,
+        baseUnit: data.product.unit.translated.name,
+        currency: context.currency.isoCode,
+        itemRoundingDecimals: context.itemRounding.decimals,
+        itemRoundingInterval: context.itemRounding.interval,
+    } %}
+    {% set formAction = path('frontend.checkout.line-item.add') %}
+    {% set variantsTablePropertyGroup= data.variantsTablePropertyGroup %}
+    <div class="variant-configurator-container" data-variant-configurator
+         data-variant-configurator-options="{{ options|json_encode }}">
+        <div class="variants-dimension-property-options">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="variants-dimension-product-overview">
+                        <div class="variants-dimension-product-overview-image">
+                            {% if data.product.media.length > 0 %}
+                                {% set mainImage = data.product.media.media|first %}
+                                {% sw_thumbnails 'product-overview-image' with {
+                                    media: mainImage,
+                                    attributes: {
+                                        'alt': mainImage.alt,
+                                        'loading': 'lazy',
+                                    }
+                                } %}
+                            {% endif %}
+                        </div>
+                        <div class="variants-dimension-product-overview-info">
+                            {% if data.product.translated.customFields.ww_vibraplast_theme_product_set_erp_search_term_designation %}
+                                <b>{{ data.product.translated.customFields.ww_vibraplast_theme_product_set_erp_search_term_designation }}</b>{% endif %}
+                            {% if data.product.translated.customFields.ww_vibraplast_theme_product_set_detail_text %}
+                                <p>{{ data.product.translated.customFields.ww_vibraplast_theme_product_set_detail_text }}</p>{% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% if variantsTablePropertyGroup %}
+                    <div class="col-md-3">
+                        <div class="variants-dimension-main-select">
+                            <span class="variants-dimension-main-select-label">
+                                {{ variantsTablePropertyGroup.name }}
+                            </span>
+                            <select name="option"
+                                    id="variantsConfiguratorOptionSelect"
+                                    required="required"
+                                    class="form-select">
+                                {% for option in variantsTablePropertyGroup.options %}
+                                    <option value="{{ option.id }}" {% if option.id == data.variantPropertyOption %} selected{% endif %}>
+                                        {{ option.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="col-md-4 offset-md-2">
+                    <button class="btn btn-secondary btn-sm product-configurator-btn product-table-btn"
+                            id="product-table-btn">{{ 'product.detail.variant-configurator.backBtn'|trans }}</button>
+                </div>
+            </div>
+        </div>
+        <div class="variants-dimension-sliders variants-dimension-sliders--single row">
+            {% for configuratorOption in data.customizedTemplate.options %}
+                {% if configuratorOption.type == "numberfield" %}
+                    <div class="col-4 slider-configurator" data-option-id="{{ configuratorOption.id }}">
+                        <div class="range-slider">
+                            <span class="variants-dimension-sliders-label">{{ configuratorOption.translated.displayName }}</span>
+
+                            <input type="number" min="{{ configuratorOption.typeProperties.minValue }}"
+                                   max="{{ configuratorOption.typeProperties.maxValue }}"
+                                   step="{{ configuratorOption.typeProperties.interval }}"
+                                   value="{{ configuratorOption.typeProperties.defaultValue ?? 0 }}"
+                                   class="input-configurator-{{ configuratorOption.id }}"
+                                   data-dimension="{{ configuratorOption.id }}">
+                            <input type="range" min="{{ configuratorOption.typeProperties.minValue }}"
+                                   max="{{ configuratorOption.typeProperties.maxValue }}"
+                                   step="{{ configuratorOption.typeProperties.interval }}"
+                                   value="{{ configuratorOption.typeProperties.defaultValue ?? 0 }}"
+                                   class="slider-configurator-{{ configuratorOption.id }}"
+                                   data-dimension="{{ configuratorOption.id }}">
+                        </div>
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-6 position-relative">
+                <div class="variant-configurator-image">
+                    <img src="/bundles/webwirkungvibraplasttheme/img/box.png" style="width: 100%"
+                         alt="Custom configurator preview">
+                    {% for configuratorOption in data.customizedTemplate.options %}
+                        {% if loop.index === 1 %}
+                            <div class="variant-configurator-image-marker length-marker">
+                                        <span class="variant-configurator-image-marker-label">
+                                            {{ configuratorOption.translated.displayName }}
+                                        </span>
+                                <span class="variant-configurator-image-marker-input configurator-summary-preview-{{ configuratorOption.id }}">
+                                            {{ configuratorOption.typeProperties.minValue }}
+                                        </span>
+                            </div>
+                        {% endif %}
+                        {% if loop.index === 2 %}
+                            <div class="variant-configurator-image-marker width-marker">
+                                        <span class="variant-configurator-image-marker-label">
+                                            {{ configuratorOption.translated.displayName }}
+                                        </span>
+                                <span class="variant-configurator-image-marker-input configurator-summary-preview-{{ configuratorOption.id }}">
+                                            {{ configuratorOption.typeProperties.minValue }}
+                                        </span>
+                            </div>
+                        {% endif %}
+                        {% if loop.index === 3 %}
+                            <div class="variant-configurator-image-marker height-marker">
+                                        <span class="variant-configurator-image-marker-label">
+                                            {{ configuratorOption.translated.displayName }}
+                                        </span>
+                                <span class="variant-configurator-image-marker-input configurator-summary-preview-{{ configuratorOption.id }}">
+                                            {{ configuratorOption.typeProperties.minValue }}
+                                        </span>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="variant-configurator-summary">
+                    <h5>{{ 'product.detail.variant-configurator.summaryLabel'|trans }}</h5>
+                    <div class="variant-configurator-summary-material">
+                        <span class="variant-configurator-summary-label">{{ 'product.detail.variant-configurator.material'|trans }}</span>
+                        <p>{{ data.product.name }}</p>
+                    </div>
+                    <div class="variant-configurator-summary-dimension">
+                        <span class="variant-configurator-summary-label">{{ 'product.detail.variant-configurator.dimension'|trans }}</span>
+                        {% for configuratorOption in data.customizedTemplate.options %}
+                            {% if configuratorOption.type == "numberfield" %}
+                                <div class="variant-configurator-summary-options">
+                                    <span>{{ configuratorOption.translated.displayName }}</span>
+                                    <span class="dashed-line"></span>
+                                    <span class="configurator-summary-{{ configuratorOption.id }} text-end">
+                                                {{ configuratorOption.typeProperties.minValue }}
+                                            </span>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="variant-configurator-summary-delivery">
+                        <span class="variant-configurator-summary-label">{{ 'product.detail.variant-configurator.delivery'|trans }}</span>
+                        {% sw_include '@Storefront/storefront/component/delivery-information.html.twig' with {
+                            configuratorProduct: data.product
+                        } %}
+                    </div>
+                    <form
+                            id="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                            action="{{ formAction }}"
+                            method="post"
+                            class="buy-widget"
+                            data-add-to-cart="true">
+                        <div class="variant-configurator-summary-number">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="variant-configurator-summary-label">{{ 'product.detail.variant-configurator.number'|trans }}</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <input
+                                            type="number"
+                                            name="lineItems[{{ data.product.id }}][quantity]"
+                                            class="form-control"
+                                            form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                            min="{{ data.product.minPurchase }}"
+                                            max="{{ data.product.calculatedMaxPurchase }}"
+                                            step="{{ data.product.purchaseSteps }}"
+                                            value="{{ data.product.minPurchase }}"
+                                            aria-label="{{ "component.product.quantitySelect.label"|trans|striptags }}"
+                                    />
+
+                                    <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                           type="hidden"
+                                           name="redirectTo"
+                                           value="frontend.cart.offcanvas">
+                                    <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                           type="hidden"
+                                           name="redirectParameters"
+                                           data-redirect-parameters="true"
+                                           value='{"productId": "{{ data.product.id }}"}'>
+                                    <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                           type="hidden"
+                                           name="lineItems[{{ data.product.id }}][id]"
+                                           value="{{ data.product.id }}">
+                                    <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                           type="hidden"
+                                           name="lineItems[{{ data.product.id }}][label]"
+                                           value="{{ data.product.translated.name }}">
+                                    <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                           type="hidden"
+                                           name="lineItems[{{ data.product.id }}][type]"
+                                           value="{{ constant('Webwirkung\\VibraplastTheme\\Checkout\\Cart\\CustomProductLineItemFactory::CUSTOM_PRODUCT_LINE_ITEM_TYPE') }}">
+                                    <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                           type="hidden"
+                                           name="lineItems[{{ data.product.id }}][referencedId]"
+                                           value="{{ data.product.id }}">
+                                    <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                           type="hidden"
+                                           name="lineItems[{{ data.product.id }}][stackable]"
+                                           value="1">
+                                    <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                           type="hidden"
+                                           name="lineItems[{{ data.product.id }}][removable]"
+                                           value="1">
+                                    <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                           type="hidden"
+                                           name="product-name"
+                                           value="{{ data.product.translated.name }}">
+                                    <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                           type="hidden"
+                                           name="brand-name"
+                                           value="{{ data.product.manufacturer.getName() }}">
+
+                                    {% if variantsTablePropertyGroup %}
+                                        <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                               type="hidden"
+                                               name="lineItems[{{ data.product.id }}][variantProperty][groupId]"
+                                               value="{{ variantsTablePropertyGroup.id }}">
+                                        <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                               type="hidden"
+                                               class="variantPropertyOptionInput"
+                                               name="lineItems[{{ data.product.id }}][variantProperty][optionId]"
+                                               value="{{ data.variantPropertyOption }}">
+                                    {% endif %}
+
+                                    {% for configuratorOption in data.customizedTemplate.options %}
+                                        {% if configuratorOption.type == "numberfield" %}
+                                            <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                                   type="hidden"
+                                                   class="configurator-hidden-input-{{ configuratorOption.id }}"
+                                                   name="lineItems[{{ data.product.id }}][configuratorOptions][{{ configuratorOption.id }}][value]"
+                                                   value="{{ configuratorOption.typeProperties.minValue }}">
+                                            <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                                   type="hidden"
+                                                   class="configurator-hidden-input-{{ configuratorOption.id }}"
+                                                   name="lineItems[{{ data.product.id }}][configuratorOptions][{{ configuratorOption.id }}][name]"
+                                                   value="{{ configuratorOption.translated.displayName }}">
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if data.product.cover.mediaId %}
+                                        <input form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                               type="hidden"
+                                               name="lineItems[{{ data.product.id }}][coverId]"
+                                               value="{{ data.product.cover.mediaId}}">
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {# TODO show correct price recalculation (handled by JS) #}
+                        <div class="variant-configurator-summary-price">
+                            <span class="variant-configurator-summary-label">{{ 'product.detail.variant-configurator.price'|trans }}</span>
+                            {% sw_include '@WebwirkungVibraplastTheme/storefront/component/product/variants-buy-table-price.html.twig' with {
+                                variantPrice: data.product.calculatedPrices|first
+                            } %}
+                        </div>
+                        <div class="variant-configurator-summary-buttons">
+                            {#                                    Todo: Fix add product with configuration correctly to cart #}
+                            <button form="productDetailPageBuyCustomProductForm-{{ data.product.id }}"
+                                    class="btn btn-primary"
+                                    title="{{ "detail.addProduct"|trans|striptags }}"
+                                    aria-label="{{ "detail.addProduct"|trans|striptags }}">
+                                {% sw_icon 'cart' style {'pack' : 'WebwirkungIcons'} %}{{ "detail.addProduct"|trans|sw_sanitize }}
+                            </button>
+                            {% block product_question_button %}
+                                <div class="product-detail-request-button">
+                                    <a data-ajax-modal="true"
+                                       data-url="{{ path('frontend.cms.page', { id: config('WebwirkungVibraplastTheme.config.requestFormPage') }) }}"
+                                       href="{{ path('frontend.cms.page', { id: config('WebwirkungVibraplastTheme.config.requestFormPage') }) }}"
+                                       title="{{ 'product.detail.request-form'|trans }}"
+                                       class="btn btn-secondary btn-md btn-request"
+                                       id="requestFormModalLink">
+                                        {% sw_icon 'request' style {'pack' : 'WebwirkungIcons'} %}{{ 'product.detail.request-form'|trans }}
+                                    </a>
+                                    {% set productImageFirst = data.product.media.media|first %}
+                                    {% set options = {
+                                        productName: data.product.translated.name,
+                                        productImage: productImageFirst.url,
+                                        customizedProduct: true
+                                    } %}
+                                    <template data-product-request-form-modal-plugin
+                                              data-product-request-form-modal-plugin-options='{{ options|json_encode }}'></template>
+                                </div>
+                            {% endblock %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

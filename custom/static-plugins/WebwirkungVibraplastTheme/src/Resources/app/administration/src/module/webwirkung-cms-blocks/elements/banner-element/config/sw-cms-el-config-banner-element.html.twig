@@ -1,0 +1,103 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template #content="{ active }"
+        >
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+                    <sw-select-field
+                            :label="$tc('sw-cms.elements.banner-element.config.bannerSize.label')"
+                            v-model:value="bannerSize"
+                    >
+                        <option value="narrow">{{ $tc('sw-cms.elements.banner-element.config.bannerSize.narrow') }}</option>
+                        <option value="broad">{{ $tc('sw-cms.elements.banner-element.config.bannerSize.broad') }}</option>
+                    </sw-select-field>
+                    <sw-select-field
+                            :label="$tc('sw-cms.elements.banner-element.config.bannerArrangement.label')"
+                            v-model:value="bannerArrangement"
+                    >
+                        <option value="text-left">{{ $tc('sw-cms.elements.banner-element.config.bannerArrangement.text-left') }}</option>
+                        <option value="text-right">{{ $tc('sw-cms.elements.banner-element.config.bannerArrangement.text-right') }}</option>
+                    </sw-select-field>
+                    <sw-text-editor
+                            v-model:value="bannerText"
+                            label="Text"
+                    ></sw-text-editor>
+                    {% block sw_cms_element_banner_image %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadBannerImageTag"
+                                :source="previewBannerImageSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.banner-element.config.caption.bannerImageUpload')"
+                                @media-upload-sidebar-open="onOpenBannerImageModal"
+                                @media-upload-remove-image="onBannerImageRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadBannerImageTag"
+                                auto-upload
+                                @media-upload-finish="onBannerImageUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="bannerImageModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.banner-element.config.caption.bannerImageUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onBannerImageRemove"
+                                @media-modal-selection-change="onBannerImageSelectionChanges"
+                                @modal-close="onCloseBannerImageModal"
+                        ></sw-media-modal-v2>
+                        <br><br>
+                    {% endblock %}
+
+                    {% block sw_cms_element_banner_background %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadBannerBackgroundTag"
+                                :source="previewBannerBackgroundSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.banner-element.config.caption.bannerBackgroundUpload')"
+                                @media-upload-sidebar-open="onOpenBannerBackgroundModal"
+                                @media-upload-remove-image="onBannerBackgroundRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadBannerBackgroundTag"
+                                auto-upload
+                                @media-upload-finish="onBannerBackgroundUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="bannerBackgroundModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.banner-element.config.caption.bannerBackgroundUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onBannerBackgroundRemove"
+                                @media-modal-selection-change="onBannerBackgroundSelectionChanges"
+                                @modal-close="onCloseBannerBackgroundModal"
+                        ></sw-media-modal-v2>
+                    {% endblock %}
+
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

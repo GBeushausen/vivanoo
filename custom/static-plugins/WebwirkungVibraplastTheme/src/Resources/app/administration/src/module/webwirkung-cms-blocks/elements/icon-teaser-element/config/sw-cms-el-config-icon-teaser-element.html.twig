@@ -1,0 +1,92 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template #content="{ active }"
+        >
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+                <sw-text-field
+                        v-model:value="iconTeaserTitleBefore"
+                        :label="$tc('sw-cms.elements.icon-teaser-element.config.iconTeaserTitleBefore')"
+                        :allow-inline-data-mapping="true"
+                ></sw-text-field>
+                <sw-switch-field
+                        v-model:value="iconTeaserSmallSpace"
+                        :label="$tc('sw-cms.elements.icon-teaser-element.config.iconTeaserSmallSpace')"
+                ></sw-switch-field>
+                <sw-media-upload-v2
+                        variant="regular"
+                        :upload-tag="uploadIconTeaserImageTag"
+                        :source="previewIconTeaserImageSource"
+                        :allow-multi-select="false"
+                        :default-folder="cmsPageState.pageEntityName"
+                        :label="$tc('sw-cms.elements.icon-teaser-element.config.iconTeaserImage')"
+                        @media-upload-sidebar-open="onOpenIconTeaserImageModal"
+                        @media-upload-remove-image="onIconTeaserImageRemove"
+                ></sw-media-upload-v2>
+                <sw-upload-listener
+                        :upload-tag="uploadIconTeaserImageTag"
+                        auto-upload
+                        @media-upload-finish="onIconTeaserImageUpload"
+                ></sw-upload-listener>
+                <sw-media-modal-v2
+                        v-if="iconTeaserImageModalIsOpen"
+                        variant="full"
+                        :caption="$tc('sw-cms.elements.icon-teaser-element.config.image')"
+                        :entity-context="cmsPageState.entityName"
+                        :allow-multi-select="false"
+                        :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                        @media-upload-remove-image="onIconTeaserImageRemove"
+                        @media-modal-selection-change="onIconTeaserImageSelectionChanges"
+                        @modal-close="onCloseIconTeaserImageModal"
+                ></sw-media-modal-v2>
+                <br>
+                <sw-select-field
+                        :label="$tc('sw-cms.elements.icon-teaser-element.config.iconTeaserBackground.label')"
+                        v-model:value="iconTeaserBackground"
+                >
+                    <option value="blue">{{ $tc('sw-cms.elements.icon-teaser-element.config.iconTeaserBackground.blue') }}</option>
+                    <option value="lightblue">{{ $tc('sw-cms.elements.icon-teaser-element.config.iconTeaserBackground.lightblue') }}</option>
+                    <option value="grey">{{ $tc('sw-cms.elements.icon-teaser-element.config.iconTeaserBackground.grey') }}</option>
+                    <option value="transparent">{{ $tc('sw-cms.elements.icon-teaser-element.config.iconTeaserBackground.transparent') }}</option>
+                </sw-select-field>
+                <sw-select-field
+                        :label="$tc('sw-cms.elements.icon-teaser-element.config.iconBackground.label')"
+                        v-model:value="iconBackground"
+                >
+                    <option value="transparent">{{ $tc('sw-cms.elements.icon-teaser-element.config.iconBackground.transparent') }}</option>
+                    <option value="blue">{{ $tc('sw-cms.elements.icon-teaser-element.config.iconBackground.blue') }}</option>
+                </sw-select-field>
+                <sw-select-field
+                        :label="$tc('sw-cms.elements.icon-teaser-element.config.iconPosition.label')"
+                        v-model:value="iconPosition"
+                >
+                    <option value="top">{{ $tc('sw-cms.elements.icon-teaser-element.config.iconPosition.top') }}</option>
+                    <option value="left">{{ $tc('sw-cms.elements.icon-teaser-element.config.iconPosition.left') }}</option>
+                </sw-select-field>
+                <sw-text-editor
+                        v-model:value="iconTeaserText"
+                        class="ww-text-field"
+                        :label="$tc('sw-cms.elements.icon-teaser-element.config.iconTeaserText')"
+                        @input="onElementUpdateContent"
+                        @change="onElementUpdateContent"
+                ></sw-text-editor>
+
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

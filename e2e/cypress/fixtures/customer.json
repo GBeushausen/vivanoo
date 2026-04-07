@@ -1,0 +1,15 @@
+{
+  "customerNumber": "RS-1232123",
+  "firstName": "Pep",
+  "lastName": "Eroni",
+  "email": "test@example.com",
+  "password": "shopware",
+  "company": "shopware AG",
+  "department": "product engineering",
+  "groupId": "cfbd5018d38d41d8adca10d94fc8bdd6",
+  "defaultPaymentMethodId": "018d3f4cd3cf71278dceb6e90d04d770",
+  "salesChannelId": "018d3f4ebb7470a0ba0161c58776bf7b",
+  "addresses": [
+    {}
+  ]
+}

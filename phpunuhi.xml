@@ -1,0 +1,66 @@
+<phpunuhi
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="./vendor/boxblinkracer/phpunuhi/config.xsd"
+>
+    <translations>
+        <set name="Administration">
+            <format>
+                <json indent="4" sort="true"/>
+            </format>
+            <locales basePath="./custom/static-plugins/WebwirkungVibraplastTheme/src/Resources/app/administration/src/module/webwirkung-cms-blocks/snippet">
+                <locale name="de-DE" base="true">%base_path%/%locale%.json</locale>
+                <locale name="en-GB">%base_path%/%locale%.json</locale>
+            </locales>
+        </set>
+        <set name="Storefront">
+            <format>
+                <json indent="4" sort="true"/>
+            </format>
+            <locales basePath="./custom/static-plugins/WebwirkungVibraplastTheme/src/Resources/snippet">
+                <locale name="de-DE" base="true">%base_path%/storefront.%locale%.json</locale>
+                <locale name="en-GB">%base_path%/storefront.%locale%.json</locale>
+                <locale name="fr-FR">%base_path%/storefront.%locale%.json</locale>
+            </locales>
+        </set>
+        <set name="Storefront FAQ Plugin">
+            <format>
+                <json indent="4" sort="true"/>
+            </format>
+            <locales basePath="./custom/static-plugins/WebwirkungFaqPlugin/src/Resources/snippet">
+                <locale name="de-DE" base="true">%base_path%/faq.%locale%.json</locale>
+                <locale name="en-GB">%base_path%/faq.%locale%.json</locale>
+                <locale name="fr-FR">%base_path%/faq.%locale%.json</locale>
+            </locales>
+        </set>
+        <set name="Storefront Glossary Plugin">
+            <format>
+                <json indent="4" sort="true"/>
+            </format>
+            <locales basePath="./custom/static-plugins/WebwirkungGlossaryPlugin/src/Resources/snippet">
+                <locale name="de-DE" base="true">%base_path%/glossary.%locale%.json</locale>
+                <locale name="en-GB">%base_path%/glossary.%locale%.json</locale>
+                <locale name="fr-FR">%base_path%/glossary.%locale%.json</locale>
+            </locales>
+        </set>
+        <set name="Storefront Minimum Order Surcharge Plugin">
+            <format>
+                <json indent="4" sort="true"/>
+            </format>
+            <locales basePath="./custom/static-plugins/WebwirkungMinimumOrderSurchargePlugin/src/Resources/snippet">
+                <locale name="de-DE" base="true">%base_path%/minimum-order-surcharge.%locale%.json</locale>
+                <locale name="en-GB">%base_path%/minimum-order-surcharge.%locale%.json</locale>
+                <locale name="fr-FR">%base_path%/minimum-order-surcharge.%locale%.json</locale>
+            </locales>
+        </set>
+        <set name="Storefront Product Finder">
+            <format>
+                <json indent="4" sort="true"/>
+            </format>
+            <locales basePath="./custom/static-plugins/WebwirkungProductFinder/src/Resources/snippet">
+                <locale name="de-DE" base="true">%base_path%/product-finder.%locale%.json</locale>
+                <locale name="en-GB">%base_path%/product-finder.%locale%.json</locale>
+                <locale name="fr-FR">%base_path%/product-finder.%locale%.json</locale>
+            </locales>
+        </set>
+    </translations>
+</phpunuhi>

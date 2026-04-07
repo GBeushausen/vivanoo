@@ -1,0 +1,31 @@
+{% sw_extends '@Storefront/storefront/component/checkout/offcanvas-cart.html.twig' %}
+
+{% block utilities_offcanvas_close_icon %}
+    {% sw_icon 'arrow-left' style {'pack' : 'WebwirkungIcons'} %}
+{% endblock %}
+{% block component_offcanvas_cart_actions_promotion_submit %}
+    <button class="btn btn-secondary"
+            type="submit"
+            id="addPromotionOffcanvasCart">
+        {% sw_icon 'check' style {'pack' : 'WebwirkungIcons'} %}
+    </button>
+{% endblock %}
+
+{% block component_offcanvas_cart_actions_checkout %}
+    <div class="d-grid">
+        <a href="{{ path('frontend.checkout.confirm.page') }}"
+           class="btn begin-checkout-btn{% if isCartNotEmpty %} btn-primary{% else %} btn-light disabled{% endif %}"
+           title="{{ "checkout.proceedToCheckout"|trans|striptags }}">
+            {{ "checkout.proceedToCheckout"|trans|sw_sanitize }}
+        </a>
+    </div>
+{% endblock %}
+{% block component_offcanvas_cart_actions_cart %}
+    <div class="d-grid">
+        <a href="{{ path('frontend.checkout.cart.page') }}"
+           class="btn btn-secondary btn-sm"
+           title="{{ "checkout.proceedToCart"|trans|striptags }}">
+            {{ "checkout.proceedToCart"|trans|sw_sanitize }}
+        </a>
+    </div>
+{% endblock %}

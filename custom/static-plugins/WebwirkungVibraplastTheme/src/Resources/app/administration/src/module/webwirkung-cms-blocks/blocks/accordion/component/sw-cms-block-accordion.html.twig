@@ -1,0 +1,6 @@
+{% block sw_cms_block_accordion %}
+    <div class="sw-cms-block-accordion">
+        <div class="ww-label-block">{{ $tc('sw-cms.blocks.accordion.label') }}</div>
+        <slot name="content">{% block sw_cms_block_webwirkung_accordion_slot_content %}{% endblock %}</slot>
+    </div>
+{% endblock %}

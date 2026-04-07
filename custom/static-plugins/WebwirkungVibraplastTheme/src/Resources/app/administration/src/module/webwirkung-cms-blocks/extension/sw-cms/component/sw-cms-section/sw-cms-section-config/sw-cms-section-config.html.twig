@@ -1,0 +1,25 @@
+{% block sw_cms_section_config_name_field %}
+    {% parent %}
+
+    {% block sw_cms_sidebar_section_config_background_type_field %}
+        <webwirkung-background-types :parent="section"></webwirkung-background-types>
+    {% endblock %}
+{% endblock %}
+
+<!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+{% block sw_cms_sidebar_section_config_sizing_field %}
+    <sw-select-field
+            v-model:value="section.sizingMode"
+            :label="$tc('sw-cms.detail.label.sizingField')"
+    >
+        <option value="boxed">
+            {{ $tc('sw-cms.detail.label.sizingOptionBoxed') }}
+        </option>
+        <option value="full_width">
+            {{ $tc('sw-cms.detail.label.sizingOptionFull') }}
+        </option>
+        <option value="narrow">
+            {{ $tc('sw-cms.detail.label.sizingOptionNarrow') }}
+        </option>
+    </sw-select-field>
+{% endblock %}

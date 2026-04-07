@@ -1,0 +1,6 @@
+{% block block_sub_category_listing %}
+    {% set element = block.slots.getSlot('content') %}
+    <div class="{{ element.type }}-wrapper">
+        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+    </div>
+{% endblock %}

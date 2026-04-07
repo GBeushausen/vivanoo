@@ -1,0 +1,46 @@
+{
+    "webwirkung": {
+        "glossary": {
+            "general": {
+                "mainMenuItemGeneral": "Glossary",
+                "descriptionTextModule": "Glossary Plugin",
+                "nameField": "Name",
+                "descriptionField": "Description",
+                "activeField": "Active"
+            },
+            "list": {
+                "addButtonText": "Add new word"
+            },
+            "detail": {
+                "cancelButtonText": "Cancel",
+                "saveButtonText": "Save",
+                "errorTitle": "An error occurred",
+                "infoDefaultLanguage": "The entry must be created in the default language first.",
+                "nameRequiredErrorMessage": "Name is requires",
+                "descriptionRequiredErrorMessage": "Description is required"
+            },
+            "blocks": {
+                "glossary": {
+                    "listing": {
+                        "label": "Glossar Liste"
+                    }
+                }
+            },
+            "elements": {
+                "glossary": {
+                    "listing": {
+                        "label": "Glossar Listview (ABC)",
+                        "description": "Shows all glossary terms in a list view sorted by ABC and with filter."
+                    }
+                }
+            }
+        }
+    },
+    "sw-privileges": {
+        "permissions": {
+            "ww_glossary": {
+                "label": "Glossar Plugin"
+            }
+        }
+    }
+}

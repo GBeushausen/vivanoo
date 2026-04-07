@@ -1,0 +1,67 @@
+{
+    "faq": {
+        "general": {
+            "mainMenuItemGeneral": "FAQs",
+            "mainMenuItemList": "FAQs",
+            "categoryMenuItemGeneral": "FAQ category",
+            "questionField": "Frage",
+            "answerField": "Answer",
+            "categoryField": "Kategorien wählen",
+            "variantField": "Name Variante",
+            "hiddenField": "In Liste 'Alle FAQs' verstecken"
+        },
+        "list": {
+            "addButtonText": "Add new question"
+        },
+        "detail": {
+            "cancelButtonText": "Cancel",
+            "saveButtonText": "Save",
+            "errorTitle": "Error while saving",
+            "infoDefaultLanguage": "The entry must be created in the default language first.",
+            "questionRequiredErrorMessage": "Question is requires"
+        },
+        "blocks": {
+            "faq": {
+                "listing": {
+                    "label": "List all faq",
+                    "previewTitle": "List faq (accordion)"
+                },
+                "select": {
+                    "label": "FAQ Auswahl",
+                    "previewTitle": "Ausgewählte FAQs"
+                }
+            }
+        },
+        "elements": {
+            "title": "Title FAQs",
+            "listing": {
+                "preview": {
+                    "label": "Liste FAQs"
+                },
+                "component": {
+                    "elementTitle": "FAQ Listview",
+                    "elementText": "All faq are shown inside an accordion."
+                }
+            },
+            "select": {
+                "label": "Ausgewählte FAQs",
+                "selectFieldLabel": "FAQ wählen",
+                "previewText": "Meine Frage previewText",
+                "elementText": "Ihre ausgewählten FAQs werden hier dargestellt (Einstellungen)."
+            },
+            "config": {
+                "faqCategory": {
+                    "label": "Category",
+                    "placeholder": "Choose category..."
+                }
+            }
+        }
+    },
+    "sw-privileges": {
+        "permissions": {
+            "ww_faq": {
+                "label": "FAQ Plugin"
+            }
+        }
+    }
+}

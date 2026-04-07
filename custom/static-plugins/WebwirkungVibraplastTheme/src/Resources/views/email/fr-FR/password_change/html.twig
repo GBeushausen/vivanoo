@@ -1,0 +1,13 @@
+<div style="font-family:arial; font-size:12px;">
+    <p>
+        Bonjour {{ customer.salutation.translated.letterName }} {{customer.firstName}} {{ customer.lastName }},<br/>
+        <br/>
+        Une demande de réinitialisation de votre mot de passe a été effectuée sur la boutique {{ salesChannel.translated.name }}.
+        Veuillez cliquer sur le lien ci-dessous pour définir un nouveau mot de passe.<br/>
+        <br/>
+        <a href="{{ resetUrl }}">Réinitialiser le mot de passe</a><br/>
+        <br/>
+        Ce lien n'est valable que pour les 2 prochaines heures. Passé ce délai, une nouvelle demande de réinitialisation du mot de passe devra être effectuée.
+        Si vous ne souhaitez pas réinitialiser votre mot de passe, ignorez cet e-mail - aucune modification ne sera effectuée.
+    </p>
+</div>

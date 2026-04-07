@@ -1,0 +1,97 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template
+                #content="{ active }"
+        >
+
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+                    <sw-text-field
+                            v-model:value="heroTitle"
+                            label="Titel"
+                            :allow-inline-data-mapping="true"
+                    ></sw-text-field>
+                    <sw-text-editor
+                            v-model:value="heroText"
+                            label="Text"
+                    ></sw-text-editor>
+
+                    {% block sw_cms_element_hero_header_image %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadHeroImageTag"
+                                :source="previewHeroImageSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.hero-header-element.config.caption.heroImageUpload')"
+                                @media-upload-sidebar-open="onOpenHeroImageModal"
+                                @media-upload-remove-image="onHeroImageRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadHeroImageTag"
+                                auto-upload
+                                @media-upload-finish="onHeroImageUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="heroImageModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.hero-header-element.config.caption.heroImageUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onHeroImageRemove"
+                                @media-modal-selection-change="onHeroImageSelectionChanges"
+                                @modal-close="onCloseHeroImageModal"
+                        ></sw-media-modal-v2>
+                        <br><br>
+                    {% endblock %}
+
+                    {% block sw_cms_element_hero_header_background %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadHeroBackgroundTag"
+                                :source="previewHeroBackgroundSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.hero-header-element.config.caption.heroBackgroundUpload')"
+                                @media-upload-sidebar-open="onOpenHeroBackgroundModal"
+                                @media-upload-remove-image="onHeroBackgroundRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadHeroBackgroundTag"
+                                auto-upload
+                                @media-upload-finish="onHeroBackgroundUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="heroBackgroundModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.hero-header-element.config.caption.heroBackgroundUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onHeroBackgroundRemove"
+                                @media-modal-selection-change="onHeroBackgroundSelectionChanges"
+                                @modal-close="onCloseHeroBackgroundModal"
+                        ></sw-media-modal-v2>
+                    {% endblock %}
+
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

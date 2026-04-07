@@ -1,0 +1,11 @@
+.product-box {
+  border: 1px solid $sw-border-color;
+}
+
+.cms-element-product-slider {
+  .base-slider {
+    .tns-nav {
+      display: none;
+    }
+  }
+}

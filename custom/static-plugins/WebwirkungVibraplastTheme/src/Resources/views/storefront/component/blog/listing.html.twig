@@ -1,0 +1,42 @@
+{% sw_extends '@SasBlogModule/storefront/component/blog/listing.html.twig' %}
+
+{% block sas_blog_listing %}
+    <div class="cms-element-product-listing-wrapper {% if config.filterAside.value === true %}col-lg-9{% else %}col-lg-12{% endif %}"
+         data-listing-pagination="true"
+         data-listing-pagination-options='{{ paginationConfig }}'
+         data-listing="true"
+         data-listing-options='{{ listingPagination|json_encode }}'>
+
+        <div class="cms-element-product-listing">
+            {% if searchResult.total > 0 %}
+                <div class="cms-element-sas-blog-listing-actions row justify-content-center">
+                    {% block sas_block_pagination %}
+                        {{ parent() }}
+                    {% endblock %}
+                </div>
+            {% endif %}
+
+            {% block sas_element_blog_listing_row %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block sas_element_blog_listing_col %}
+    <div class="row">
+        {% for article in searchResult %}
+            {% if loop.first and config.firstElBig.value === true %}
+                <div class="col-12 blog-list-first-element-big">
+                    {% sw_include '@Storefront/storefront/component/blog/card/box.html.twig' %}
+                </div>
+            {% else %}
+                <div class="col-12 col-md-4">
+                    {% sw_include '@Storefront/storefront/component/blog/card/box.html.twig' %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

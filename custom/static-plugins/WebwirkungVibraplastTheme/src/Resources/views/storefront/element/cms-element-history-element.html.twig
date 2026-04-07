@@ -1,0 +1,77 @@
+{% block element_text_image_yearr %}
+    {% set historySliderOptions = {
+        slider: {
+            navPosition: 'bottom',
+            speed: 500,
+            nav: true,
+            controls: true,
+            autoHeight: false,
+            edgePadding: 0,
+            autoplay: true,
+            gutter: 0,
+            navContainer: "#history-slider-nav",
+            controlsContainer: "#history-slider-controls",
+        }
+    } %}
+
+    <div class="history-container">
+        <div class="history-slider-controls-wrapper">
+            <ul class="year-nav" id="history-slider-nav">
+                {% for year in element.config.historyItems.value %}
+                    <li>{{ year.year }}</li>
+                {% endfor %}
+            </ul>
+            <ul class="controls" id="history-slider-controls">
+                <li class="prev">
+                    {% sw_icon 'history-slider-up' style {'pack' : 'WebwirkungIcons'} %}
+                </li>
+                <li class="next">
+                    {% sw_icon 'history-slider-down' style {'pack' : 'WebwirkungIcons'} %}
+                </li>
+            </ul>
+        </div>
+        <div class="history-slider"
+             data-base-slider="true"
+             data-base-slider-options="{{ historySliderOptions|json_encode }}">
+            <div class="history-slider-container" data-base-slider-container="true">
+                {% set yearIndex = 1 %}
+                {% for year in element.config.historyItems.value %}
+                    <div class="history-item">
+                        <div class="history-inner">
+                            <div class="history-content">
+                                {% if year.text %}
+                                    <div class="history-content-text">
+                                        {{ year.text|raw }}
+                                    </div>
+                                    {% if year.historyImage %}
+                                        <div class="history-content-image">
+                                            {% set mediaCollection = searchMedia([year.historyImage], context.context) %}
+                                            {% set historyImage = mediaCollection|first %}
+                                            {% sw_thumbnails 'header-image' with {
+                                                media: historyImage,
+                                                sizes: {
+                                                    'xs': '300px',
+                                                    'sm': '300px',
+                                                    'md': '300px',
+                                                    'lg': '300px',
+                                                    'xl': '300px',
+                                                },
+                                                attributes: {
+                                                    'alt': historyImage.alt,
+                                                    'loading': 'lazy',
+                                                }
+                                            } %}
+                                        </div>
+                                    {% endif %}
+                                    {# Increment the year index after processing each year #}
+                                    {% set yearIndex = yearIndex + 1 %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <template data-history-plugin></template>
+    </div>
+{% endblock %}

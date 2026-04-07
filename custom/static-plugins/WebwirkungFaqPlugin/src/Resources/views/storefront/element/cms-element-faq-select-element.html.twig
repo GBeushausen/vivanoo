@@ -1,0 +1,25 @@
+{% block sw_element_faq_category_listing %}
+    {% block webwirkung_element_faq_category_listing_wrapper %}
+        {% set searchResult = element.data %}
+        {% set config = element.fieldConfig.elements %}
+
+        <div class="accordion accordion-faq-selected-wrapper accordion__list" id="accordionFaq{{ element.id }}">
+            {% set counterFaq = 0 %}
+            {% for faq in searchResult %}
+                <div class="accordion-faq accordion-item">
+                    <span class="accordion__title accordion-header" id="heading{{ counterFaq }}">
+                        <span class="title" data-bs-toggle="collapse" data-bs-target="#collapse{{ counterFaq }}" aria-expanded="false" aria-controls="collapse{{ counterFaq }}">
+                            {{ faq.translated.question }}<span class="arrow"></span>
+                        </span>
+                    </span>
+                    <div id="collapse{{ counterFaq }}" class="accordion__content-wrap accordion-collapse collapse" aria-labelledby="heading{{ counterFaq }}" data-bs-parent="#accordionFaq{{ element.id }}">
+                        <div class="accordion__content">
+                            {{ faq.translated.answer|raw }}
+                        </div>
+                    </div>
+                </div>
+                {% set counterFaq = counterFaq + 1 %}
+            {% endfor %}
+        </div>
+    {% endblock %}
+{% endblock %}

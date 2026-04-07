@@ -1,0 +1,10 @@
+.cms-element-product-slider {
+  .cms-element-title {
+    &-paragraph {
+      margin-bottom: 40px;
+      padding-bottom: 16px;
+      @extend h4;
+      border-bottom: 1px solid $sw-border-color;
+    }
+  }
+}

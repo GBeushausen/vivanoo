@@ -1,0 +1,105 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/tabs.html.twig' %}
+{% block page_product_detail_tabs_inner %}
+    {% set detailsData = page.product.translated.customFields.ww_vibraplast_theme_product_long_description or page.product.translated.customFields.ww_vibraplast_theme_product_form_options or page.extensions['ww_property_groups'].get('WwPropertyGroups') %}
+    {% set technicalData =  page.extensions['ww_property_groups'].get('TechnicalDataPropertySet') %}
+
+    {{ parent() }}
+{% endblock %}
+{% block page_product_detail_tabs_navigation_container %}
+    <ul class="nav nav-tabs product-detail-tab-navigation-list"
+        id="product-detail-tabs"
+        role="tablist">
+        {% block page_product_detail_tabs_navigation_details %}
+            {% if detailsData %}
+                <li class="nav-item">
+                    <a
+                            class="nav-link {% if (ratingSuccess != 1) and (ratingSuccess != -1) %}active{% endif %} product-detail-tab-navigation-link"
+                            id="details-tab"
+                            data-bs-toggle="tab"
+                            href="#details-tab-pane"
+                            role="tab"
+                            aria-controls="details-tab-pane"
+                            aria-selected="true"
+                    >
+                        {{ "product.detail.tabs.details.label"|trans|sw_sanitize }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endblock %}
+        {% block page_product_detail_tabs_navigation_technical_data %}
+            {% if technicalData and config('WebwirkungVibraplastTheme.config.enableTechnicalDataTab') %}
+                <li class="nav-item">
+                    <a
+                            class="nav-link {% if (ratingSuccess == 1) or (ratingSuccess == -1) %}active{% endif %} product-detail-tab-navigation-link"
+                            id="technical-data-tab"
+                            data-bs-toggle="tab"
+                            href="#technical-data-tab-pane"
+                            role="tab"
+                            aria-controls="technical-data-tab-pane"
+                            aria-selected="true"
+                    >
+                        {{ "product.detail.tabs.technical-data.label"|trans|sw_sanitize }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endblock %}
+        {% block page_product_detail_tabs_navigation_review %}
+            {% if config('core.listing.showReview') %}
+                <li class="nav-item">
+                    <a
+                            class="nav-link {% if (ratingSuccess == 1) or (ratingSuccess == -1) %}active{% endif %} product-detail-tab-navigation-link"
+                            id="review-tab"
+                            data-bs-toggle="tab"
+                            href="#review-tab-pane"
+                            role="tab"
+                            aria-controls="review-tab-pane"
+                            aria-selected="true"
+                    >
+                        {{ "detail.tabsReview"|trans|sw_sanitize }}
+                        <span class="product-detail-tab-navigation-icon">
+                            {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                        </span>
+                    </a>
+                </li>
+            {% endif %}
+        {% endblock %}
+    </ul>
+{% endblock %}
+{% block page_product_detail_tabs_content %}
+    <div class="product-detail-tabs-content card-body">
+        {% block page_product_detail_tabs_content_container %}
+            <div class="tab-content">
+                {% block page_product_detail_tabs_content_details %}
+                    {% if detailsData %}
+                        <div class="tab-pane fade show {% if (ratingSuccess != 1) and (ratingSuccess != -1) %}active{% endif %}"
+                             id="details-tab-pane"
+                             role="tabpanel"
+                             aria-labelledby="details-tab">
+                            {% sw_include '@Storefront/storefront/page/product-detail/tabs/details.html.twig' %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+                {% block page_product_detail_tabs_content_technical_data %}
+                    {% if technicalData and config('WebwirkungVibraplastTheme.config.enableTechnicalDataTab') %}
+                        <div class="tab-pane fade show {% if (ratingSuccess == 1) or (ratingSuccess == -1) %}active{% endif %}"
+                             id="technical-data-tab-pane"
+                             role="tabpanel"
+                             aria-labelledby="technical-data-tab">
+                            {% sw_include '@Storefront/storefront/page/product-detail/tabs/technical-data.html.twig' %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+                {% block page_product_detail_tabs_content_review %}
+                    {% if config('core.listing.showReview') %}
+                        <div class="tab-pane fade show {% if (ratingSuccess == 1) or (ratingSuccess == -1) %}active{% endif %}"
+                             id="review-tab-pane"
+                             role="tabpanel"
+                             aria-labelledby="review-tab">
+                            {% sw_include '@Storefront/storefront/page/product-detail/review/review.html.twig' with {'reviews': page.reviews} %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

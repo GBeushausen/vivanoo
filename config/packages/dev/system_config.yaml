@@ -1,0 +1,7 @@
+shopware:
+  system_config:
+    default:
+      core.app.shopId.value: '%env(SHOP_ID)%'
+      WebwirkungAbacusIntegration.config.operatingMode: 'test'
+      WebwirkungAbacusIntegration.config.testApiUrl: '%env(ABACUS_TEST_LIVE_API_URL)%'
+      WebwirkungAbacusIntegration.config.testMandantNumber: '%env(ABACUS_TEST_MANDANT_NUMBER)%'

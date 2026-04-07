@@ -1,0 +1,9 @@
+{% sw_extends '@SasBlogModule/storefront/block/cms-block-blog-detail.html.twig' %}
+{% block block_sas_blog_detail %}
+    {% set element = block.slots.getSlot('blogDetail') %}
+
+    <div class="{% if section and section.sizingMode === 'boxed' %}col-md-12{% endif %} abc" data-cms-element-id="{{ element.id }}">
+        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+    </div>
+
+{% endblock %}

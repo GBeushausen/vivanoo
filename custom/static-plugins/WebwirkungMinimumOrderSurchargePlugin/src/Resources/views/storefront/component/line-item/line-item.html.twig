@@ -1,0 +1,7 @@
+{% sw_extends '@Storefront/storefront/component/line-item/line-item.html.twig' %}
+
+{% block component_line_item_type_include %}
+    {% if lineItem.type != 'minimum-order-surcharge' %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

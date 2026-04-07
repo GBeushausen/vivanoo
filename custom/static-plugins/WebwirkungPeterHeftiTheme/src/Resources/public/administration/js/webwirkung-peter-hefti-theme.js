@@ -1,0 +1,1 @@
+!function(){var e={};e.p="bundles/webwirkungpeterheftitheme/",window?.__sw__?.assetPath&&(e.p=window.__sw__.assetPath+"/bundles/webwirkungpeterheftitheme/")}();

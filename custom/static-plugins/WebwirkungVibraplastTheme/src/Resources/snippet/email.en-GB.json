@@ -1,0 +1,24 @@
+{
+  "email": {
+    "salutation": "Dear",
+    "user": {
+      "password-recovery": {
+        "subject": "Password recovery"
+      },
+      "password-change": {
+        "subject": "Password reset - "
+      }
+    },
+    "contact-form": {
+      "subject": "Contact form received -"
+    },
+    "newsletter": {
+      "registration": {
+        "subject": "Newsletter registration"
+      },
+      "doubleOptIn": {
+        "subject": "Newsletter"
+      }
+    }
+  }
+}

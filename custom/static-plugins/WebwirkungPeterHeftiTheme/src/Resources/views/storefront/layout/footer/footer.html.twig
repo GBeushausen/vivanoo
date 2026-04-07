@@ -1,0 +1,15 @@
+{% sw_extends '@WebwirkungVibraplastTheme/storefront/layout/footer/footer.html.twig' %}
+{% block layout_footer_navigation_hotline_content %}
+    {{ parent() }}
+    <div class="footer-content-column footer-vibraplast-link">
+        <div class="text-small">
+            <p><b>{{ 'general.vibraplast-link.title'|trans }}</b></p>
+        </div>
+        <a href="{{ 'general.vibraplast-link.url'|trans }}"
+           class="btn btn-primary"
+           target="_blank">
+            {{ 'general.vibraplast-link.name'|trans }}
+            {% sw_icon 'external-link' style {'pack' : 'WebwirkungIcons'} %}
+        </a>
+    </div>
+{% endblock %}

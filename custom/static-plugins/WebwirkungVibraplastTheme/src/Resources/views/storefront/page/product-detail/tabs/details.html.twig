@@ -1,0 +1,73 @@
+{% block product_detail_tab_details %}
+    <div class="product-detail-tabs-content-details row">
+        {% if page.product.translated.customFields.ww_vibraplast_theme_product_long_description %}
+            <div class="product-detail-tabs-content-details-long-description col-md-6 col-lg-8">
+                <div class="product-detail-tabs-content-details-element">
+                    {{ page.product.translated.customFields.ww_vibraplast_theme_product_long_description|raw }}
+                </div>
+            </div>
+        {% endif %}
+        {% if page.product.translated.customFields.ww_vibraplast_theme_product_form_options %}
+            <div class="product-detail-tabs-content-details-delivery-form col-md-6 col-lg-4">
+                <div class="product-detail-tabs-content-details-element">
+                    {{ page.product.translated.customFields.ww_vibraplast_theme_product_form_options|raw }}
+                </div>
+            </div>
+        {% endif %}
+        {% set propertySets = page.extensions['ww_property_groups'].get('WwPropertyGroups') %}
+        {% if propertySets is not empty %}
+            {% set sortedPropertySets = propertySets|sort((a, b) => a.sorting|default(999) <=> b.sorting|default(999)) %}
+            {% for propertySet in sortedPropertySets %}
+                    <div class="product-detail-tabs-content-details--propertyset col-md-6 col-lg-4">
+                        <div class="product-detail-tabs-content-details-element">
+                            <h5>{{ propertySet.name }}</h5>
+                            {% set sortedGroups = propertySet.groups|sort((a, b) => a.position|default(999) <=> b.position|default(999)) %}
+                            {% for propertyGroup in sortedGroups %}
+                                <div class="property-group">
+                                    <span class="property-group--name">{{ propertyGroup.name }}</span>
+                                    <span class="property-group--values">
+                                        <ul>
+                                            {% set sortedProperties = propertyGroup.values|sort((a, b) => a.position|default(999) <=> b.position|default(999)) %}
+                                            {% for propertyValue in sortedProperties %}
+                                                <li>{{ propertyValue.name }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if page.product.extension('wwDownloads').elements is defined %}
+            {% set previewedDownloadList = [] %}
+            {% set downloadList = [] %}
+            {% if downloads is not empty %}
+                {% for element in downloads %}
+                    {% set downloadList = downloadList|merge([element]) %}
+                {% endfor %}
+            {% endif %}
+            <div class="product-detail-tabs-content-details-downloads col-md-6 col-lg-4">
+                <div class="product-detail-tabs-content-details-element">
+                    <h5>{{ "product.detail.download-title"|trans }}</h5>
+                    <ul class="product-detail-download-links">
+                        {% for download in page.product.extension('wwDownloads').elements %}
+                            <li>
+                                <a class="product-detail-download-links__link product-detail-download-links-type__{{ download.getMedia().getFileExtension() }}"
+                                   href="{{ download.media.url }}"
+                                   target="_blank">
+                                    {% if download.title %}
+                                        {{ download.title }} ({{ download.media.fileExtension }})
+                                    {% else %}
+                                        {{ download.getMedia().getFileName() }}.{{ download.getMedia().getFileExtension() }}
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

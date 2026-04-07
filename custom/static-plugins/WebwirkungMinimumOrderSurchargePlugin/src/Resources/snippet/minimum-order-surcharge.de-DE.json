@@ -1,0 +1,7 @@
+{
+  "WebwirkungMinimumOrderSurcharge": {
+    "checkout": {
+      "minimumOrderSurchargeAmount": "Mindermengenzuschlag"
+    }
+  }
+}

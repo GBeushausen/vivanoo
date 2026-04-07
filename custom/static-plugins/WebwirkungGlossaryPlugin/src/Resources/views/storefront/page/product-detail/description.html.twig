@@ -1,0 +1,25 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/description.html.twig' %}
+
+ {% block page_product_detail_description_content_text %}
+     <div class="product-detail-description-text"
+          itemprop="description"
+          data-glossary-text>
+         {{ page.product.translated.description|raw }}
+     </div>
+ {% endblock %}
+{% block utilities_offcanvas_content %}
+    {{ parent() }}
+
+    {% block page_product_detail_glossary %}
+        {% set options = {
+            apiKey: context.salesChannel.accessKey,
+            salesChannelBaseURL: app.request.attributes.get('sw-sales-channel-base-url'),
+        } %}
+        <div class="glossary-matching">
+            <h5>{{ 'glossary.title'|trans }}</h5>
+            <hr />
+            <div class="glossary-term-list" data-glossary-terms></div>
+            <template data-glossary-plugin data-glossary-plugin-options='{{ options|json_encode }}'></template>
+        </div>
+    {% endblock %}
+{% endblock %}

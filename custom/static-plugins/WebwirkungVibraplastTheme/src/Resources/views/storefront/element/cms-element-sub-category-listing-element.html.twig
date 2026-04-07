@@ -1,0 +1,40 @@
+{% block block_sub_category_listing_element %}
+    {% set subCategories = element.data %}
+    {% if subCategories is not empty %}
+        {% set parentName = page.category.breadcrumb[page.category.breadcrumb|length - 2] %}
+        <div class="sub-category-listing row">
+            {% for category in subCategories %}
+                {% set categoryData = category.category %}
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="sub-category-listing-item">
+                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: categoryData.id }) }}">
+                            {% if categoryData.mediaId %}
+                                <div class="sub-category-listing-item__image">
+                                    {% set mediaCollection = searchMedia([categoryData.mediaId], context.context) %}
+                                    {% set image =  mediaCollection.elements|first %}
+                                    {% sw_thumbnails 'header-image' with {
+                                        media: image,
+                                        sizes: {
+                                            'xs': '350px',
+                                            'sm': '350px',
+                                            'md': '350px',
+                                            'lg': '350px',
+                                            'xl': '350px',
+                                        },
+                                        attributes: {
+                                            'alt': image.alt,
+                                            'loading': 'lazy',
+                                        }
+                                    } %}
+                                </div>
+                            {% endif %}
+                            <div class="sub-category-listing-item__content">
+                                {{ categoryData.translated.name }}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+shopware:
+  staging:
+    mailing:
+      # Disables the sending of mails (default: true)
+      disable_delivery: true
+    storefront:
+      # Shows a banner in the storefront when staging mode is active (default: true)
+      show_banner: true
+    administration:
+      # Shows a banner in the administration when staging mode is active (default: true)
+      show_banner: true
+    sales_channel:
+      domain_rewrite:
+        - type: prefix
+          match: "%env(MAIN_DOMAIN)%"
+          replace: "%env(DEVELOP_DOMAIN)%"

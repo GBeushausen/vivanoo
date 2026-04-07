@@ -1,0 +1,11 @@
+.sw-cms-preview-category-filter {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    > div {
+        height: 20px;
+        background: lightblue;
+        border-radius: 10px;
+    }
+}

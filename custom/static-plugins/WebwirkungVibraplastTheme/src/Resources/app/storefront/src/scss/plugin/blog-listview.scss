@@ -1,0 +1,333 @@
+// Default box styling
+.blog-badges {
+  margin-bottom: 12px;
+  .badge-category {
+    display: inline-block;
+    margin-right: 8px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  &.blog-detail {
+    .badge-category {
+     @extend .text-small;
+    }
+  }
+}
+.blog-card {
+  height: 100%;
+  background-color: $surface-overlay-light;
+  border-radius: $border-radius;
+
+  .blog-image-placeholder,
+  .blog-image-link {
+    max-height: 220px;
+    overflow: hidden;
+    img,
+    .icon {
+      height: 220px;
+      object-fit: cover;
+    }
+  }
+  .card {
+    &-title {
+      margin-bottom: 20px;
+      @extend .text-medium;
+      font-weight: 600;
+      a {
+        color: $sw-headline-color;
+      }
+    }
+    &-body {
+      padding: 20px 24px 0;
+
+      .blog-date {
+        margin-bottom: 8px;
+        @extend .text-small;
+        color: $text-secondary;
+      }
+
+      p {
+        margin: 0;
+      }
+      &.has-teaser {
+        p {
+          margin: 0 0 24px;
+        }
+        .blog-title {
+          margin-bottom: 8px;
+        }
+      }
+    }
+    &-text {
+      @extend .text-small;
+      color: $text-secondary;
+    }
+
+    &-footer {
+      padding: 0 24px 24px;
+      background-color: $surface-overlay-light;
+    }
+  }
+}
+
+.cms-news-full-listing-row {
+  .row {
+    row-gap: 24px;
+    @include media-breakpoint-up(lg) {
+      row-gap: 40px;
+    }
+  }
+}
+
+// =================
+// Newest listing (Slider on mobile // white bg when section has bg or bg-image)
+// =================
+
+.cms-block-blog-newest-listing,
+.cms-block-blog-similar-listing {
+  overflow: visible;
+
+  .tns-slider {
+    display: flex;
+  }
+  .blog-newest-slider {
+    .tns-controls {
+      position: sticky;
+      top: 50%;
+      z-index: 10;
+      width: 315px;
+      margin: 0 auto;
+      @include media-breakpoint-up(lg) {
+        position: absolute;
+        left: 0;
+        width: 100%;
+      }
+      button {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        overflow: hidden;
+        background: transparent;
+        border: 0;
+        &:before {
+          display: block;
+          width: 10px;
+          height: 20px;
+          background-image: url('/bundles/webwirkungvibraplasttheme/img/caret-left.svg');
+          background-repeat: no-repeat;
+          background-size: 10px;
+          content: '';
+        }
+        &[data-controls="next"] {
+          position: absolute;
+          right: 0;
+          &:before {
+            margin-left: 10px;
+            background-image: url('/bundles/webwirkungvibraplasttheme/img/caret-right.svg');
+          }
+        }
+      }
+    }
+  }
+}
+
+.bg-color,
+.bg-image {
+  .blog-card {
+    background-color: $white;
+    border: 0;
+
+    .card {
+      &-footer {
+        background-color: $white;
+      }
+    }
+  }
+}
+
+// =================
+// Single Entry
+// =================
+.blog-list-first-element-big {
+  margin-bottom: 64px;
+}
+.cms-block-blog-single-entry,
+.blog-list-first-element-big {
+  .blog-card {
+    min-height: 440px;
+    overflow: hidden;
+    border-radius: $border-radius;
+    @include media-breakpoint-up(lg) {
+      min-height: 575px;
+    }
+    .blog-image-link {
+      max-height: none;
+      &:before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 53.68%, rgba(0, 0, 0, 0.5) 100%), url(<path-to-image>) transparent 50%/cover no-repeat;
+        content: '';
+      }
+      img {
+        min-height: 440px;
+        object-fit: cover;
+        @include media-breakpoint-up(lg) {
+          min-height: 575px;
+        }
+      }
+    }
+
+    .card {
+      &-body {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 24px;
+        background: transparent;
+        @include media-breakpoint-up(lg) {
+          padding: 40px;
+        }
+
+        .blog-date {
+          @extend .text-medium;
+          color: $white;
+          font-weight: 600;
+        }
+        h2 {
+          @extend h3;
+          margin-bottom: 0;
+          color: $white;
+          a {
+            color: $white;
+          }
+        }
+      }
+      &-footer {
+        display: none;
+      }
+    }
+  }
+}
+
+// =================
+// Filter
+// =================
+// Aside
+.blog-filter-aside {
+  .filter-panel {
+    height: 100%;
+    &-items-container {
+      height: 100%;
+      .filter-panel-item-dropdown {
+        max-height: none;
+      }
+    }
+  }
+  .filter-panel-active-container {
+    display: none;
+  }
+  .blog-filter-label {
+    padding-left: 16px;
+    @extend .text-small;
+    color: $text-secondary;
+  }
+  .filter-multi-select-count {
+    @extend .text-small;
+    color: $text-secondary;
+  }
+  .filter-multi-select-list {
+    &-item {
+      margin-bottom: 8px;
+      padding: 12px 16px;
+      border-radius: $border-radius-small;
+      transition: background-color 0.3s ease-in-out;
+      @extend .text-small;
+      &:before {
+        display: none !important;
+      }
+      .form-check {
+        margin-bottom: 0;
+      }
+      .form-check-input {
+        margin-top: 2px;
+      }
+      .filter-multi-select-item-label {
+        padding-left: 2px;
+        font-weight: 500;
+      }
+      &:hover {
+        background: $surface-overlay-light;
+      }
+      &:has(input[type="checkbox"]:checked) {
+        background: $border-dark;
+      }
+    }
+  }
+}
+
+// Top
+.blog-filter {
+  .filter-panel-active-container,
+  .blog-filter-label,
+  .filter-multi-select-count,
+  .icon-filter-panel-item-toggle {
+    display: none;
+  }
+  &.filter-panel-wrapper {
+    @include media-breakpoint-down(lg) {
+      display: block;
+    }
+  }
+  .filter-panel,
+  .filter-panel-items-container {
+    display: block;
+    width: 100%;
+  }
+  .filter-multi-select-count {
+    @extend .text-small;
+    color: $text-secondary;
+  }
+  .filter-panel-item-dropdown {
+   padding: 0;
+  }
+  .filter-multi-select-list {
+    display: flex;
+    &-item {
+      margin: 0 12px 8px 0;
+      padding: 10px 16px;
+      white-space: nowrap;
+      background: $surface-overlay-light;
+      border-radius: 100px;
+      transition: background-color 0.3s ease-in-out;
+      @extend .text-small;
+      &:before {
+        display: none !important;
+      }
+      .form-check {
+        margin-bottom: 0;
+        padding-left: 0;
+        label {
+          padding-right: 0;
+          font-weight: 500;
+        }
+      }
+      .form-check-input {
+        width: 0;
+        height: 0;
+        margin-top: 3px;
+        visibility: hidden;
+      }
+      .filter-multi-select-item-label {
+        padding-left: 2px;
+      }
+      &:hover,
+      &:has(input[type="checkbox"]:checked) {
+        color: $white;
+        background: $sw-color-brand-primary;
+      }
+    }
+  }
+}

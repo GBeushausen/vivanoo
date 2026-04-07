@@ -1,0 +1,135 @@
+.icon-teaser-wrapper {
+  .col-lg-6:first-child {
+    margin-bottom: 16px;
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.cms-block {
+  &:has(.icon-teaser--space-small) {
+    margin-bottom: 12px;
+  }
+}
+
+
+.icon-teaser {
+  height: 100%;
+  padding: 24px;
+  border-radius: $border-radius;
+  @include media-breakpoint-up(lg) {
+    padding: 40px;
+  }
+  p {
+    @extend .text-small;
+    margin-bottom: 32px;
+    color: $text-secondary;
+  }
+  .btn-sm {
+    @extend .text-small;
+  }
+
+  &--bg-blue {
+    background-color: $sw-color-brand-primary;
+    a, p, h2, h3, h4, h5, h6 {
+      color: $white;
+    }
+  }
+  &--bg-lightblue {
+    background-color: $border-dark;
+  }
+  &--bg-grey {
+    background-color: $surface-overlay-light;
+  }
+
+  &--bg-transparent {
+    padding: 0;
+    background-color: transparent;
+  }
+  &--position-left {
+    display: flex;
+    align-items: center;
+
+    &.icon-teaser {
+      padding: 24px;
+      h2, h3, h4, p {
+        margin-bottom: 0;
+      }
+      p {
+        color: $sw-text-color;
+      }
+      .icon-teaser-icon {
+        margin-right: 24px;
+        margin-bottom: 0;
+        img {
+          width: 24px;
+          height: 24px;
+        }
+        &--background-blue {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          min-width: 40px;
+          height: 40px;
+          background-color: $sw-color-brand-primary;
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+  &-icon {
+    margin-bottom: 20px;
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 16px;
+    }
+    &.icon-teaser-icon--background-blue {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      background-color: $sw-color-brand-primary;
+      border-radius: 100%;
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    img {
+      width: 48px;
+      height: 48px;
+      @include media-breakpoint-up(lg) {
+        width: 64px;
+        height: 64px;
+      }
+    }
+  }
+}
+
+.icon-teaser-three-column {
+  .icon-teaser {
+    text-align: center;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    &-icon {
+      img {
+        max-width: 56px;
+        height: auto;
+      }
+    }
+  }
+
+  .icon-teaser-slider {
+    &-container {
+      display: flex;
+    }
+    .tns-controls {
+      display: none;
+    }
+  }
+}

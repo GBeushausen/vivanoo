@@ -1,0 +1,7 @@
+{% if subscription.customer.salutation %}{{ subscription.customer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ subscription.customer.firstName }} {{ subscription.customer.lastName }},
+
+Nous vous remercions pour votre abonnement {{ subscription.subscriptionNumber }} pour le produit {{ subscription.lineItem.label }}.
+
+Votre abonnement a été activé avec succès.
+
+N'hésitez pas à nous contacter pour toute question.

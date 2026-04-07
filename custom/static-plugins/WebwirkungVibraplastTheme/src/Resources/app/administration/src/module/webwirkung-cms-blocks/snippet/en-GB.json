@@ -1,0 +1,342 @@
+{
+  "sw-cms": {
+    "detail":{
+      "label": {
+        "sizingOptionNarrow": "Narrow"
+      }
+    },
+    "blocks": {
+      "hero-header": {
+        "label": "Webwirkung: Hero-Header"
+      },
+      "category-listing": {
+        "label": "Webwirkung: Category listing"
+      },
+      "category-filter": {
+        "label": "Webwirkung: Category Filter"
+      },
+      "header-slider": {
+        "label": "Webwirkung: Header Slider"
+      },
+      "intro-teaser": {
+        "label": "Webwirkung: Intro Teaser (2-Columns)"
+      },
+      "icon-teaser": {
+        "label": "Webwirkung: Icon Teaser (2-Columns)"
+      },
+      "icon-teaser-three-col": {
+        "label": "Webwirkung: Icon Teaser (3-Columns)"
+      },
+      "title-button": {
+        "label": "Webwirkung: Titel and Button (2-Column)"
+      },
+      "table-of-contents": {
+        "label": "Webwirkung: Table of contents"
+      },
+      "step-by-step": {
+        "label": "Webwirkung: Step by step"
+      },
+      "image-caption": {
+        "label": "Webwirkung: Image with caption"
+      },
+      "history": {
+        "label": "Webwirkung: History"
+      },
+      "googlemaps": {
+        "label": "Webwirkung: Google Maps with address block"
+      },
+      "5-7-column": {
+        "label": "Webwirkung: 5/7 Column (with background)"
+      },
+      "variants-buy-table": {
+          "label": "Webwirkung: Variants buy table"
+      },
+      "banner": {
+        "label": "Webwirkung: Banner"
+      },
+      "sub-category-listing": {
+        "label": "Webwirkung Block: Sub-Category List"
+      },
+      "accordion": {
+        "label": "Webwirkung Block: Akkordeon"
+      }
+    },
+    "elements": {
+      "hero-header-element": {
+        "label": "Webwirkung: Hero-Header",
+        "component": {
+          "title": "Hero-Header",
+          "text": "Text and images can be edited in the settings of this element."
+        },
+        "config": {
+          "caption": {
+            "heroImageUpload": "Upload image",
+            "heroBackgroundUpload": "Upload background image"
+          }
+        }
+      },
+      "category-listing-element": {
+        "label": "Webwirkung: Category listing",
+        "component": {
+          "title": "Category listing",
+          "text": "The categories can be selected in the settings of this element."
+        },
+        "config": {
+          "label": {
+            "selection": "Category selection"
+          },
+          "placeholder": {
+            "selection": "Select category"
+          },
+          "columns": {
+            "label": "Number of columns",
+            "two": "2 Columns",
+            "three": "3 Columns"
+          }
+        }
+      },
+      "category-filter-element": {
+        "label": "Webwirkung Element: Category-Filter",
+        "component": {
+          "title": "Category-Filter",
+          "text": "Shows a filter of all subcategories of the current category."
+        }
+      },
+      "label-text-button": {
+        "label": "Webwirkung: Text with label",
+        "config": {
+          "alignment": {
+            "label": "Text-Ausrichtung",
+            "left": "Links",
+            "center": "Zentriert"
+          }
+        }
+      },
+      "variants-buy-table": {
+        "label": "Webwirkung: Variants buy table"
+      },
+      "header-slider-element": {
+        "label": "Webwirkung: Header-Slider",
+        "component": {
+          "title": "Header-Slider",
+          "text": "You can add or edit slides in the settings of this element."
+        },
+        "config": {
+          "slideTitle": "Slide",
+          "priceLabel": "Price Element",
+          "pricePosition": {
+            "label": "Priceelement position",
+            "top": "Top",
+            "bottom": "Bottom"
+          },
+          "priceText": "Price",
+          "strikePriceText": "Strikeprice",
+          "labelText": "Label",
+          "text": "Text",
+          "backgroundMedia": "Background image",
+          "overlayMedia": "Image",
+          "addTextButton": "Add slide",
+          "removeTextButton": "Remove slide"
+        }
+      },
+      "double-image-element": {
+        "label": "Webwirkung: Background- & 2 overlay images",
+        "component": {
+          "title": "Background- & 2 overlay images",
+          "text": "The background- and the overlay images can be uploaded in the settings."
+        },
+        "config": {
+          "caption": {
+            "overlayImageOneUpload": "Upload image 1",
+            "overlayImageTwoUpload": "Upload image 2",
+            "backgroundImageUpload": "Upload background image"
+          }
+        }
+      },
+
+      "five-image-element": {
+        "label": "Webwirkung: Background- & 5 overlay images",
+        "component": {
+          "title": "Background- & 5 overlay images",
+          "text": "The background- and the overlay images can be uploaded in the settings."
+        },
+        "config": {
+          "caption": {
+            "fiveImageOneUpload": "Upload image 1",
+            "fiveImageTwoUpload": "Upload image 2",
+            "fiveImageThreeUpload": "Upload image 3",
+            "fiveImageFourUpload": "Upload image 4",
+            "fiveImageFiveUpload": "Upload image 5",
+            "backgroundImageUpload": "Upload background image"
+          }
+        }
+      },
+      "icon-teaser-element": {
+        "label": "Webwirkung: Icon-Teaser (2-Column)",
+        "config": {
+          "iconTeaserImage": "Upload icon",
+          "iconTeaserText": "Text",
+          "iconTeaserBackground": {
+            "label": "Choose background color",
+            "blue": "Blue",
+            "lightblue": "Lightblue",
+            "grey": "Grey",
+            "transparent": "No Background"
+          },
+          "iconBackground": {
+            "label": "Choose icon background color (circle)",
+            "blue": "Blue",
+            "transparent": "No Background"
+          },
+          "iconPosition": {
+            "label": "Icon-Position wählen",
+            "top": "Oberhalb des Textes",
+            "left": "Links neben dem Text"
+          },
+          "iconTeaserSmallSpace": "Small space after",
+          "iconTeaserTitleBefore": "Title before the Icon-Teaser (optional)"
+        }
+      },
+      "table-of-contents-element": {
+        "label": "Webwirkung Element: Table of contents",
+        "component": {
+          "title": "Table of contents",
+          "text": "Select the title type, from which the table of contents should be generated, in the settings. (default H4)"
+        },
+        "config": {
+          "tableLabel": "Table of contents",
+          "titleType": {
+            "label": "Select title type",
+            "h2": "Title 2",
+            "h3": "Title 3",
+            "h4": "Title 4"
+          }
+        }
+      },
+      "step-by-step-element": {
+        "label": "Webwirkung Element: Step by step",
+        "component": {
+          "title": "Step by step",
+          "text": "The steps can be edited or added in the settings."
+        },
+        "config": {
+          "stepTitle": "Step",
+          "title": "Title",
+          "text": "Text",
+          "addTextButton": "Add step",
+          "removeTextButton": "Remove step"
+        }
+      },
+      "image-caption-element": {
+        "label": "Webwirkung: Image with caption",
+        "component": {
+          "title": "Image with caption",
+          "text": "The image and its caption can be edited in the settings."
+        },
+        "config": {
+          "imageCaptionImage": "Upload image",
+          "imageCaption": "Image caption"
+        }
+      },
+      "history-element": {
+        "label": "Webwirkung: History-Element",
+        "component": {
+          "title": "History-Element",
+          "text": "Add additional milestones in the settings."
+        },
+        "config": {
+          "itemTitle": "Milestones",
+          "yearText": "Year",
+          "text": "Milestones of this year (List-element)",
+          "historyImage": "Upload image",
+          "addTextButton": "Add year",
+          "removeTextButton": "Remove year"
+        }
+      },
+      "googlemaps-element": {
+        "label": "Webwirkung: Google Maps with address block",
+        "component": {
+          "title": "Google Maps with address block",
+          "text": "You can add the address and the iframe link in the settings."
+        },
+        "config": {
+          "mapsUrl": "Maps URL (iframe)",
+          "mapsAddress": "Address",
+          "mapsPhone": "Phone number",
+          "mapsEmail": "E-Mail"
+        }
+      },
+      "banner-element": {
+        "label": "Webwirkung Element: Banner",
+        "component": {
+          "title": "Banner",
+          "text": "Text and images can be added in the settings."
+        },
+        "config": {
+          "caption": {
+            "bannerImageUpload": "Upload image",
+            "bannerBackgroundUpload": "Upload background image"
+          },
+          "bannerSize": {
+            "label": "Banner size",
+            "narrow": "Narrow",
+            "broad": "Broad"
+          },
+          "bannerArrangement": {
+            "label": "Arrangement",
+            "text-left": "Text left",
+            "text-right": "Text right"
+          }
+        }
+      },
+      "sub-category-listing-element": {
+        "label": "Webwirkung Element: Sub-Category List",
+        "config": {
+          "selection": {
+            "label": "Select parent category",
+            "placeholder": "Select parent category",
+            "helpText": "Select the parent category for the sub-category list."
+          }
+        },
+        "component": {
+          "text": "Sub-category list of the selected parent category.",
+          "title": "Sub-Category List"
+        }
+      },
+      "accordion-element": {
+        "label": "Webwirkung Element: Accordion",
+        "component": {
+          "text": "Accordion with collapsible content can be edited in the settings.",
+          "title": "Accordion"
+        }
+      }
+    }
+  },
+  "component": {
+    "sw-cms-sidebar": {
+      "webwirkung-blocks": "Webwirkung Blocks"
+    }
+  },
+  "sas-blog":{
+    "blocks": {
+      "blog": {
+        "similarListing": {
+          "label": "Blog: Similar blog posts",
+          "previewTitle": "Similar blog posts"
+        }
+      }
+    },
+    "elements": {
+      "listing": {
+        "config": {
+          "hideImage": "Hide image",
+          "showDate": "Show date instead of category",
+          "filterAside": "Show filter aside",
+          "firstElBig": "Show first post bigger",
+          "showTeaser": "Show teaser text",
+          "infinityLoop": "Infinity loop"
+        }
+      }
+    }
+  }
+}

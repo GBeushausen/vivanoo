@@ -1,0 +1,33 @@
+.sw-cms-preview-faq-select {
+    width: 100%;
+    background: #fff;
+    font-size: 22px;
+    color: gray;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 20px;
+
+    h2 {
+        grid-column: span 2;
+        font-size: 16px;
+        line-height: 18px;
+        margin: 0 0 2px 0;
+    }
+
+    .sw-cms-preview-faq-select-item {
+        width: 100%;
+
+        div > div {
+            margin: 10px 0;
+            height: 0.7em;
+            border-radius: 4px;
+            background-color: gray;
+        }
+
+        hr {
+            max-width: 90%;
+            margin: 10px auto;
+            border: 1px solid gray;
+        }
+    }
+}

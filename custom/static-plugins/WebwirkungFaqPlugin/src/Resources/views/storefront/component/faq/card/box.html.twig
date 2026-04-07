@@ -1,0 +1,6 @@
+{% block webwirkung_faq_card %}
+    {% block webwirkung_faq_card_body %}
+        <h5>{{ faq.translated.question }}</h5>
+        {{ faq.translated.answer|raw }}
+    {% endblock %}
+{% endblock %}

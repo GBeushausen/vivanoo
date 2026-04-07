@@ -1,0 +1,87 @@
+form {
+  .privacy-title {
+    display: none;
+  }
+  .text-muted,
+  .required-fields {
+      color: $text-secondary;
+      @extend .text-small;
+  }
+  .form-text {
+    color: $secondary-300;
+  }
+}
+
+label {
+  &.form-label {
+    margin-bottom: 4px;
+    @extend .text-small;
+    font-weight: 600;
+  }
+
+  &.form-check-label {
+    button {
+      padding: 0;
+      font-weight: normal;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      text-decoration: underline;
+      vertical-align: baseline;
+      border: 0;
+    }
+  }
+}
+.was-validated .form-check-input:invalid ~ .form-check-label button, .form-check-input.is-invalid ~ .form-check-label button {
+  color: var(--bs-form-invalid-color);
+}
+.form-group {
+  margin-bottom: 16px;
+}
+.form-control,
+.form-select {
+  padding: 10px 16px;
+  border-radius: 8px;
+  &::-ms-input-placeholder { /* Edge 12-18 */
+    color: $text-secondary;
+  }
+
+  &::placeholder {
+    color: $text-secondary;
+  }
+}
+.form-control {
+  @include media-breakpoint-down(md) {
+    font-size: 16px;
+  }
+}
+
+input[type=radio] {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url('/bundles/webwirkungvibraplasttheme/img/radio.svg');
+  background-size: 20px;
+  appearance: none;
+}
+input:checked[type=radio] {
+  background-image: url('/bundles/webwirkungvibraplasttheme/img/radio-checked.svg');
+}
+
+.form-check-input {
+  border-color: darken($border-dark, 10%);
+}
+
+
+.captcha-google-re-captcha-v3 {
+  @extend .form-text;
+}
+
+
+// Upload field
+.upload-file-wrapper {
+  display: flex;
+}
+
+#upload-file {
+  padding: 10px 10px;
+}

@@ -1,0 +1,27 @@
+{
+  "name": "webwirkung/faq-plugin",
+  "description": "Webwirkung FAQ plugin",
+  "version": "2.0.0",
+  "type": "shopware-platform-plugin",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Webwirkung GmbH"
+    }
+  ],
+  "require": {
+    "shopware/core": "~6.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Webwirkung\\FaqPlugin\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Webwirkung\\FaqPlugin\\WebwirkungFaqPlugin",
+    "label": {
+      "de-DE": "Webwirkung FAQ plugin",
+      "en-GB": "Webwirkung FAQ plugin"
+    }
+  }
+}

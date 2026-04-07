@@ -1,0 +1,11 @@
+.sw-cms-preview-table-of-contents {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 20px;
+  > div {
+    height: 10px;
+    background: lightblue;
+    border-radius: 4px;
+  }
+}

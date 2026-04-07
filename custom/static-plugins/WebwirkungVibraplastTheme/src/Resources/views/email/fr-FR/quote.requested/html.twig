@@ -1,0 +1,54 @@
+<style>
+    th, td {
+        padding: 0 15px;
+    }
+</style>
+<div style="font-family:arial; font-size:12px;">
+    {% set currencyIsoCode = quote.currency.isoCode %}
+    {% if quote.customer.salutation %}{{ quote.customer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ quote.customer.firstName }} {{ quote.customer.lastName }},<br>
+    <br>
+    Nous avons bien reçu votre demande de devis du {{ quote.createdAt|format_datetime('medium', 'short', locale='fr-FR') }}.<br>
+    <br>
+    Numéro de devis : {{ quote.quoteNumber }}<br>
+    <br>
+    <strong>Informations sur votre devis :</strong><br>
+    <br>
+    <table border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:12px;">
+        <tr>
+            <td bgcolor="#F7F7F2" style="border-bottom:1px solid #cccccc;"><strong>Quantités</strong></td>
+            <td bgcolor="#F7F7F2" style="border-bottom:1px solid #cccccc;"><strong>Nom du produit</strong></td>
+            <td bgcolor="#F7F7F2" style="border-bottom:1px solid #cccccc;"><strong>Prix unitaire</strong></td>
+            <td bgcolor="#F7F7F2" style="border-bottom:1px solid #cccccc;"><strong>Total</strong></td>
+        </tr>
+        {% for item in quote.lineItems %}
+            <tr>
+                <td style="text-align: center">{{ item.quantity }}</td>
+                <td>
+                    {{ item.label|u.wordwrap(80) }}
+                    {% if item.payload.options is defined and item.payload.options|length >= 1 %}
+                        <div>(
+                            {% for option in item.payload.options %}
+                                {{ option.group }}: {{ option.option }}
+                                {% if item.payload.options|last != option %}
+                                    {{ " | " }}
+                                {% endif %}
+                            {% endfor %}
+                        )</div>
+                    {% endif %}
+                </td>
+                <td>{{ item.price.unitPrice|currency(currencyIsoCode) }}</td>
+                <td>{{ item.price.totalPrice|currency(currencyIsoCode) }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <strong>Prix total :</strong> {{ quote.amountTotal }}
+    <br>
+    <p>
+        <br>
+        Vous pouvez consulter à tout moment le statut actuel de votre devis sur notre site web dans la rubrique « Mon compte » > « Devis » : {{ rawUrl('frontend.account.quote.detail', { 'id': quote.id }, salesChannel.domains|first.url) }}
+        <br>
+        N'hésitez pas à nous contacter pour toute question.
+    </p>
+    <br>
+</div>

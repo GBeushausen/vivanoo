@@ -1,0 +1,130 @@
+#main-navigation-menu {
+  > a.nav-link.main-navigation-link {
+    padding: 5px;
+  }
+}
+
+#mainNavigation > div {
+  padding-left: 0;
+}
+
+.main-navigation {
+  &-menu {
+    justify-content: space-around;
+    flex-wrap: nowrap;
+  }
+
+  &-link {
+    padding: 0 24px;
+    @extend .text-medium;
+    color: $sw-headline-color;
+    text-transform: uppercase;
+    &:after {
+      display: block;
+      width: 0;
+      border-bottom: 1px solid $sw-headline-color;
+      transition: width 0.3s ease;
+      content: '';
+    }
+    &:hover {
+      color: $sw-headline-color;
+      &:after {
+        width: 100%;
+      }
+    }
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+    // Active
+    &.active {
+      font-weight: 700;
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Flyout
+.header-row {
+  position: relative;
+}
+.navigation-flyouts {
+  left: 0;
+  padding-top: 20px;
+}
+.navigation-flyout {
+  min-width: 224px;
+  padding: 8px 0;
+  border-radius: $border-radius-small;
+  box-shadow: 0 2px 12px 0 rgba(122, 132, 144, 0.30);
+  &-col {
+    padding: 0;
+  }
+  &-content {
+    padding-bottom: 10px;
+  }
+  &.is-open {
+    width: 100%;
+  }
+  &.subnav-no-image {
+    &.is-open {
+      width: auto;
+    }
+    .navigation-flyout-link {
+      &:hover {
+        background-color: $surface-overlay-light;
+      }
+    }
+  }
+
+  &-link {
+    padding: 8px 16px;
+    @extend .text-small;
+    font-weight: 400;
+    &:hover {
+      .nav-item {
+        &-image {
+          img {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+
+    &:has(.nav-item-image--icon) {
+      display: flex;
+    }
+  }
+
+  .nav-item {
+    &-image {
+      display: block;
+      margin-bottom: 12px;
+      overflow: hidden;
+      background-color: $surface-overlay-light;
+      border-radius: $border-radius-small;
+      img {
+        width: 100%;
+        max-height: 112px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      &.nav-item-image--icon {
+        display: inline-block;
+        margin-right: 8px;
+        margin-bottom: 0;
+        background: transparent;
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+}
+

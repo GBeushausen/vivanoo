@@ -1,0 +1,56 @@
+{% sw_extends '@Storefront/storefront/page/checkout/summary/summary-position.html.twig' %}
+
+{% block page_checkout_summary_position %}
+
+    {% set isTotalPrice = page.cart.extensions.minimumOrderSurcharge.totalPrice is defined
+        and page.cart.extensions.minimumOrderSurcharge.totalPrice is not null
+        and page.cart.extensions.minimumOrderSurcharge.totalPrice > 0 %}
+    {% set positionPrice = isTotalPrice ? page.cart.price.positionPrice - page.cart.extensions.minimumOrderSurcharge.totalPrice : page.cart.price.positionPrice %}
+
+    {{ block('page_checkout_summary_position_label') }}
+
+    {% block page_checkout_summary_position_value %}
+        <dd class="col-5 checkout-aside-summary-value">
+            {{ summary.price.positionPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+        </dd>
+    {% endblock %}
+
+    {% if isTotalPrice %}
+
+        {% block page_checkout_minimum_order_surcharge_label %}
+            <dt class="col-7 checkout-aside-summary-label">
+                {{ "WebwirkungMinimumOrderSurcharge.checkout.minimumOrderSurchargeAmount"|trans|sw_sanitize }}
+            </dt>
+        {% endblock %}
+
+        {% block page_checkout_minimum_order_surcharge_value %}
+            <dd class="col-5 checkout-aside-summary-value">
+                {{ page.cart.extensions.minimumOrderSurcharge.totalPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+            </dd>
+        {% endblock %}
+
+    {% elseif controllerName == 'Checkout'%}
+
+        {% set isMinimumOrderSurchargeValue = summary.customFields.minimumOrderSurcharge.totalPrice is defined
+            and summary.customFields.minimumOrderSurcharge.totalPrice is not null
+            and summary.customFields.minimumOrderSurcharge.totalPrice > 0 %}
+
+        {% if isMinimumOrderSurchargeValue %}
+
+            {% block page_checkout_summary_minimum_order_surcharge_label %}
+                <dt class="col-7 checkout-aside-summary-label">
+                    {{ "WebwirkungMinimumOrderSurcharge.checkout.minimumOrderSurchargeAmount"|trans|sw_sanitize }}
+                </dt>
+            {% endblock %}
+
+            {% block page_checkout_summary_minimum_order_surcharge_value %}
+                <dd class="col-5 checkout-aside-summary-value">
+                    {{ summary.customFields.minimumOrderSurcharge.totalPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+                </dd>
+            {% endblock %}
+
+        {% endif %}
+
+    {% endif %}
+
+{% endblock %}

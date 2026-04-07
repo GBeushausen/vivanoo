@@ -1,0 +1,11 @@
+{% block sw_element_faq_category_listing %}
+    {% block webwirkung_element_faq_category_listing_wrapper %}
+        {% set searchResult = element.data %}
+        {% set config = element.fieldConfig.elements %}
+
+        {% sw_include '@Storefront/storefront/component/faq/faq-listing.html.twig' with {
+            searchResult: element.data,
+            config: config
+        } %}
+    {% endblock %}
+{% endblock %}

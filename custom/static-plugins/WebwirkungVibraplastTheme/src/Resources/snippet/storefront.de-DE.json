@@ -1,0 +1,152 @@
+{
+  "account": {
+    "title": "Mein Konto",
+    "orderStatus": "Status",
+    "orderDeliveryStatus": "Lieferstatus",
+    "orderTotalPrice": "Gesamtpreis",
+    "orderDetails": "Details"
+  },
+  "blog": {
+    "listview": {
+      "button": "Weiterlesen"
+    }
+  },
+  "cart": {
+    "line-item": {
+      "footer": {
+        "delivery-label": "Lieferfrist",
+        "unit-price": "Stückpreis",
+        "reference-price": "Grundpreis"
+      }
+    }
+  },
+  "checkout": {
+    "productnumber": "Artikel Nr.",
+    "step-navigation": {
+      "next": "Weiter",
+      "prev": "Zurück",
+      "step-1": "Adressen",
+      "step-2": "Warenausgabe",
+      "step-3": "Zahlungsart",
+      "step-4": "Bestellübersicht",
+      "summary-card-title-order": "Bestellübersicht",
+      "summary-card-title-address": "Rechnungs-/Lieferadresse",
+      "summary-card-title-shipping": "Warenausgabe",
+      "summary-card-title-payment": "Zahlungsart"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Newsletter - jetzt anmelden!",
+      "text": "Bleiben Sie immer auf dem Laufenden! Sonderangebote, Rabatte und Neuigkeiten warten auf Sie!"
+    },
+    "contact": {
+      "title": "Vibraplast AG",
+      "address": "<p>Wittenwilerstrasse 25<br>CH-8355 Aadorf</p>",
+      "email": "<a href=\"mailto:info@vibraplast.ch\">info@vibraplast.ch</a>",
+      "phone": "<a href=\"tel:+41523680050\">+41 (0) 52 368 00 50</a>",
+      "delete-file": "Löschen"
+    },
+    "request": {
+      "title": "Haben Sie Fragen oder möchten Sie einen Antrag stellen?",
+      "text": "Füllen Sie das Formular aus und unsere Experten werden Sie kontaktieren.",
+      "button": "<a data-ajax-modal=\"true\" data-url=\"%url%\" href=\"%url%\" title=\"Kontaktformular\" class=\"btn btn-primary\">Kontakt</a>"
+    },
+    "social-link": {
+      "youtube": "https://www.youtube.com/user/vibraplast",
+      "linkedin": "https://www.linkedin.com/company/vibraplast/",
+      "instagram": "https://www.instagram.com/vibraplast.ag"
+    },
+    "copyright": "Copyright by Vibraplast AG"
+  },
+  "form": {
+    "fileUpload": "Dokument hochladen",
+    "form-simple": {
+      "message": {
+        "success": "Ihre Nachricht wurde erfolgreich versendet.",
+        "error": "<b>Anfrage nicht gesendet!</b><p>Es ist ein Fehler aufgetreten, bitte versuche es noch einmal.</p>"
+      }
+    }
+  },
+  "detail": {
+    "soldOutDeliveryTime": "Nicht an Lager %name%",
+    "deliveryTimeAvailableStatic": "An Lager, 3-4 Tage"
+  },
+  "product": {
+    "list": {
+      "action": {
+        "view-products": "Produkte",
+        "configure-product": "Zuschnitt"
+      },
+      "badge": {
+        "on-request": "Auf Anfrage"
+      },
+      "filter": {
+        "all": "Alle"
+      }
+    },
+    "detail": {
+      "request-form": "Anfrage",
+      "variant-configurator": {
+        "table": {
+          "productNumber": "Artikel Nr.",
+          "dimensions": "Masse",
+          "price": "Preis",
+          "priceList": "SP",
+          "priceListContent": "Staffelpreise werden automatisch für Sie berechnet ab 10 und 50 Stück",
+          "priceListContentLineMeter": "Staffelpreise werden automatisch für Sie berechnet ab 10 und 50 Meter",
+          "priceListContentSquareMeter": "Staffelpreise werden automatisch für Sie berechnet ab 10 und 50 Quadratmeter",
+          "priceListContentSquareMeterPiece": "Staffelpreise werden automatisch für Sie berechnet ab 10 und 50 Quadratmeter",
+          "color": "Farbe",
+          "deliveryTime": "Lieferfrist",
+          "quantity": "Menge",
+          "action": "Aktion"
+        },
+        "no-variants": {
+          "title": "Nichts gefunden",
+          "text": "Bestellen Sie den Zuschnitt nach Ihren Parametern."
+        },
+        "configuratorHint": "Keine richtige Größe? ",
+        "configuratorBtn": "Nach diesen Parametern ausschneiden",
+        "variantSelectBtn": "Option wählen",
+        "backBtn": "Zurück zur Produktauswahl",
+        "length": "Länge",
+        "width": "Breite",
+        "height": "Höhe",
+        "summaryLabel": "Ihr Zuschnitt",
+        "material": "Material",
+        "dimension": "Masse",
+        "delivery": "Lieferfrist",
+        "number": "Anzahl",
+        "price": "Preis",
+        "perUnit": "/Stk.",
+        "perM2": "/m²"
+      },
+      "tabs": {
+        "details": {
+          "label": "Einzelheiten"
+        },
+        "technical-data": {
+          "label": "Technische Daten",
+          "table": {
+            "data": "Daten",
+            "norm": "Norm",
+            "value": "Wert",
+            "property_unit_bar": "bar",
+            "property_unit_cm": "cm",
+            "property_unit_g": "g",
+            "property_unit_g-cm3": "g/cm³",
+            "property_unit_g-m3": "g/m³",
+            "property_unit_kg": "kg",
+            "property_unit_kg-m2": "kg/m²",
+            "property_unit_mm": "mm",
+            "property_unit_m": "m",
+            "property_unit_kPa": "kPa",
+            "property_unit_kg-m3": "kg/m³",
+            "property_unit_Wmk": "W/mK"
+          }
+        }
+      }
+    }
+  }
+}

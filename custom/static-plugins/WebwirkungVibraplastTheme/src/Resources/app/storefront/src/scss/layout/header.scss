@@ -1,0 +1,117 @@
+.header-main,
+.header-minimal{
+  border-bottom: 1px solid $sw-border-color;
+}
+.bottom-bar {
+  @include media-breakpoint-up(md) {
+    height: 112px;
+  }
+  .header-row {
+    height: 76px;
+    padding: 0;
+    @include media-breakpoint-up(md) {
+      height: 112px;
+    }
+  }
+
+  .header-logo {
+    &-col {
+      @include media-breakpoint-down(md) {
+        max-width: 96px;
+        padding: 0;
+      }
+      @include media-breakpoint-down(sm) {
+        max-width: 96px;
+        margin: 13px 0;
+        padding: 0;
+      }
+    }
+    &-picture {
+      min-width: 100px;
+    }
+    &-main {
+      img {
+        width: 98px;
+        @include media-breakpoint-up(md) {
+          width: 152px;
+        }
+      }
+    }
+  }
+  .header-actions-col {
+    @include media-breakpoint-down(md) {
+      margin-left: auto;
+    }
+  }
+
+  .header-search {
+    display: grid;
+    grid-template-columns: 1fr;
+    &:has(.ai-search-page-link) {
+      grid-template-columns: 48px 1fr;
+    }
+    &-col {
+      z-index: 100;
+      background: $white;
+    }
+    .icon-sparkles {
+      > svg path,
+      > svg use {
+        fill: $sw-color-brand-primary;
+      }
+    }
+    #naturalLanguageSearch {
+      height: 45px;
+    }
+    &-btn {
+      .loader {
+        width: 21px;
+        height: 21px;
+        .icon {
+        }
+      }
+    }
+    &-form {
+      &:has(.header-search-input:focus) {
+        border-radius: 8px;
+        box-shadow: 0 0 0 0.25rem rgba(83, 192, 216, 0.25);
+      }
+      .header-search-input:focus {
+        box-shadow: none;
+      }
+      .input-group input[type="search"] {
+        border-radius: 8px !important;
+      }
+    }
+  }
+
+  .header-cart {
+    .header-cart {
+      &-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 6px;
+        color: $white;
+        font-weight: 600;
+        background-color: $sw-color-brand-primary;
+        border-radius: 100%;
+        @extend .caption;
+      }
+
+      &-total {
+        display: none;
+      }
+    }
+  }
+}
+
+.header-minimal {
+  &-logo,
+  .header-logo-picture{
+    min-width: 152px;
+    max-width: 152px;
+  }
+}

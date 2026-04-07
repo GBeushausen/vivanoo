@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults autowire="true" autoconfigure="true"/>
+        <prototype namespace="Webwirkung\VibraplastTheme\" resource="../../" exclude="../../Resources"/>
+
+        <service id="Webwirkung\VibraplastTheme\Controller\Api\Decorator\SystemConfigDecoratorController"
+                 decorates="Shopware\Core\System\SystemConfig\Api\SystemConfigController"
+                 public="true">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\Service\ConfigurationService"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\Validation\SystemConfigValidator" />
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Webwirkung\VibraplastTheme\Service\ProductVariantsLoader">
+            <argument key="$productRepository" type="service" id="sales_channel.product.repository"/>
+        </service>
+        <service id="Webwirkung\VibraplastTheme\DataResolver\CategoryFilterCmsElementResolver">
+            <argument type="service" id="category.repository"/>
+        </service>
+        <service id="Webwirkung\VibraplastTheme\Subscriber\ProductDetailPageLoadedSubscriber">
+            <argument type="service" id="ww_property_set.repository"/>
+            <argument type="service" id="Webwirkung\VibraplastTheme\Config\ConfigProvider"/>
+            <argument type="service" id="product.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Webwirkung\VibraplastTheme\Subscriber\PricingApiHtmlPriceReplaceSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="Webwirkung\VibraplastTheme\DataResolver\SubCategoryListingCmsElementResolver">
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+
+        <service id="Webwirkung\VibraplastTheme\Decorator\Core\Checkout\Cart\Route\ReOrderCustomizedProductsRouteDecorator">
+            <argument type="service" key="$productRepository" id="sales_channel.product.repository"/>
+        </service>
+
+        <service id="Webwirkung\VibraplastTheme\Twig\PricingUnitExtension">
+            <argument type="service" id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\CalculatorFactoryInterface"/>
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="Webwirkung\VibraplastTheme\Twig\MediaExtension">
+            <argument type="service" id="media.repository"/>
+            <tag name="twig.extension"/>
+        </service>
+
+        <!-- Simple Form Controller with file upload -->
+        <service id="Webwirkung\VibraplastTheme\Storefront\Controller\SimpleFormController"
+                 class="Webwirkung\VibraplastTheme\Storefront\Controller\SimpleFormController" public="true">
+            <argument id="Shopware\Core\Content\Mail\Service\MailService" type="service"/>
+            <argument type="service" id="mail_template.repository"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="cms_slot.repository"/>
+            <argument type="service" id="Shopware\Core\Content\Media\File\FileSaver"/>
+            <argument type="service" id="Shopware\Core\Content\Media\File\FileNameProvider"/>
+            <argument type="service" id="Shopware\Core\Content\Media\MediaService"/>
+            <argument type="service" id="media.repository"/>
+            <argument type="service" id="media_folder.repository"/>
+            <argument type="service" id="translator" />
+            <argument key="$captchas" type="tagged" tag="shopware.storefront.captcha"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Webwirkung\VibraplastTheme\Messenger\SendersLocatorDecorator"
+                 decorates="messenger.senders_locator">
+            <argument type="service" id="Webwirkung\VibraplastTheme\Messenger\SendersLocatorDecorator.inner" />
+        </service>
+    </services>
+</container>

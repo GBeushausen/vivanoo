@@ -1,0 +1,51 @@
+/*
+Override variable defaults
+==================================================
+This file is used to override default SCSS variables from the Shopware Storefront or Bootstrap.
+
+Because of the !default flags, theme variable overrides have to be declared beforehand.
+https://getbootstrap.com/docs/5.3/customize/sass/#variable-defaults
+*/
+
+/*
+Override variable defaults
+==================================================
+This file is used to override default SCSS variables from the Shopware Storefront or Bootstrap.
+
+Because of the !default flags, theme variable overrides have to be declared beforehand.
+https://getbootstrap.com/docs/4.0/getting-started/theming/#variable-defaults
+*/
+
+$border-radius: 12px;
+$border-radius-button: 8px;
+$border-radius-small: 8px;
+
+// Colors
+
+$white: #fff;
+$black: #000;
+
+$gradient: linear-gradient(180deg, #DDF2F7 0%, #F3F9FA 100%);
+
+
+
+//GRID
+$grid-gutter-width: 40px;
+
+$grid-columns: 12;
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1210px,
+        xxl: 1658px
+);
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1250px
+);
+/* stylelint-enable */

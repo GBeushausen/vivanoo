@@ -1,0 +1,14 @@
+<style>
+    th, td {
+        padding: 0 15px;
+    }
+</style>
+<div style="font-family:arial; font-size:12px;">
+        Bonjour,
+        <br>
+        {{ pendingOrder.employee.firstName }} {{ pendingOrder.employee.lastName }} a passé une commande <a href="{{ rawUrl('frontend.employee.pending-order.detail.page', { 'pendingId': pendingOrder.id }, salesChannel.domains|first.url) }}"> {{ pendingOrder.number }} </a> qui nécessite une approbation pour la raison suivante :
+        <br>
+        {{ pendingOrder.approvalRule.name }}
+        <br>
+        Cliquez ici pour accéder à la commande : <a href="{{ rawUrl('frontend.employee.pending-order.detail.page', { 'pendingId': pendingOrder.id }, salesChannel.domains|first.url) }}"> {{ pendingOrder.number }} </a>
+</div>

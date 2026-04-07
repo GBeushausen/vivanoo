@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/page/account/payment/index.html.twig' %}
+
+ {% block page_account_payment_welcome_headline %}
+     <h3>{{ "account.paymentTitle"|trans|sw_sanitize }}</h3>
+ {% endblock %}
+
+{% block page_account_payment_actions %}
+    <button class="btn btn-edit"
+            type="submit"
+            title="{{ "account.paymentChangeSubmit"|trans|striptags }}">
+        {% sw_icon 'edit' style {'pack' : 'WebwirkungIcons'} %} {{ "account.paymentChangeSubmit"|trans|sw_sanitize }}
+    </button>
+{% endblock %}

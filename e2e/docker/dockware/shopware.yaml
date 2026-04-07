@@ -1,0 +1,44 @@
+# Using the webupdater will overwrite this file. Create a second file z-shopware.yaml to override the config
+
+shopware:
+    auto_update:
+        # Disables the auto updater in the UI
+        enabled: false
+
+    admin_worker:
+        enable_admin_worker: false
+
+    filesystem:
+        public:
+            type: "local"
+            url: "%env(APP_URL)%"
+            config:
+                root: "%kernel.project_dir%/public"
+
+        asset:
+            type: "local"
+            url: "%env(APP_URL)%"
+            config:
+                root: "%kernel.project_dir%/public"
+
+        theme:
+            type: "local"
+            url: "%env(APP_URL)%"
+            config:
+                root: "%kernel.project_dir%/public"
+
+        sitemap:
+            type: "local"
+            url: "%env(APP_URL)%"
+            config:
+                root: "%kernel.project_dir%/public"
+
+        private:
+            type: "local"
+            config:
+                root: "%kernel.project_dir%/files"
+
+    api:
+        jwt_key:
+            private_key_path: '%env(base64:JWT_PRIVATE_KEY)%'
+            public_key_path: '%env(base64:JWT_PUBLIC_KEY)%'

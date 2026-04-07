@@ -1,0 +1,23 @@
+{% sw_extends '@Storefront/storefront/layout/header/actions/cart-widget.html.twig' %}
+
+{% block layout_header_actions_cart_widget %}
+    <span class="header-cart-icon">
+        {% sw_icon 'bag' %}
+    </span>
+
+    {% set cartLineItems = [] %}
+
+    {% for item in page.cart.lineItems %}
+        {% if item.type != 'minimum-order-surcharge' %}
+            {% set cartLineItems = cartLineItems|merge([item]) %}
+        {% endif %}
+    {% endfor %}
+
+    {% if cartLineItems|length > 0 %}
+        <span class="badge bg-primary header-cart-badge">{{ cartLineItems|length }}</span>
+    {% endif %}
+
+    <span class="header-cart-total">
+        {{ page.cart.price.positionPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+    </span>
+{% endblock %}

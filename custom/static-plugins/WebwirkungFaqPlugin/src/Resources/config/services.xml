@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Webwirkung\FaqPlugin\Core\Content\Faq\FaqDefinition">
+            <tag name="shopware.entity.definition" entity="ww_faq" />
+        </service>
+        <service id="Webwirkung\FaqPlugin\Core\Content\Aggregate\FaqTranslation\FaqTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="ww_faq_translation" />
+        </service>
+        <service id="Webwirkung\FaqPlugin\Core\Content\FaqCategory\FaqCategoryDefinition">
+            <tag name="shopware.entity.definition" entity="ww_faq_category" />
+        </service>
+        <service id="Webwirkung\FaqPlugin\Core\Content\Aggregate\FaqCategoryTranslation\FaqCategoryTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="ww_faq_category_translation" />
+        </service>
+
+        <!-- FAQ and Category Mapping Definition -->
+        <service id="Webwirkung\FaqPlugin\Core\Content\Aggregate\FaqCategoryMappingDefinition">
+            <tag name="shopware.entity.definition" entity="ww_faq_faq_category" />
+        </service>
+
+        <!-- Make data from faq available on listing element storefront view -->
+        <service id="Webwirkung\FaqPlugin\DataResolver\FaqCategoryListingCmsElementResolver">
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <!-- Make data from selected faqs available on listing element storefront view -->
+        <service id="Webwirkung\FaqPlugin\DataResolver\FaqSelectListingCmsElementResolver">
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+    </services>
+</container>

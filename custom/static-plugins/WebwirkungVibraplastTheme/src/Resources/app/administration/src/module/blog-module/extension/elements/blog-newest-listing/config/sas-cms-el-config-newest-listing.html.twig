@@ -1,0 +1,21 @@
+{% block sas_cms_element_newest_listing_config %}
+    <div class="sas-cms-el-config-newest-listing">
+        {% parent %}
+        {% block sas_cms_element_blog_listing_config_further_options %}
+            <sw-checkbox-field
+                    :label="$tc('sas-blog.elements.listing.config.hideImage')"
+                    v-model:value="element.config.hideImage.value">
+            </sw-checkbox-field>
+
+            <sw-checkbox-field
+                    :label="$tc('sas-blog.elements.listing.config.showDate')"
+                    v-model:value="element.config.showDate.value">
+            </sw-checkbox-field>
+
+            <sw-checkbox-field
+                    :label="$tc('sas-blog.elements.listing.config.infinityLoop')"
+                    v-model:value="element.config.infinityLoop.value">
+            </sw-checkbox-field>
+        {% endblock %}
+    </div>
+{% endblock %}

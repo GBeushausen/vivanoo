@@ -1,0 +1,136 @@
+{% extends '@Storefront/storefront/element/cms-element-image-gallery.html.twig' %}
+
+{% block element_image_gallery_alignment %}
+    {% if config.verticalAlign.value %}
+        <div class="cms-element-alignment{% if verticalAlign == "center" %} align-self-center{% elseif verticalAlign == "flex-end" %} align-self-end{% else %} align-self-start{% endif %}">
+    {% endif %}
+
+    {% set gallerySliderOptions = {
+        slider: {
+            navPosition: 'bottom',
+            speed: 500,
+            gutter: gutter ? gutter : 0,
+            controls: navigationArrows != "none",
+            autoHeight: false,
+            startIndex: startIndexThumbnails ? startIndexThumbnails : null
+        },
+        thumbnailSlider: {
+            items: (imageCount >= 8 and galleryPosition == "underneath") ? 8 : ((galleryPosition == "underneath") ? 4 : 5),
+            slideBy: (imageCount >= 8 and galleryPosition == "underneath") ? 8 : ((galleryPosition == "underneath") ? 3 : 4),
+            controls: true,
+            startIndex: startIndexThumbnails ? startIndexThumbnails : null,
+            ariaLive: false,
+            loop: false,
+            rewind: false,
+            responsive: {
+                xs: {
+                    enabled: false,
+                    controls: false
+                },
+                sm: {
+                    enabled: false,
+                    controls: false
+                },
+                md: {
+                    items: (imageCount >= 8 and galleryPosition == "underneath") ? 8 : 5,
+                    slideBy: (imageCount >= 8 and galleryPosition == "underneath") ? 8 : 4
+                },
+                lg: {
+                    items: (imageCount >= 8 and galleryPosition == "underneath") ? 8 : 5,
+                    slideBy: (imageCount >= 8 and galleryPosition == "underneath") ? 8 : 4
+                }
+            }
+        }
+    } %}
+
+    {% if galleryPosition == "left" %}
+        {% set gallerySliderOptions = gallerySliderOptions|replace_recursive({
+            thumbnailSlider: {
+                responsive: {
+                    md: {
+                        axis: 'vertical'
+                    },
+                    lg: {
+                        axis: 'vertical'
+                    },
+                    xl: {
+                        axis: 'vertical'
+                    },
+                    xxl: {
+                        axis: 'vertical'
+                    }
+                }
+            }
+        }) %}
+    {% endif %}
+
+    {% set galleryZoomSliderOptions = {
+        baseSliderWrapperClass: 'modal-body'
+    } %}
+
+    {% if page.product.media.hasSpatialObjects() %}
+        {% set galleryZoomSliderOptions = galleryZoomSliderOptions|replace_recursive({
+            slider: {
+                loop: false,
+                rewind: true,
+                swipeAngle: 5
+            },
+        }) %}
+
+        {% set gallerySliderOptions = gallerySliderOptions|replace_recursive({
+            slider: {
+                loop: false,
+                rewind: true,
+                swipeAngle: 5
+            },
+        }) %}
+    {% endif %}
+
+    {% set galleryClasses = imageCount >= 8 ? 'is-grid-thumbnails' : '' %}
+
+    {% block element_image_gallery_inner %}
+        {% set gallerySliderRowClasses = [
+            'row',
+            'gallery-slider-row',
+            galleryClasses,
+            imageCount == 1 ? 'is-single-image' : 'is-loading',
+            'js-gallery-zoom-modal-container'
+        ] %}
+
+        {% block element_image_gallery_inner_skip_gallery %}
+            {{ parent() }}
+        {% endblock %}
+
+        <div class="{{ gallerySliderRowClasses|join(' ') }}"
+            {% if zoom %}
+                data-magnifier="true"
+            {% endif %}
+            {% if magnifierOptions|length > 0 %}
+                data-magnifier-options='{{ magnifierOptions|json_encode|raw }}'
+            {% endif %}
+            {% if imageCount > 1 %}
+                data-gallery-slider="true"
+                data-gallery-slider-options='{{ gallerySliderOptions|json_encode }}'
+            {% endif %}
+             role="region"
+             aria-label="{{ 'component.cms.imageGallery.ariaLabel'|trans({ '%total%': imageCount })|sw_sanitize }}"
+             tabindex="0"
+        >
+            {% block element_image_gallery_inner_col %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block element_image_gallery_inner_thumbnails_col %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block element_image_gallery_inner_zoom_modal_wrapper %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% if config.verticalAlign.value %}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/page/account/order-history/order-detail.html.twig' %}
+
+{% block page_account_order_item_detail_table_body_customer_comment %}
+    <div class="order-detail-content-body">
+        <div class="row order-detail-content-row g-0">
+            {% block page_account_order_customer_comment_header %}
+                <div class="col-12 card-title">
+                    {{ "checkout.customerCommentHeader"|trans|sw_sanitize }}
+                </div>
+            {% endblock %}
+
+            {% block page_account_order_customer_comment_content %}
+                <div class="col-12">{{ order.customerComment|sw_sanitize|nl2br }}</div>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

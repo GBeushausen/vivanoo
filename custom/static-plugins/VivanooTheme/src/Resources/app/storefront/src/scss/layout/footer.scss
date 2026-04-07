@@ -1,0 +1,25 @@
+.footer-main,
+.footer-minimal {
+  &-content {
+    .footer-contact {
+      &-information-address {
+        .icon {
+          > svg {
+            path, use {
+              stroke: $sw-color-brand-primary;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.googlemaps-text {
+  .icon {
+    > svg {
+      path, use {
+        stroke: $sw-color-brand-primary;
+      }
+    }
+  }
+}

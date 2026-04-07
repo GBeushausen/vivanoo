@@ -1,0 +1,55 @@
+{% sw_extends '@SasBlogModule/storefront/component/blog/newest-listing.html.twig' %}
+
+{% set blogSliderOptions = {
+    slider: {
+        navPosition: 'bottom',
+        speed: 500,
+        items: 1,
+        nav: false,
+        controls: true,
+        autoHeight: true,
+        edgePadding: 0,
+        autoplay: false,
+        center: true,
+        fixedWidth: 280,
+        gutter: 24,
+        loop: (element.config.infinityLoop.value is defined) ? element.config.infinityLoop.value : true,
+        responsive: {
+            md: {
+                items: 1,
+            },
+            lg: {
+                items: 3,
+                center: false,
+                fixedWidth: 0,
+            },
+            xl: {
+                items: 3,
+                center: false,
+                fixedWidth: 0,
+            },
+            xxl: {
+                items: 3,
+                center: false,
+                fixedWidth: 0,
+            }
+        }
+    }
+} %}
+
+{% block sas_element_blog_newest_listing_col %}
+    <div class="row">
+        <div class="base-slider blog-newest-slider" data-base-slider="true"
+            data-base-slider-options="{{ blogSliderOptions|json_encode }}">
+            <div data-base-slider-container="true">
+                {% for article in searchResult %}
+                    {% block sas_element_blog_newest_listing_box %}
+                        <div class="col-12 col-md-4">
+                            {% sw_include '@Storefront/storefront/component/blog/card/box.html.twig' %}
+                        </div>
+                    {% endblock %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

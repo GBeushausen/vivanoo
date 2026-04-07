@@ -1,0 +1,40 @@
+{% sw_extends '@Storefront/storefront/layout/header/top-bar.html.twig' %}
+{% block layout_header_top_bar %}
+    <div class="top-bar d-none d-lg-flex">
+        <div class="container">
+            <div class="d-flex">
+                {% block layout_header_service_menu %}
+                    {% block layout_header_service_menu_content %}
+                        {% apply spaceless %}
+                            <nav class="header-service-menu">
+                                <ul class="list-unstyled">
+                                    {% for serviceMenuItem in page.header.serviceMenu %}
+                                        {% block layout_header_service_menu_item %}
+                                            <li class="header-service-menu-item">
+                                                <a class="header-service-menu-link"
+                                                   href="{{ category_url(serviceMenuItem) }}"
+                                                   {% if category_linknewtab(serviceMenuItem) %}target="_blank"{% endif %}
+                                                   title="{{ serviceMenuItem.translated.name }}">
+                                                    {{ serviceMenuItem.translated.name }}
+                                                </a>
+                                            </li>
+                                        {% endblock %}
+                                    {% endfor %}
+                                </ul>
+                            </nav>
+                        {% endapply %}
+                    {% endblock %}
+                {% endblock %}
+                <nav class="top-bar-nav">
+                    {% block layout_header_top_bar_language %}
+                        {% sw_include '@Storefront/storefront/layout/header/actions/language-widget.html.twig' %}
+                    {% endblock %}
+
+                    {% block layout_header_top_bar_currency %}
+                        {% sw_include '@Storefront/storefront/layout/header/actions/currency-widget.html.twig' %}
+                    {% endblock %}
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock %}

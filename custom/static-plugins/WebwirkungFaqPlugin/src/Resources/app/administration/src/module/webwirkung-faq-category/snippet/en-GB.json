@@ -1,0 +1,23 @@
+{
+    "faq-category": {
+        "general": {
+            "mainMenuItemList": "FAQ category",
+            "nameField": "Name"
+        },
+        "list": {
+            "addButtonText": "Add new category"
+        },
+        "detail": {
+            "cancelButtonText": "Cancel",
+            "saveButtonText": "Save",
+            "errorTitle": "An error occured."
+        }
+    },
+    "sw-privileges": {
+        "permissions": {
+            "ww_faq_category": {
+                "label": "FAQ Plugin Categories"
+            }
+        }
+    }
+}

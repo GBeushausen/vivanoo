@@ -1,0 +1,14 @@
+{% block block_faq_select %}
+    {% set element = block.slots.getSlot('manyEntries') %}
+    {% if element.data %}
+        <div class="col-md-4">
+            <div class="faq-title">
+                <img src="{{ asset('/bundles/webwirkungfaqplugin/img/faq-icon.svg') }}" alt="FAQ" class="img-fluid">
+                <h4>{{ 'faq.title'|trans }}</h4>
+            </div>
+        </div>
+        <div class="col-md-8" data-cms-element-id="{{ element.id }}">
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+        </div>
+    {% endif %}
+{% endblock %}

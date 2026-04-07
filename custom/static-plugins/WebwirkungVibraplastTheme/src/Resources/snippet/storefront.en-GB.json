@@ -1,0 +1,152 @@
+{
+  "account": {
+    "title": "My Account",
+    "orderStatus": "Status",
+    "orderDeliveryStatus": "Delivery Status",
+    "orderTotalPrice": "Total Price",
+    "orderDetails": "Details"
+  },
+  "blog": {
+    "listview": {
+      "button": "Read more"
+    }
+  },
+  "cart": {
+    "line-item": {
+      "footer": {
+        "delivery-label": "Delivery",
+        "unit-price": "Price per piece",
+        "reference-price": "Base price"
+      }
+    }
+  },
+  "checkout": {
+    "productnumber": "Product no.",
+    "step-navigation": {
+      "next": "Next",
+      "prev": "Previous",
+      "step-1": "Address",
+      "step-2": "Shipping",
+      "step-3": "Payment",
+      "step-4": "Overview",
+      "summary-card-title-order": "Overview",
+      "summary-card-title-address": "Address",
+      "summary-card-title-shipping": "Shipping",
+      "summary-card-title-payment": "Payment"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Newsletter - jetzt anmelden!",
+      "text": "Bleiben Sie immer auf dem Laufenden! Sonderangebote, Rabatte und Neuigkeiten warten auf Sie!"
+    },
+    "contact": {
+      "title": "Vibraplast AG",
+      "address": "<p>Wittenwilerstrasse 25<br>CH-8355 Aadorf</p>",
+      "email": "<a href=\"mailto:info@vibraplast.ch\">info@vibraplast.ch</a>",
+      "phone": "<a href=\"tel:+41523680050\">+41 (0) 52 368 00 50</a>",
+      "delete-file": "Delete"
+    },
+    "request": {
+      "title": "Haben Sie Fragen oder möchten Sie einen Antrag stellen?",
+      "text": "Füllen Sie das Formular aus und unsere Experten werden Sie kontaktieren.",
+      "button": "<a data-ajax-modal=\"true\" data-url=\"%url%\" href=\"%url%\" title=\"Kontaktformular\" class=\"btn btn-primary\">Contact</a>"
+    },
+    "social-link": {
+      "youtube": "https://www.youtube.com/user/vibraplast",
+      "linkedin": "https://www.linkedin.com/company/vibraplast/",
+      "instagram": "https://www.instagram.com/vibraplast.ag"
+    },
+    "copyright": "Copyright by Vibraplast AG"
+  },
+  "form": {
+    "fileUpload": "Upload file",
+    "form-simple": {
+      "message": {
+        "success": "Your message has been sent successfully.",
+        "error": "<b>Request not sent!</b><p>An error occurred, please try again.</p>"
+      }
+    }
+  },
+  "detail": {
+    "soldOutDeliveryTime": "Out of stock %name%",
+    "deliveryTimeAvailableStatic": "In stock, 3-4 days"
+  },
+  "product": {
+    "list": {
+      "action": {
+        "view-products": "Products",
+        "configure-product": "Cutting"
+      },
+      "badge": {
+        "on-request": "On request"
+      },
+      "filter": {
+        "all": "All"
+      }
+    },
+    "detail": {
+      "request-form": "Request",
+      "variant-configurator": {
+        "table": {
+          "productNumber": "Item number",
+          "dimensions": "Mass",
+          "price": "Price",
+          "priceList": "SP",
+          "priceListContent": "Bulk prices are automatically calculated for you from 10 and 50 pieces",
+          "priceListContentLineMeter": "Bulk prices are automatically calculated for you from 10 and 50 meters",
+          "priceListContentSquareMeter": "Bulk prices are automatically calculated for you from 10 and 50 square meters",
+          "priceListContentSquareMeterPiece": "Bulk prices are automatically calculated for you from 10 and 50 square meters",
+          "color": "Color",
+          "deliveryTime": "Delivery time",
+          "quantity": "Quantity",
+          "action": "Action"
+        },
+        "no-variants": {
+          "title": "No result",
+          "text": "Order the cut to size according to your parameters."
+        },
+        "configuratorHint": "Can't find the product you want?",
+        "configuratorBtn": "To the configurator",
+        "variantSelectBtn": "Choose option",
+        "backBtn": "Back",
+        "length": "Length",
+        "width": "Width",
+        "height": "Height",
+        "summaryLabel": "Your cut",
+        "material": "Material",
+        "dimension": "Dimension",
+        "delivery": "Delivery",
+        "number": "Number",
+        "price": "Price",
+        "perUnit": "/pce",
+        "perM2": "/m²"
+      },
+      "tabs": {
+        "details": {
+          "label": "Details"
+        },
+        "technical-data": {
+          "label": "Technical data",
+          "table": {
+            "data": "Data",
+            "norm": "Standard",
+            "value": "Value",
+            "property_unit_bar": "bar",
+            "property_unit_cm": "cm",
+            "property_unit_g": "g",
+            "property_unit_g-cm3": "g/cm³",
+            "property_unit_g-m3": "g/m³",
+            "property_unit_kg": "kg",
+            "property_unit_kg-m2": "kg/m²",
+            "property_unit_mm": "mm",
+            "property_unit_m": "m",
+            "property_unit_kPa": "kPa",
+            "property_unit_kg-m3": "kg/m³",
+            "property_unit_Wmk": "W/mK"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{% sw_extends '@Storefront/storefront/component/address/address-form.html.twig' %}
+ {% block component_address_form_zipcode_city %}
+     {% set zipcodeField %}
+         {% set zipcodeValue = formViolations.getInputData()['zipcode'] ?? data.get('zipcode') %}
+         {% if formViolations.getViolations('/zipcode') is not empty %}
+             {% set violationPath = '/zipcode' %}
+         {% elseif formViolations.getViolations("/#{prefix}/zipcode") is not empty %}
+             {% set violationPath = "/#{prefix}/zipcode" %}
+         {% else %}
+             {% set requiredMessage = 'error.VIOLATION::IS_BLANK_ERROR'|trans({ '%field%': 'address.zipcodeLabel'|trans|sw_sanitize }) %}
+         {% endif %}
+
+         {% block component_address_form_zipcode_label %}
+             {{ parent() }}
+         {% endblock %}
+
+         {% block component_address_form_zipcode_input %}
+             {{ parent() }}
+         {% endblock %}
+
+         {% block component_address_form_zipcode_error %}
+             {{ parent() }}
+         {% endblock %}
+     {% endset %}
+
+     {% set cityField %}
+         {% if formViolations.getViolations('/city') is not empty %}
+             {% set violationPath = '/city' %}
+         {% elseif formViolations.getViolations("/#{prefix}/city") is not empty %}
+             {% set violationPath = "/#{prefix}/city" %}
+         {% else %}
+             {% set requiredMessage = 'error.VIOLATION::IS_BLANK_ERROR'|trans({ '%field%': 'address.cityLabel'|trans|sw_sanitize }) %}
+             {% set violationPath = null %}
+         {% endif %}
+
+         {% block component_address_form_city_label %}
+             {{ parent() }}
+         {% endblock %}
+
+         {% block component_address_form_city_input %}
+             {{ parent() }}
+         {% endblock %}
+
+         {% block component_address_form_city_error %}
+             {{ parent() }}
+         {% endblock %}
+     {% endset %}
+     <div class="form-group col-md-2 col-4">
+         {{ zipcodeField }}
+     </div>
+     <div class="form-group col-md-4 col-8">
+         {{ cityField }}
+     </div>
+ {% endblock %}

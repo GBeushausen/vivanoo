@@ -1,0 +1,25 @@
+<sw-tabs isVertical :defaultItem="defaultItem" :small="false" class="faq__tabs" @new-item-active="onChangeTab" >
+    <template #default="{ active }">
+        {% block webwirkung_block_list_tab_item %}
+        <sw-tabs-item title="$t('faq.general.mainMenuItemList')"
+                      variant="minimal"
+                      :route="{ name: 'webwirkung.faq.list' }"
+                      :activeTab="active"
+                      :native="true"
+                      name="faq">
+            {{ $t('faq.general.mainMenuItemList') }}
+        </sw-tabs-item>
+        {% endblock %}
+
+        {% block webwirkung_block_faq_category_tab_item %}
+        <sw-tabs-item title="$t('faq-category.general.mainMenuItemList')"
+                      :route="{ name: 'webwirkung.faq.category.list' }"
+                      variant="minimal"
+                      :activeTab="active"
+                      :native="true"
+                      name="author">
+            {{ $t('faq-category.general.mainMenuItemList') }}
+        </sw-tabs-item>
+        {% endblock %}
+    </template>
+</sw-tabs>

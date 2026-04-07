@@ -1,0 +1,16 @@
+.sw-cms-preview-title-button {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 10px;
+
+  &-button {
+    background: #d1d9e0;
+    color: #52667a;
+    text-align: center;
+    font-size: 12px;
+    line-height: 26px;
+    align-self: end;
+    border-radius: 3px;
+  }
+}

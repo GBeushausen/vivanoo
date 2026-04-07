@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/component/line-item/element/remove.html.twig' %}
+
+{% block component_line_item_remove_button %}
+    <button type="submit"
+            title="{{ "checkout.removeLineItem"|trans|striptags }}"
+            data-product-id="{{ lineItem.id }}"
+            data-product-number="{{ lineItem.payload.productNumber|default('') }}"
+            class="btn btn-light btn-sm line-item-remove-button">
+        {% sw_icon 'trash' style {'pack' : 'WebwirkungIcons'} %}
+    </button>
+{% endblock %}

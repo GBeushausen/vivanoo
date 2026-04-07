@@ -1,0 +1,186 @@
+{
+    "script": [
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/shopware\/storefront\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "storefront"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/custom\/static-plugins\/WebwirkungGlossaryPlugin\/src\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "webwirkung-glossary-plugin"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcustomizedproducts\/src\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "swag-customized-products"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/sasblogmodule\/src\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "sas-blog-module"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcmsextensions\/src\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "swag-cms-extensions"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/Subscription\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "subscription"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/CheckoutSweetener\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "checkout-sweetener"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/TextTranslator\/Resources\/app\/storefront\/src\/main.ts",
+            "resolveMapping": [],
+            "assetName": "text-translator"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/B2B\/EmployeeManagement\/Resources\/app\/storefront\/src\/main.ts",
+            "resolveMapping": [],
+            "assetName": "employee-management"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/B2B\/QuickOrder\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "quick-order"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/AdvancedSearch\/Resources\/app\/storefront\/src\/main.ts",
+            "resolveMapping": [],
+            "assetName": "advanced-search"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/Captcha\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "captcha"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/B2B\/QuoteManagement\/Resources\/app\/storefront\/src\/main.ts",
+            "resolveMapping": [],
+            "assetName": "quote-management"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/AISearch\/Resources\/app\/storefront\/src\/main.ts",
+            "resolveMapping": [],
+            "assetName": "a-i-search"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/SpatialCommerce\/SpatialCmsElement\/Resources\/app\/storefront\/src\/main.ts",
+            "resolveMapping": [],
+            "assetName": "spatial-cms-element"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/B2B\/OrderApproval\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "order-approval"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/store.shopware.com\/swagcommercial\/src\/B2B\/ShoppingList\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "shopping-list"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/custom\/static-plugins\/WebwirkungProductFinder\/src\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "webwirkung-product-finder"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/webwirkung\/product-download\/src\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "webwirkung-product-downloads"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/custom\/static-plugins\/WebwirkungFaqPlugin\/src\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "webwirkung-faq-plugin"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/webwirkung\/product-video\/src\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "webwirkung-product-video"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/webwirkung\/tagmanager-plugin\/src\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "webwirkung-tagmanager-plugin"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/custom\/static-plugins\/WebwirkungVibraplastTheme\/src\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "webwirkung-vibraplast-theme"
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/custom\/static-plugins\/VivanooTheme\/src\/Resources\/app\/storefront\/src\/main.js",
+            "resolveMapping": [],
+            "assetName": "vivanoo-theme"
+        }
+    ],
+    "style": [
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/custom\/static-plugins\/VivanooTheme\/src\/Resources\/app\/storefront\/src\/scss\/overrides.scss",
+            "resolveMapping": [],
+            "assetName": null
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/custom\/static-plugins\/WebwirkungVibraplastTheme\/src\/Resources\/app\/storefront\/src\/scss\/overrides.scss",
+            "resolveMapping": [],
+            "assetName": null
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/vendor\/shopware\/storefront\/Theme\/..\/Resources\/app\/storefront\/src\/scss\/base.scss",
+            "resolveMapping": {
+                "vendor": "\/var\/www\/html\/vendor\/shopware\/storefront\/Theme\/..\/Resources\/app\/storefront\/vendor"
+            },
+            "assetName": null
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/custom\/static-plugins\/WebwirkungVibraplastTheme\/src\/Resources\/app\/storefront\/src\/scss\/base.scss",
+            "resolveMapping": [],
+            "assetName": null
+        },
+        {
+            "extensions": [],
+            "filepath": "\/var\/www\/html\/custom\/static-plugins\/VivanooTheme\/src\/Resources\/app\/storefront\/src\/scss\/base.scss",
+            "resolveMapping": [],
+            "assetName": null
+        }
+    ],
+    "themeId": "019d4e9639d1721db56d90462da0ee58",
+    "technicalName": "VivanooTheme",
+    "domainUrl": "https:\/\/vibraplast.ddev.site\/vivanoo",
+    "basePath": "vendor\/vivanoo\/theme\/\/src"
+}

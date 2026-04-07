@@ -1,0 +1,13 @@
+<div style="font-family:arial; font-size:12px;">
+    <p>Guten Tag,<br><br>
+        es ist eine neue Produktanfrage im Shop eingegangen. </p>
+            <table>
+                {% for field in form.groups.fields %}
+                    {% if field.technicalName in formData|keys %}
+                        <tr>
+                            <td>{{ field.label ?: field.technicalName }}</td>
+                            <td>{{ attribute(formData, field.technicalName)|nl2br }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table></div>

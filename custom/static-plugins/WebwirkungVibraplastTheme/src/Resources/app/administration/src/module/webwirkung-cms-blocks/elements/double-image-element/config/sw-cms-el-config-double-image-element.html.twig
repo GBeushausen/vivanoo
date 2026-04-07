@@ -1,0 +1,118 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template
+                #content="{ active }"
+        >
+
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+
+                    {% block sw_cms_element_double_image_overlay_one %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadOverlayImageOneTag"
+                                :source="previewOverlayImageOneSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.double-image-element.config.caption.overlayImageOneUpload')"
+                                @media-upload-sidebar-open="onOpenOverlayImageOneModal"
+                                @media-upload-remove-image="onOverlayImageOneRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadOverlayImageOneTag"
+                                auto-upload
+                                @media-upload-finish="onOverlayImageOneUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="overlayImageOneModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.double-image-element.config.caption.overlayImageOneUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onOverlayImageOneRemove"
+                                @media-modal-selection-change="onOverlayImageOneSelectionChanges"
+                                @modal-close="onCloseOverlayImageOneModal"
+                        ></sw-media-modal-v2>
+                        <br><br>
+                    {% endblock %}
+
+                    {% block sw_cms_element_double_image_overlay_two %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadOverlayImageTwoTag"
+                                :source="previewOverlayImageTwoSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.double-image-element.config.caption.overlayImageTwoUpload')"
+                                @media-upload-sidebar-open="onOpenOverlayImageTwoModal"
+                                @media-upload-remove-image="onOverlayImageTwoRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadOverlayImageTwoTag"
+                                auto-upload
+                                @media-upload-finish="onOverlayImageTwoUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="overlayImageTwoModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.double-image-element.config.caption.overlayImageTwoUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onOverlayImageTwoRemove"
+                                @media-modal-selection-change="onOverlayImageTwoSelectionChanges"
+                                @modal-close="onCloseOverlayImageTwoModal"
+                        ></sw-media-modal-v2>
+                        <br><br>
+                    {% endblock %}
+
+                    {% block sw_cms_element_double_image_background %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadBackgroundImageTag"
+                                :source="previewBackgroundImageSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.double-image-element.config.caption.backgroundImageUpload')"
+                                @media-upload-sidebar-open="onOpenBackgroundImageModal"
+                                @media-upload-remove-image="onBackgroundImageRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadBackgroundImageTag"
+                                auto-upload
+                                @media-upload-finish="onBackgroundImageUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="backgroundImageModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.double-image-element.config.caption.backgroundImageUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onBackgroundImageRemove"
+                                @media-modal-selection-change="onBackgroundImageSelectionChanges"
+                                @modal-close="onCloseBackgroundImageModal"
+                        ></sw-media-modal-v2>
+                    {% endblock %}
+
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

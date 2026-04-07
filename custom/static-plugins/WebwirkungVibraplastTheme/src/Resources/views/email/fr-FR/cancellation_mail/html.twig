@@ -1,0 +1,8 @@
+<div style="font-family:arial; font-size:12px;">
+    {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},<br>
+    <br>
+    Vous trouverez en pièce jointe de cet e-mail la facture d'annulation pour votre commande numéro : {{ order.orderNumber }}<br>
+    <br>
+    N'hésitez pas à nous contacter pour toute question.
+    <br>
+</div>

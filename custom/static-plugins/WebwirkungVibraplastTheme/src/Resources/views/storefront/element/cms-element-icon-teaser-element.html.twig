@@ -1,0 +1,21 @@
+{% block block_icon_teaser_element %}
+    <div class="icon-teaser-wrapper">
+        {% if element.config.iconTeaserTitleBefore.value %}
+            <h4>{{ element.config.iconTeaserTitleBefore.value }}</h4>
+        {% endif %}
+        <div class="icon-teaser icon-teaser--bg-{{ element.config.iconTeaserBackground.value }} icon-teaser--position-{{ element.config.iconPosition.value }}{% if element.config.iconTeaserSmallSpace.value %} icon-teaser--space-small{% endif %}">
+            {% if element.config.iconTeaserImage.value is not null %}
+                 <div class="icon-teaser-icon icon-teaser-icon--background-{{ element.config.iconBackground.value }}">
+                    {% set mediaCollection = searchMedia([element.config.iconTeaserImage.value], context.context) %}
+                    {% set teaserIcon =  mediaCollection.elements|first %}
+                     <img src="{{ teaserIcon.url }}" alt="{{ teaserIcon.alt }}" />
+                </div>
+            {% endif %}
+            {% if element.config.iconTeaserText.value %}
+                <div class="icon-teaser-text">
+                    {{ element.config.iconTeaserText.value|raw }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+input[type=radio] {
+  background-image: url('/bundles/webwirkungpeterheftitheme/img/radio.svg');
+}
+input:checked[type=radio] {
+  background-image: url('/bundles/webwirkungpeterheftitheme/img/radio-checked.svg');
+}
+

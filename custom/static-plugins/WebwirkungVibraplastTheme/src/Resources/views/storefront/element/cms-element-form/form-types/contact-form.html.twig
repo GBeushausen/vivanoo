@@ -1,0 +1,114 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-form/form-types/contact-form.html.twig' %}
+
+{% block cms_form_contact %}
+    <form action="/send-form-simple"
+          method="post"
+          data-form-validation="true">
+
+        <div class="form-content">
+        <div class="row g-2">
+            {% block cms_form_contact_select_salutation %}
+                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-select-salutation.html.twig'
+                    with {
+                    additionalClass: 'col-md-6',
+                    required: true
+                }
+                %}
+
+                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+                    with {
+                    fieldName: 'company',
+                    required: firstNameFieldRequired,
+                    additionalClass: 'col-md-6',
+                    label: 'address.companyNameLabel',
+                    placeholder: 'address.companyNamePlaceholder'
+                }
+                %}
+            {% endblock %}
+        </div>
+        <div class="row g-2">
+            {% block cms_form_contact_input_first_name %}
+                {% set firstNameFieldRequired = config('core.basicInformation.firstNameFieldRequired') == true %}
+                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+                    with {
+                    fieldName: 'firstName',
+                    required: firstNameFieldRequired,
+                    additionalClass: 'col-md-6',
+                    label: 'account.personalFirstNameLabel',
+                    placeholder: 'account.personalFirstNamePlaceholder'
+                }
+                %}
+            {% endblock %}
+
+            {% block cms_form_contact_input_last_name %}
+                {% set lastNameFieldRequired = config('core.basicInformation.lastNameFieldRequired') == true %}
+                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+                    with {
+                    fieldName: 'lastName',
+                    required: lastNameFieldRequired,
+                    additionalClass: 'col-md-6',
+                    label: 'account.personalLastNameLabel',
+                    placeholder: 'account.personalLastNamePlaceholder'
+                }
+                %}
+            {% endblock %}
+        </div>
+
+        <div class="row g-2">
+            {% block cms_form_contact_input_email %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block cms_form_contact_input_phome %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+
+        <div class="row g-2">
+            {% block cms_form_contact_input_subject %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+
+        <div class="row g-2">
+            {% block cms_form_contact_comment_textarea %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+        <div class="row g-2">
+            {% block cms_form_contact_file_upload %}
+                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input-file.html.twig'
+                    with {
+                    additionalClass: 'col-12',
+                    fieldName: 'upload_file',
+                    accept: '.pdf, .jpeg, .jpg, .png, .stp, .dfx',
+                    label: 'form.fileUpload',
+                }
+                %}
+            {% endblock %}
+        </div>
+
+        {% block cms_form_contact_required_fields_info %}
+        {% endblock %}
+
+        {% block cms_form_contact_captcha %}
+            {% sw_include '@Storefront/storefront/component/captcha/base.html.twig' with { additionalClass : 'col-md-12' } %}
+        {% endblock %}
+
+        {% block cms_form_contact_privacy %}
+            {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-privacy.html.twig'
+                with { 'requiresTermsOfService': false }
+            %}
+        {% endblock %}
+
+        {% block cms_form_contact_submit %}
+            {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-submit.html.twig' %}
+        {% endblock %}
+        </div>
+
+        {% block cms_form_contact_hidden_fields %}
+            <input type="hidden" name="receiver" value="{{ element.config.mailReceiver.value|join(', ') }}">
+            {{ parent() }}
+        {% endblock %}
+    </form>
+{% endblock %}

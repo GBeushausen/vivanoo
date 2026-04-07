@@ -1,0 +1,24 @@
+{% sw_extends '@Storefront/storefront/utilities/alert.html.twig' %}
+
+{% block utilities_alert_icon %}
+    {% if icon != "false" %}
+        {% set iconCacheSystem = config('core.storefrontSettings.iconCache') %}
+        {% if iconCache === false and iconCacheSystem === true %}
+            {{ sw_icon_cache_disable() }}
+        {% endif %}
+        {% if type == "danger" %}
+            {% sw_icon 'danger' style {'pack' : 'WebwirkungIcons'} %}
+        {% elseif type == "warning" %}
+            {% sw_icon 'warning' style {'pack' : 'WebwirkungIcons'} %}
+        {% elseif type == "info" %}
+            {% sw_icon 'info' style {'pack' : 'WebwirkungIcons'} %}
+        {% elseif type == "success" %}
+            {% sw_icon 'success' style {'pack' : 'WebwirkungIcons'} %}
+        {% else %}
+            {% sw_icon 'alert' %}
+        {% endif %}
+        {% if iconCache == false and iconCacheSystem === true %}
+            {{ sw_icon_cache_enable() }}
+        {% endif %}
+    {% endif %}
+{% endblock %}

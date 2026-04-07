@@ -1,0 +1,59 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template
+                #content="{ active }"
+        >
+
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+                <div v-for='(stepByStepItem, index) in element.config.stepByStepItems.value' class="stepByStepItem">
+                    <h3>{{ $tc('sw-cms.elements.step-by-step-element.config.stepTitle') }} {{ index+1 }}</h3>
+                    <sw-text-field
+                            :key='stepByStepItem.sort'
+                            v-model:value="stepByStepItem.title"
+                            :label="$tc('sw-cms.elements.step-by-step-element.config.title')"
+                            :allow-inline-data-mapping="true"
+                    ></sw-text-field>
+                    <sw-text-editor
+                            :key='stepByStepItem.sort'
+                            v-model:value="stepByStepItem.text"
+                            :label="$tc('sw-cms.elements.step-by-step-element.config.text')"
+                            :allow-inline-data-mapping="true"
+                    ></sw-text-editor>
+                </div>
+                <div>
+                    <sw-button v-if="counter < 8" :disabled="false" :square="false" :block="false" :isLoading="false"
+                               size="small"
+                               @click="onClickAddSlide()"
+                    >
+                        +
+                        {{ $tc('sw-cms.elements.step-by-step-element.config.addTextButton') }}
+                    </sw-button>
+                    <sw-button v-if="counter < 8" :disabled="false" :square="false" :block="false" :isLoading="false"
+                               size="small"
+                               @click="onClickRemoveSlide()"
+                    >
+                        -
+                        {{ $tc('sw-cms.elements.step-by-step-element.config.removeTextButton') }}
+                    </sw-button>
+                </div>
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

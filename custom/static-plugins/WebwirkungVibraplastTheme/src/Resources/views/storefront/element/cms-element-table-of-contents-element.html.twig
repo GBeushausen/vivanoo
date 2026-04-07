@@ -1,0 +1,12 @@
+{% block block_table_of_contents_element %}
+    {% set options = {
+        titleType: element.config.titleType.value
+    } %}
+    <div class="table-of-contents">
+        <span class="table-of-contents-label">{{ element.config.tableLabel.value }}</span>
+        <ul class="table-of-contents-list">
+
+        </ul>
+        <template data-table-of-contents-plugin data-table-of-contents-plugin-options='{{ options|json_encode }}'></template>
+    </div>
+{% endblock %}

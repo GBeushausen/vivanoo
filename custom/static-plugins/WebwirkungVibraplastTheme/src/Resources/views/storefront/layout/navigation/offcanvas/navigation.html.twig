@@ -1,0 +1,38 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/offcanvas/navigation.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    {% sw_include '@Storefront/storefront/layout/navigation/offcanvas/categories.html.twig' with { navigation: navigation } %}
+    {% block layout_header_service_menu %}
+        {% block layout_header_service_menu_content %}
+            {% apply spaceless %}
+                <nav class="navigation-offcanvas-service-navigation">
+                    <ul class="list-unstyled">
+                        {% for serviceMenuItem in page.header.serviceMenu %}
+                            {% block layout_header_service_menu_item %}
+                                <li class="navigation-offcanvas-service-navigation-item">
+                                    <a class="navigation-offcanvas-service-navigation-link"
+                                       href="{{ category_url(serviceMenuItem) }}"
+                                       {% if category_linknewtab(serviceMenuItem) %}target="_blank"{% endif %}
+                                       title="{{ serviceMenuItem.translated.name }}">
+                                        {{ serviceMenuItem.translated.name }}
+                                    </a>
+                                </li>
+                            {% endblock %}
+                        {% endfor %}
+                    </ul>
+                </nav>
+            {% endapply %}
+        {% endblock %}
+    {% endblock %}
+    {% block layout_navigation_offcanvas_navigation_actions %}
+        <nav class="nav navigation-offcanvas-actions">
+            {% block layout_navigation_offcanvas_navigation_action_language %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block layout_navigation_offcanvas_navigation_action_currency %}
+                {{ parent() }}
+            {% endblock %}
+        </nav>
+    {% endblock %}
+{% endblock %}

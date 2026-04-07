@@ -1,0 +1,35 @@
+{% block block_category_filter_element %}
+    {% set categories = element.data %}
+    {% if categories %}
+        <div class="category-filter">
+            <div class="category-filter-item" data-category-filter>
+                <button class="category-filter-item-btn active"
+                        data-category-filter-category="">
+                    {{ 'product.list.filter.all'|trans }}
+                </button>
+            </div>
+            {% for category in categories %}
+                <div class="category-filter-item" data-category-filter>
+                    <button class="category-filter-item-btn"
+                            data-category-filter-category="{{ category.id }}">
+                        {{ category.translated.name }}
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+        {% for category in categories %}
+            <div class="category-intro"
+                 data-category-filter-intro="{{ category.id }}"
+                 style="display: none">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h3>{{ category.translated.name }}</h3>
+                    </div>
+                    <div class="col-md-7">
+                        {{ category.translated.description|raw }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

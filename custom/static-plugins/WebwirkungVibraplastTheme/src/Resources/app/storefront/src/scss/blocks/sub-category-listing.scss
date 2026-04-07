@@ -1,0 +1,40 @@
+.sub-category-listing {
+  &-item {
+    margin-bottom: 12px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 32px;
+    }
+
+    &__image {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px 8px 0 0;
+      margin-bottom: 0;
+    }
+
+    &__content {
+      @extend .text-small;
+      background-color: $surface-overlay-light;
+      width: 100%;
+      padding: 16px 24px 20px 24px;
+      border-radius: 0 0 8px 8px;
+      font-size: 16px;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      display: block;
+      color: $sw-text-color;
+      font-weight: 600;
+
+      &:hover {
+        font-weight: 700;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="product-finder-step row">
+    <div class="col-12">
+        <div class="row" v-if="stepLabel">
+            <div class="step-label caption">{{ stepLabel }}</div>
+        </div>
+        <div class="row" v-if="stepQuestion">
+            <div class="step-label"><h4>{{ stepQuestion }}</h4></div>
+        </div>
+        <div class="row step-properties"
+             :class="{ ['step--' + stepNumber]: true }"
+             v-if="stepProperties.length>0">
+            <div class="col-lg-4" v-for="stepProperty in stepProperties">
+                <div class="product-finder-step-property">
+                    <label :for="stepProperty.id"><img class="property-group-image" v-if="stepProperty.image" :src="stepProperty.image" :alt="stepProperty.label"/> {{ stepProperty.name }}</label>
+                    <input type="radio"
+                           :id="stepProperty.id"
+                           name="stepProperties"
+                           v-model="selectedPropertyGroupId"
+                           :value="stepProperty.id"/>
+                </div>
+            </div>
+        </div>
+        <div class="product-finder-selected-property-options-wrapper" :key="selectedPropertyGroupId"
+             v-if="selectedPropertyGroupId && selectedPropertyOptions.length > 0">
+            <h4>{{ step1Question2 }}</h4>
+            <div class="product-finder-selected-property-options">
+                <div class="product-finder-step-selected-property-option" v-for="selectedPropertyOption in selectedPropertyOptions">
+                    <label :for="selectedPropertyOption.id">
+                        {{ selectedPropertyOption.name }}<br>
+                        <img class="property-option-image"
+                             v-if="selectedPropertyOption.image"
+                             :src="selectedPropertyOption.image"
+                             :alt="selectedPropertyOption.label"/>
+                    </label>
+                    <input type="radio"
+                           :id="selectedPropertyOption.id"
+                           name="stepPropertiesOptions"
+                           :key="selectedPropertyOption.id"
+                           v-model="selectedPropertyGroupOptionId"
+                           :value="selectedPropertyOption.id"/>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product-finder-footer">
+    <button class="btn btn-secondary" @click="onPreviousStepClicked" v-if="stepNumber >1">{{ previousStepLabel }}</button>
+    <button class="btn btn-primary" @click="onNextStepClicked" :disabled="!selectedPropertyGroupOptionId">{{ nextStepLabel }}</button>
+</div>

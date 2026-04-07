@@ -1,0 +1,33 @@
+{% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
+
+
+{% block page_product_detail_product_buy_button %}
+    <button class="btn btn-buy btn-sm"
+            title="{{ "listing.boxAddProduct"|trans|striptags }}">
+        {{ "listing.boxAddProduct"|trans|sw_sanitize }}
+    </button>
+{% endblock %}
+
+{% block component_product_box_action_detail %}
+    {% set hasCustomProduct = false %}
+    {% for child in product.children %}
+        {% if child.extensions.swagCustomizedProductsTemplate is not null %}
+            {% set hasCustomProduct = true %}
+        {% endif %}
+    {% endfor %}
+    {% if product.extensions.swagCustomizedProductsTemplate is null %}
+        <a href="{{ seoUrl('frontend.detail.page', {productId: id}) }}"
+           class="btn btn-secondary btn-detail btn-sm"
+           title="{{ 'listing.boxProductDetails'|trans|striptags }}">
+            {% sw_icon 'list' style {'pack' : 'WebwirkungIcons'} %} {{ 'product.list.action.view-products'|trans|sw_sanitize }}
+        </a>
+    {% endif %}
+
+    {% if hasCustomProduct || product.extensions.swagCustomizedProductsTemplate %}
+        <a href="{{ seoUrl('frontend.detail.page', {productId: id}) }}#variantConfiguratorContainerAnchor"
+           class="btn btn-secondary btn-detail btn-sm"
+           title="{{ 'listing.boxProductDetails'|trans|striptags }}">
+            {% sw_icon 'configure' style {'pack' : 'WebwirkungIcons'} %} {{ 'product.list.action.configure-product'|trans|sw_sanitize }}
+        </a>
+    {% endif %}
+{% endblock %}

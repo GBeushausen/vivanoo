@@ -1,0 +1,68 @@
+{% block block_double_image_element %}
+    {% set backgroundImage = null %}
+    {% if element.config.backgroundImage.value %}
+        {% set mediaCollectionBackground = searchMedia([element.config.backgroundImage.value], context.context) %}
+        {% set backgroundImage =  mediaCollectionBackground.elements|first %}
+    {% endif %}
+    {% if element.config.overlayImageOne.value %}
+        {% set mediaCollectionOne = searchMedia([element.config.overlayImageOne.value], context.context) %}
+        {% set overlayImageOne =  mediaCollectionOne.elements|first %}
+    {% endif %}
+    {% if element.config.overlayImageTwo.value %}
+        {% set mediaCollectionTwo = searchMedia([element.config.overlayImageTwo.value], context.context) %}
+        {% set overlayImageTwo =  mediaCollectionTwo.elements|first %}
+    {% endif %}
+    {% if overlayImageOne is defined or backgroundImage is defined or overlayImageTwo is defined %}
+        <div class="double-image">
+            <div class="double-image--overlay">
+                {% sw_thumbnails 'overlay-image-one' with {
+                    media: overlayImageOne,
+                    sizes: {
+                        'xs': '680px',
+                        'sm': '680px',
+                        'md': '680px',
+                        'lg': '1040px',
+                        'xl': '1040px',
+                    },
+                    attributes: {
+                        'alt': overlayImageOne.alt,
+                        'loading': 'lazy',
+                    }
+                } %}
+            </div>
+            <div class="double-image--overlay">
+                {% sw_thumbnails 'overlay-image-two' with {
+                    media: overlayImageTwo,
+                    sizes: {
+                        'xs': '680px',
+                        'sm': '680px',
+                        'md': '680px',
+                        'lg': '1040px',
+                        'xl': '1040px',
+                    },
+                    attributes: {
+                        'alt': overlayImageTwo.alt,
+                        'loading': 'lazy',
+                    }
+                } %}
+            </div>
+            <div class="double-image--background">
+                {% sw_thumbnails 'header-image' with {
+                    media: backgroundImage,
+                    sizes: {
+                        'xs': '680px',
+                        'sm': '680px',
+                        'md': '680px',
+                        'lg': '1040px',
+                        'xl': '1040px',
+                    },
+                    attributes: {
+                        'alt': backgroundImage.alt,
+                        'loading': 'lazy',
+                    }
+                } %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

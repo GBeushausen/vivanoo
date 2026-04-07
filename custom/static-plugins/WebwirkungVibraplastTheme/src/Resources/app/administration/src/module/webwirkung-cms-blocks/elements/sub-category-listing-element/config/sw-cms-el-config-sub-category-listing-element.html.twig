@@ -1,0 +1,37 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template
+                #content="{ active }"
+        >
+
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+                <sw-entity-single-select
+                        :help-text="$tc('sw-cms.elements.sub-category-listing-element.config.selection.helpText')"
+                        entity="category"
+                        :label="$tc('sw-cms.elements.sub-category-listing-element.config.selection.label')"
+                        :placeholder="$tc('sw-cms.elements.sub-category-listing-element.config.selection.placeholder')"
+                        v-model:value="category"
+                        @update:value="onElementUpdate"
+                >
+                </sw-entity-single-select>
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

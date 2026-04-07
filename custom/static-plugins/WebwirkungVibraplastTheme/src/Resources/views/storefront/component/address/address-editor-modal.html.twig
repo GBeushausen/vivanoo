@@ -1,0 +1,12 @@
+{% sw_extends '@Storefront/storefront/component/address/address-editor-modal.html.twig' %}
+{% block component_address_address_editor_modal_accordion_action_list %}
+    {% if AvailableAddressCount > 0 %}
+        <div class="col-12 col-md-4">
+            <div class="btn btn-block btn-sm address-editor-select"
+                 data-bs-toggle="collapse"
+                 data-bs-target="#{{ typePrefix }}address-list">
+                {{ "account.selectAddress"|trans|sw_sanitize }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

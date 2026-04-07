@@ -1,0 +1,119 @@
+.navigation-offcanvas-link.is-back-link,
+.navigation-offcanvas-headline {
+  display: inline-block;
+}
+
+// ========= Navigation mobile =========
+.offcanvas-backdrop {
+  &:before {
+    position: absolute;
+    top: 34px;
+    right: 26px;
+    width: 24px;
+    height: 24px;
+    color: $white;
+    font-size: 24px;
+    background-image: url('/bundles/webwirkungvibraplasttheme/img/close.svg');
+    background-size: 24px;
+    content: "";
+  }
+}
+.navigation-offcanvas {
+  &.offcanvas {
+    --bs-offcanvas-width: 320px;
+  }
+  .offcanvas {
+    &-header {
+      display: none;
+    }
+
+    &-body {
+      .navigation-offcanvas-placeholder,
+      .navigation-offcanvas-overlay-content {
+        padding: 24px 16px;
+      }
+    }
+  }
+  .navigation-offcanvas-headline {
+    display: none;
+  }
+  .nav-item.nav-link.navigation-offcanvas-headline {
+    display: inline-block;
+    width: 75%;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  // Backlink
+  .is-back-link {
+    .icon {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  // Content category list
+  &-container {
+    min-height: 370px;
+    overflow-y: scroll;
+  }
+  &-list {
+    border-top: 1px solid var(--Stroke-Light, #E4E7EB);
+  }
+  // Links
+  &-link {
+    margin-bottom: 8px;
+    padding: 12px;
+    @extend .text-small;
+    color: $sw-headline-color;
+    &-icon {
+      .icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    .nav-item-image {
+      margin-right: 12px;
+
+      img {
+        width: 63px;
+        height: 48px;
+        border-radius: 4px;
+      }
+    }
+
+    // When image starts with icon- the following class is applied
+    .nav-item-image--icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  // Service Navigation
+  &-service-navigation {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 20px 16px;
+    border-top: 1px solid var(--Stroke-Light, #E4E7EB);
+    border-bottom: 1px solid var(--Stroke-Light, #E4E7EB);
+    ul {
+      margin-bottom: 0;
+    }
+    &-item {
+      margin-bottom: 8px;
+      padding: 12px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    &-link {
+      color: $sw-headline-color;
+    }
+  }
+}

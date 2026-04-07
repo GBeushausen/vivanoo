@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Basic Configuration</title>
+        <title lang="de-DE">Tagmanager</title>
+
+        <input-field>
+            <name>tagmanager</name>
+            <label>Tagmanager Code</label>
+            <label lang="de-DE">Tagmanager Code</label>
+            <placeholder>GTM-XXX</placeholder>
+            <placeholder lang="de-DE">GTM-XXX</placeholder>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Product dimensions</title>
+        <title lang="de-DE">Produktabmessungen</title>
+
+        <component name="sw-entity-single-select">
+            <name>widthProperty</name>
+            <entity>property_group</entity>
+            <labelProperty>name</labelProperty>
+            <label>Width property</label>
+            <label lang="de-DE">Breiteneigenschaft</label>
+        </component>
+
+        <component name="sw-entity-single-select">
+            <name>heightProperty</name>
+            <entity>property_group</entity>
+            <labelProperty>name</labelProperty>
+            <label>Height property</label>
+            <label lang="de-DE">Höheneigenschaft</label>
+        </component>
+
+        <component name="sw-entity-single-select">
+            <name>lengthProperty</name>
+            <entity>property_group</entity>
+            <labelProperty>name</labelProperty>
+            <label>Length property</label>
+            <label lang="de-DE">Längeneigenschaft</label>
+        </component>
+
+        <component name="sw-entity-single-select">
+            <name>colorProperty</name>
+            <entity>property_group</entity>
+            <labelProperty>name</labelProperty>
+            <label>Color property</label>
+            <label lang="de-DE">Farbeigenschaft</label>
+        </component>
+    </card>
+
+    <card>
+        <title>Request form product</title>
+        <title lang="de-DE">Anfrage Formular Produkt</title>
+
+        <component name="sw-entity-single-select">
+            <name>requestFormPage</name>
+            <entity>cms_page</entity>
+            <label>Select request form (shopping experience)</label>
+            <label lang="de-DE">Anfrage Formular (Erlebniswelt) wählen</label>
+        </component>
+    </card>
+
+    <card>
+        <title>Property Set settings</title>
+        <title lang="de-DE">Eigenschafts-Set Einstellungen</title>
+
+        <component name="sw-entity-multi-id-select">
+            <name>productDetailTabProperties</name>
+            <entity>ww_property_set</entity>
+            <label>Select property sets for product detail tabs (order defines sorting priority)</label>
+            <label lang="de-DE">Eigenschafts-Sets für Produktdetail-Tabs auswählen (Reihenfolge bestimmt Sortierpriorität)</label>
+        </component>
+
+        <component name="sw-entity-single-select">
+            <name>technicalDataPropertySet</name>
+            <entity>ww_property_set</entity>
+            <labelProperty>name</labelProperty>
+            <label>Select property set for technical data display</label>
+            <label lang="de-DE">Eigenschafts-Set für technische Daten auswählen</label>
+        </component>
+
+        <input-field type="bool">
+            <name>enableTechnicalDataTab</name>
+            <label>Enable technical data tab</label>
+            <label lang="de-DE">Technische Daten Tab aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+    </card>
+</config>

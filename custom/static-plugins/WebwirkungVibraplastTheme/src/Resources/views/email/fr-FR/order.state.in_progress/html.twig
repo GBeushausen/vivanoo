@@ -1,0 +1,13 @@
+<div style="font-family:arial; font-size:12px;">
+    <br/>
+    <p>
+        {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},<br/>
+        <br/>
+        Le statut de votre commande chez {{ salesChannel.translated.name }} (Numéro : {{ order.orderNumber }}) du {{ order.orderDateTime|format_datetime('medium', 'short', locale='fr-FR') }} a changé.<br/>
+        <strong>La commande a maintenant le statut : {{ order.stateMachineState.translated.name }}.</strong><br/>
+        <br/>
+        Vous pouvez consulter à tout moment le statut actuel de votre commande sur notre site web dans la rubrique « Mon compte » - « Mes commandes » : {{ rawUrl('frontend.account.order.single.page', { 'deepLinkCode': order.deepLinkCode }, salesChannel.domains|first.url) }}
+        <br/>
+        Toutefois, si vous avez choisi d'acheter sans vous inscrire, c'est-à-dire sans créer de compte client, cette option ne vous est pas proposée.
+    </p>
+</div>

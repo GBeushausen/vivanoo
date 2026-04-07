@@ -1,0 +1,5 @@
+{% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+
+Vous trouverez en pièce jointe de cet e-mail l'avoir pour votre commande numéro : {{ order.orderNumber }}
+
+N'hésitez pas à nous contacter pour toute question.

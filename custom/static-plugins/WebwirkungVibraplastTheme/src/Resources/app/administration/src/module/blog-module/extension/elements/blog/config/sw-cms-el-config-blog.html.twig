@@ -1,0 +1,33 @@
+{% block sas_cms_element_blog_listing_config %}
+<div class="sw-cms-el-config-blog">
+    {% parent %}
+
+    {% block sas_cms_element_blog_listing_config_further_options %}
+        <sw-checkbox-field
+            :label="$tc('sas-blog.elements.listing.config.hideImage')"
+            v-model:value="element.config.hideImage.value">
+        </sw-checkbox-field>
+
+        <sw-checkbox-field
+            :label="$tc('sas-blog.elements.listing.config.showDate')"
+            v-model:value="element.config.showDate.value">
+        </sw-checkbox-field>
+
+        <sw-checkbox-field
+            :label="$tc('sas-blog.elements.listing.config.filterAside')"
+            v-model:value="element.config.filterAside.value">
+        </sw-checkbox-field>
+
+        <sw-checkbox-field
+            :label="$tc('sas-blog.elements.listing.config.firstElBig')"
+            v-model:value="element.config.firstElBig.value">
+        </sw-checkbox-field>
+
+        <sw-checkbox-field
+            :label="$tc('sas-blog.elements.listing.config.showTeaser')"
+            v-model:value="element.config.showTeaser.value">
+        </sw-checkbox-field>
+    {% endblock %}
+
+</div>
+{% endblock %}

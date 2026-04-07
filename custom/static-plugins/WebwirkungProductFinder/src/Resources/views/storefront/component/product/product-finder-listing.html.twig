@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
+
+{% block product_listing %}
+    {% if appliedPropertyOptions %}
+        <div class="filter-panel-active-container">
+            {% for appliedPropertyOption in appliedPropertyOptions %}
+                <span class="filter-active" data-option-id="{{ appliedPropertyOption.id }}">
+                    {{ appliedPropertyOption.translated.name }}
+                </span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block element_product_listing_sorting %}
+{% endblock %}

@@ -1,0 +1,166 @@
+- pipeline: setup-supervisor-develop
+  name: "Setup supervisor [develop]"
+  fail_on_prepare_env_warning: true
+  actions:
+    - action: Clear Cache
+      type: SSH_COMMAND
+      commands:
+        - "# Clear Cache"
+        - /var/www/vhosts/$develop_V_HOST/.phpenv/shims/php /var/www/vhosts/$develop_V_HOST/httpdocs/bin/console cache:clear
+        - /var/www/vhosts/$develop_V_HOST/.phpenv/shims/php /var/www/vhosts/$develop_V_HOST/httpdocs/bin/console cache:warmup
+      targets:
+        - target: develop_ssh_server
+          type: SSH
+          name: $develop_SSH_SERVER
+          host: $develop_SSH_SERVER
+          auth:
+            method: ASSETS_KEY
+            username: $develop_SSH_USERNAME
+            asset: creoline
+      run_as_script: true
+    - action: Create supervisort config files
+      type: SSH_COMMAND
+      commands:
+        - "# Common paths"
+        - ENV_NAME="develop"
+        - LOG_DIR="/var/log/supervisor"
+        - CONF_DIR="/etc/supervisor/conf.d"
+        - PHP_BIN="/var/www/vhosts/$develop_V_HOST/.phpenv/shims/php"
+        - SHOPWARE_CONSOLE="/var/www/vhosts/$develop_V_HOST/httpdocs/bin/console"
+        - WORKDIR="/var/www/vhosts/$develop_V_HOST/httpdocs"
+        - ""
+        - "# Config file paths"
+        - "CONSUMER_CONF=\"${CONF_DIR}/${ENV_NAME}_shopware_consumer_async.conf\""
+        - "SCHEDULED_CONF=\"${CONF_DIR}/${ENV_NAME}_shopware_scheduled_tasks.conf\""
+        - "PRODUCT_INDEXING_CONF=\"${CONF_DIR}/${ENV_NAME}_shopware_product_indexing.conf\""
+        - "CATEGORY_INDEXING_CONF=\"${CONF_DIR}/${ENV_NAME}_shopware_category_indexing.conf\""
+        - ""
+        - "# --- Remove old files if they exist ---"
+        - "if [ -f \"$CONSUMER_CONF\" ]; then"
+        - '    echo "Removing existing $CONSUMER_CONF"'
+        - '    rm -f "$CONSUMER_CONF"'
+        - fi
+        - ""
+        - "if [ -f \"$SCHEDULED_CONF\" ]; then"
+        - '    echo "Removing existing $SCHEDULED_CONF"'
+        - '    rm -f "$SCHEDULED_CONF"'
+        - fi
+        - ""
+        - "if [ -f \"$PRODUCT_INDEXING_CONF\" ]; then"
+        - '    echo "Removing existing $PRODUCT_INDEXING_CONF"'
+        - '    rm -f "$PRODUCT_INDEXING_CONF"'
+        - fi
+        - ""
+        - "if [ -f \"$CATEGORY_INDEXING_CONF\" ]; then"
+        - '    echo "Removing existing $CATEGORY_INDEXING_CONF"'
+        - '    rm -f "$CATEGORY_INDEXING_CONF"'
+        - fi
+        - ""
+        - "# --- Recreate shopware_consumer_async ---"
+        - tee "$CONSUMER_CONF" > /dev/null <<EOF
+        - "[program:${ENV_NAME}_shopware_consumer_async]"
+        - process_name=%(program_name)s_%(process_num)02d
+        - numprocs=3
+        - "command=${PHP_BIN} ${SHOPWARE_CONSOLE} messenger:consume async failed low_priority --time-limit=120 --memory-limit=512M"
+        - "directory=/var/www/vhosts/${develop_V_HOST}/httpdocs"
+        - "user=${develop_SSH_USER}"
+        - autostart=true
+        - autorestart=true
+        - startsecs=5
+        - stopwaitsecs=60
+        - startretries=5
+        - stopsignal=TERM
+        - stopasgroup=true
+        - killasgroup=true
+        - "stdout_logfile=${LOG_DIR}/${ENV_NAME}_shopware_consumer_async.out.log"
+        - "stderr_logfile=${LOG_DIR}/${ENV_NAME}_shopware_consumer_async.err.log"
+        - stdout_logfile_maxbytes=50MB
+        - stdout_logfile_backups=5
+        - EOF
+        - ""
+        - "# --- Recreate shopware_scheduled_tasks ---"
+        - tee "$SCHEDULED_CONF" > /dev/null <<EOF
+        - "[program:${ENV_NAME}_shopware_scheduled_tasks]"
+        - process_name=%(program_name)s_%(process_num)02d
+        - "command=${PHP_BIN} ${SHOPWARE_CONSOLE} scheduled-task:run --time-limit=120 --memory-limit=512M"
+        - "directory=/var/www/vhosts/${develop_V_HOST}/httpdocs"
+        - "user=${develop_SSH_USER}"
+        - autostart=true
+        - autorestart=true
+        - startsecs=5
+        - stopwaitsecs=60
+        - startretries=5
+        - stopsignal=TERM
+        - stopasgroup=true
+        - killasgroup=true
+        - "stdout_logfile=${LOG_DIR}/${ENV_NAME}_shopware_scheduled_tasks.out.log"
+        - "stderr_logfile=${LOG_DIR}/${ENV_NAME}_shopware_scheduled_tasks.err.log"
+        - stdout_logfile_maxbytes=50MB
+        - stdout_logfile_backups=5
+        - EOF
+        - ""
+        - "# --- Recreate shopware_product_indexing ---"
+        - tee "$PRODUCT_INDEXING_CONF" > /dev/null <<EOF
+        - "[program:${ENV_NAME}_shopware_product_indexing]"
+        - process_name=%(program_name)s_%(process_num)02d
+        - "command=${PHP_BIN} ${SHOPWARE_CONSOLE} messenger:consume product_indexing --time-limit=120 --memory-limit=512M"
+        - "directory=/var/www/vhosts/${develop_V_HOST}/httpdocs"
+        - "user=${develop_SSH_USER}"
+        - autostart=true
+        - autorestart=true
+        - startsecs=5
+        - stopwaitsecs=60
+        - startretries=1
+        - stopsignal=TERM
+        - stopasgroup=true
+        - killasgroup=true
+        - "stdout_logfile=${LOG_DIR}/${ENV_NAME}_shopware_product_indexing.out.log"
+        - "stderr_logfile=${LOG_DIR}/${ENV_NAME}_shopware_product_indexing.err.log"
+        - stdout_logfile_maxbytes=50MB
+        - stdout_logfile_backups=5
+        - EOF
+        - ""
+        - "# --- Recreate shopware_category_indexing ---"
+        - tee "$CATEGORY_INDEXING_CONF" > /dev/null <<EOF
+        - "[program:${ENV_NAME}_shopware_category_indexing]"
+        - process_name=%(program_name)s_%(process_num)02d
+        - "command=${PHP_BIN} ${SHOPWARE_CONSOLE} messenger:consume category_indexing --time-limit=120 --memory-limit=512M"
+        - "directory=/var/www/vhosts/${develop_V_HOST}/httpdocs"
+        - "user=${develop_SSH_USER}"
+        - autostart=true
+        - autorestart=true
+        - startsecs=5
+        - stopwaitsecs=60
+        - startretries=5
+        - stopsignal=TERM
+        - stopasgroup=true
+        - killasgroup=true
+        - "stdout_logfile=${LOG_DIR}/${ENV_NAME}_shopware_category_indexing.out.log"
+        - "stderr_logfile=${LOG_DIR}/${ENV_NAME}_shopware_category_indexing.err.log"
+        - stdout_logfile_maxbytes=50MB
+        - stdout_logfile_backups=5
+        - EOF
+      targets:
+        - t-main_ssh_server
+      run_as_script: true
+    - action: Reload supervisor
+      type: SSH_COMMAND
+      commands:
+        - "# --- Reload Supervisor ---"
+        - echo "Reloading Supervisor configuration..."
+        - supervisorctl reread
+        - supervisorctl update
+        - ""
+        - supervisorctl restart develop_shopware_consumer_async:* || true
+        - supervisorctl restart develop_shopware_scheduled_tasks:* || true
+        - supervisorctl restart develop_shopware_product_indexing:* || true
+        - supervisorctl restart develop_shopware_category_indexing:* || true
+        - ""
+        - "# Show status"
+        - supervisorctl status develop_shopware_consumer_async:*
+        - supervisorctl status develop_shopware_scheduled_tasks:*
+        - supervisorctl status develop_shopware_product_indexing:*
+        - supervisorctl status develop_shopware_category_indexing:*
+      targets:
+        - t-main_ssh_server
+      run_as_script: true

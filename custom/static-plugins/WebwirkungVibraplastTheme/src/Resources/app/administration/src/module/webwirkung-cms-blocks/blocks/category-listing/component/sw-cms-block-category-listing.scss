@@ -1,0 +1,50 @@
+.sw-cms-block-category-listing {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: 1fr;
+
+  .sw-alert--info {
+    width: 100%;
+  }
+
+  .images {
+    display: flex;
+    gap: 30px;
+  }
+}
+
+// Style all labels of custom blocks and elements
+.ww-label-block {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+  display:none;
+  padding: 3px 10px;
+  font-size: 10px;
+  background-color: lightgreen;
+  border-radius: 4px;
+  opacity: .9;
+}
+.ww-label-element {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 99;
+  display:none;
+  padding: 3px 10px;
+  font-size: 10px;
+  background-color: lightblue;
+  border-radius: 4px;
+  opacity: .9;
+}
+.sw-cms-block:hover {
+  .ww-label-block,
+  .ww-label-element {
+    display: block;
+  }
+  &:has(.ww-label-block) {
+    .ww-label-element {
+      top: 17px;
+    }
+  }
+}

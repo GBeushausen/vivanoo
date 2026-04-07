@@ -1,0 +1,196 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
+{% block layout_footer_inner_container %}
+    {% block layout_footer_navigation %}
+        {% block element_form_newsletter_form_form %}
+            <div class="footer-main-newsletter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12" id="newsletter-message-box">
+                        </div>
+                    </div>
+                    <div class="cms-block cms-block-form">
+                        <div class="cms-element-form">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <h5>{{ 'footer.newsletter.title'|trans }}</h5>
+                                    <p>{{ 'footer.newsletter.text'|trans }}</p>
+                                </div>
+                                <div class="col-md-5">
+                                    {% sw_include '@Storefront/storefront/element/cms-element-form/form-types/newsletter-form.html.twig'
+                                        with {
+                                        action: 'frontend.form.newsletter.register.handle',
+                                        submitText: 'newsletter.formSubmit'
+                                    }
+                                    %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        <div class="footer-main-content">
+            <div class="container">
+                <div class="row footer-columns">
+                    {% block layout_footer_navigation_hotline %}
+                        <div class="col-md-3 footer-column">
+                            {% block layout_footer_navigation_hotline_headline %}
+                                <div class="footer-column-headline footer-headline">
+                                    {{ 'footer.contact.title'|trans|sw_sanitize }}
+                                </div>
+                            {% endblock %}
+
+                            {% block layout_footer_navigation_hotline_content %}
+                                <div class="footer-column-content footer-contact">
+                                    <div class="footer-contact-information">
+                                        <div class="footer-contact-information-address">
+                                            {% sw_icon 'address' style {'pack' : 'WebwirkungIcons'} %} {{ 'footer.contact.address'|trans|raw }}
+                                        </div>
+                                        <div class="footer-contact-information-address footer-contact-information-address--email">
+                                            {% sw_icon 'email' style {'pack' : 'WebwirkungIcons'} %} {{ 'footer.contact.email'|trans|raw }}
+                                        </div>
+                                        <div class="footer-contact-information-address">
+                                            {% sw_icon 'phone' style {'pack' : 'WebwirkungIcons'} %} {{ 'footer.contact.phone'|trans|raw }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endblock %}
+                        </div>
+                    {% endblock %}
+
+                    {% block layout_footer_navigation_columns %}
+                        <div class="col-md-6">
+                            <div class="row">
+                                {% for root in page.footer.navigation.tree %}
+                                    {% block layout_footer_navigation_column %}
+                                        <div class="col-md-6 footer-column">
+                                            {% block layout_footer_navigation_information_headline %}
+                                                <div class="footer-column-headline footer-headline">
+                                                    {% if root.category.type == 'folder' %}
+                                                        {{ root.category.translated.name }}
+                                                    {% else %}
+                                                        <a href="{{ category_url(root.category) }}"
+                                                           {% if category_linknewtab(root.category) %}target="_blank"{% endif %}
+                                                           title="{{ root.category.translated.name }}">
+                                                            {{ root.category.translated.name }}
+                                                        </a>
+                                                    {% endif %}
+                                                </div>
+                                            {% endblock %}
+
+                                            {% block layout_footer_navigation_information_content %}
+                                                <div class="footer-column-content">
+                                                    <div class="footer-column-content-inner">
+                                                        {% block layout_footer_navigation_information_links %}
+                                                            <ul class="list-unstyled">
+                                                                {% for treeItem in root.children %}
+                                                                    {% set category = treeItem.category %}
+                                                                    {% set name = category.translated.name %}
+
+                                                                    {% block layout_footer_navigation_information_link_item %}
+                                                                        <li class="footer-link-item">
+                                                                            {% block layout_footer_navigation_information_link %}
+                                                                                {% if category.type == 'folder' %}
+                                                                                    <div>{{ name }}</div>
+                                                                                {% else %}
+                                                                                    <a class="footer-link"
+                                                                                       href="{{ category_url(category) }}"
+                                                                                       {% if category_linknewtab(category) %}target="_blank"{% endif %}
+                                                                                       title="{{ name }}">
+                                                                                        {{ name }}
+                                                                                    </a>
+                                                                                {% endif %}
+                                                                            {% endblock %}
+                                                                        </li>
+                                                                    {% endblock %}
+                                                                {% endfor %}
+                                                            </ul>
+                                                        {% endblock %}
+                                                    </div>
+                                                </div>
+                                            {% endblock %}
+                                        </div>
+                                    {% endblock %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endblock %}
+                    {% block layout_footer_navigation_request %}
+                        <div class="col-md-3 footer-column">
+                            {% block layout_footer_navigation_request_headline %}
+                                <div class="footer-column-headline footer-headline">
+                                    <h4>{{ 'footer.request.title'|trans|sw_sanitize }}</h4>
+                                </div>
+                            {% endblock %}
+
+                            {% block layout_footer_navigation_request_content %}
+                                <div class="footer-column-content footer-contact">
+                                    <div class="footer-column-content-inner">
+                                        <p class="footer-contact-hotline">
+                                            {{ 'footer.request.text'|trans|sw_sanitize }}
+                                        </p>
+                                    </div>
+                                    <div class="footer-contact-form">
+                                        {{ 'footer.request.button'|trans({
+                                            '%url%': path('frontend.cms.page', { id: config('core.basicInformation.contactPage') })
+                                        })|raw }}
+                                    </div>
+                                </div>
+                            {% endblock %}
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block layout_footer_bottom %}
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                {% block layout_footer_service_menu %}
+                {% endblock %}
+
+                {% block layout_footer_vat %}
+                {% endblock %}
+
+                {% block layout_footer_copyright %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="footer-copyright">
+                                &copy; {{ "now"|date("Y") }} {{ 'footer.copyright'|trans }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="footer-follow-us">
+                                <span class="footer-follow-us-icon">
+                                    <a href="{{ 'footer.social-link.youtube'|trans }}" target="_blank">
+                                        {% sw_icon 'youtube' style {'pack' : 'WebwirkungIcons'} %}
+                                    </a>
+                                </span>
+                                        <span class="footer-follow-us-icon">
+                                    <a href="{{ 'footer.social-link.linkedin'|trans }}" target="_blank">
+                                        {% sw_icon 'linkedin' style {'pack' : 'WebwirkungIcons'} %}
+                                    </a>
+                                </span>
+                                        <span class="footer-follow-us-icon">
+                                    <a href="{{ 'footer.social-link.instagram'|trans }}" target="_blank">
+                                        {% sw_icon 'instagram' style {'pack' : 'WebwirkungIcons'} %}
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
+
+
+{% block layout_footer_payment_shipping_logos %}
+{% endblock %}

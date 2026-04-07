@@ -1,0 +1,12 @@
+{
+  "name": "@webwirkung/product-finder",
+  "description": "",
+  "main": "index.js",
+  "version": "1.0.0",
+  "author": "Webwirkung GmbH",
+  "license": "proprietary",
+  "dependencies": {
+    "vue": "^3.4.21",
+    "html-loader": "^5.1.0"
+  }
+}

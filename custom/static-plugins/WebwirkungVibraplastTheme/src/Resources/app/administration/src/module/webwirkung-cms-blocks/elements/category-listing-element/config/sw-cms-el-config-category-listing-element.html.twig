@@ -1,0 +1,66 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template
+                #content="{ active }"
+        >
+
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+                <sw-select-field
+                        :label="$tc('sw-cms.elements.category-listing-element.config.columns.label')"
+                        v-model:value="columns"
+                >
+                    <option value="3">{{ $tc('sw-cms.elements.category-listing-element.config.columns.three') }}</option>
+                    <option value="2">{{ $tc('sw-cms.elements.category-listing-element.config.columns.two') }}</option>
+                </sw-select-field>
+                <sw-entity-multi-select
+                        entity="category"
+                        v-model:entityCollection="categoryCollection"
+                        class="sw-cms-el-config-product-slider__products"
+                        :label="$tc('sw-cms.elements.category-listing-element.config.label.selection')"
+                        :placeholder="$tc('sw-cms.elements.category-listing-element.config.placeholder.selection')"
+                        :context="categoryMultiSelectContext"
+                        @update:entity-collection="onCategoriesChange"
+                >
+                    <template #selection-label-property="{ item }">
+                            {{ item.translated.name || item.name }}
+                    </template>
+                    <template #result-item="{ item, index }">
+                        <slot
+                                name="result-item"
+                                v-bind="{ item, index }"
+                        >
+                            <sw-select-result
+                                    v-bind="{ item, index, selected: isSelected(item.id)}"
+                            >
+                                <!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+                                {% block sw_entity_single_select_base_results_list_result_label %}
+                                    <span class="sw-select-result__result-item-text">
+                                        {{ item.translated.name || item.name }}
+                                    </span>
+                                {% endblock %}
+                            </sw-select-result>
+                        </slot>
+                    </template>
+                </sw-entity-multi-select>
+
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

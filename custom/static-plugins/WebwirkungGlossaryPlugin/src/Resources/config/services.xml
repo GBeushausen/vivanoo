@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Webwirkung\GlossaryPlugin\Core\Content\Glossary\GlossaryDefinition">
+            <tag name="shopware.entity.definition" entity="ww_glossary" />
+        </service>
+        <service id="Webwirkung\GlossaryPlugin\Core\Content\Glossary\Aggregate\GlossaryTranslation\GlossaryTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="ww_glossary_translation" />
+        </service>
+
+        <service id="Webwirkung\GlossaryPlugin\Storefront\Controller\GlossaryController" public="true">
+            <argument type="service" id="Webwirkung\GlossaryPlugin\Storefront\Controller\Provider\GlossaryProvider"/>
+            <tag name="controller.service_arguments"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        <service id="Webwirkung\GlossaryPlugin\Storefront\Controller\Provider\GlossaryProvider">
+            <argument type="service" id="ww_glossary.repository"/>
+        </service>
+
+        <service id="Webwirkung\GlossaryPlugin\DataResolver\GlossaryListingCmsElementResolver">
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+    </services>
+</container>

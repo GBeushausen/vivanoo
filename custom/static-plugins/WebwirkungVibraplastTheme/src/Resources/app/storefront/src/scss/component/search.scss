@@ -1,0 +1,140 @@
+// Header Field
+
+.header-search {
+  form {
+    .input-group {
+      background-color: $surface-overlay-light;
+      border-radius: $border-radius-small;
+      input[type="search"] {
+        padding: 12px 16px 12px 8px;
+        background-color: $surface-overlay-light;
+        border: none;
+      }
+      button {
+        padding: 0 0 0 16px;
+        border: 0;
+      }
+    }
+  }
+}
+
+.search-suggest {
+  &-product-link {
+    color: $sw-headline-color;
+    >.row {
+      gap: 12px;
+      margin: 0;
+    }
+  }
+  &-container {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 8px 0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 12px 0px rgba(122, 132, 144, 0.30);
+    @include media-breakpoint-up(md) {
+      width: 660px;
+    }
+    .col-md-3.col-12 {
+      display: none;
+    }
+    .col-md-9.col-12 {
+      width: 100%;
+    }
+    .suggest-result-header {
+      display: block;
+      width: 100%;
+      padding: 8px 16px;
+      @extend .text-small;
+      font-weight: 600;
+      border-bottom: 1px solid $border-dark;
+    }
+    .suggest-product-listing {
+      padding: 0;
+    }
+    li {
+      padding: 8px 16px !important;
+      font-size: 14px;
+      line-height: 20px;
+      list-style: none;
+      &:hover {
+        background-color: $surface-overlay-light;
+      }
+    }
+  }
+  &-product {
+    &-name,
+    &-price {
+      color: $sw-headline-color;
+      font-weight: 500;
+    }
+    .align-items-center {
+      gap: 12px;
+    }
+    &-image {
+      width: 63px;
+      max-width: none;
+      height: 48px;
+      max-height: none;
+      object-fit: cover;
+      border-radius: 4px;
+      &-container {
+        width: 63px;
+        height: 48px;
+        margin: 0;
+      }
+    }
+  }
+  &-total {
+    .icon {
+      display: none;
+    }
+  }
+}
+
+// ===============
+// Search Result PAGE
+// ===============
+.is-act-search {
+  .content-main {
+    padding-top: 50px;
+  }
+}
+.search-page {
+  .filter-panel-wrapper,
+  .cms-element-sidebar-filter {
+    display: none;
+  }
+  .sorting {
+    margin-bottom: 16px;
+  }
+}
+
+// ===============
+// Advanced Search results
+// ===============
+.sw-advanced-search-additional-results-container {
+  margin-bottom: 24px;
+  border-bottom: 1px solid $border-dark;
+  .advanced-search-result {
+    &-header {
+      font-weight: 700;
+    }
+    &-listing {
+      li {
+        margin: 0;
+        padding: 0;
+        &:before {
+          display: none;
+        }
+        a {
+          color: $sw-headline-color;
+        }
+      }
+    }
+  }
+}
+
+
+

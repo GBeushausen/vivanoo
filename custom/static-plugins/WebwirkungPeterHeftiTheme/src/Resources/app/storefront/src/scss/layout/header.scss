@@ -1,0 +1,35 @@
+.top-bar {
+  &-vibraplast-link {
+    display: flex;
+    align-items: center;
+
+    a {
+      display: flex;
+      gap: 8px;
+      padding-right: 20px;
+      border-right: 1px solid $secondary-400;
+    }
+
+    .icon {
+      width: 12px;
+      height: 12px;
+      > svg {
+        top: 0;
+      }
+    }
+  }
+}
+
+.bottom-bar {
+  .header-search {
+    @include media-breakpoint-up(md) {
+      max-width: none;
+    }
+
+    &-form {
+      &:has(.header-search-input:focus) {
+        box-shadow: 0px 0px 0px 3px rgba(0, 162, 118, 0.35);
+      }
+    }
+  }
+}

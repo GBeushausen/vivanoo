@@ -1,0 +1,207 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template
+                #content="{ active }"
+        >
+
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+
+                    {% block sw_cms_element_five_image_overlay_one %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadFiveImageOneTag"
+                                :source="previewFiveImageOneSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.five-image-element.config.caption.fiveImageOneUpload')"
+                                @media-upload-sidebar-open="onOpenFiveImageOneModal"
+                                @media-upload-remove-image="onFiveImageOneRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadFiveImageOneTag"
+                                auto-upload
+                                @media-upload-finish="onFiveImageOneUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="fiveImageOneModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.five-image-element.config.caption.fiveImageOneUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onFiveImageOneRemove"
+                                @media-modal-selection-change="onFiveImageOneSelectionChanges"
+                                @modal-close="onCloseFiveImageOneModal"
+                        ></sw-media-modal-v2>
+                        <br><br>
+                    {% endblock %}
+
+                    {% block sw_cms_element_five_image_overlay_two %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadFiveImageTwoTag"
+                                :source="previewFiveImageTwoSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.five-image-element.config.caption.fiveImageTwoUpload')"
+                                @media-upload-sidebar-open="onOpenFiveImageTwoModal"
+                                @media-upload-remove-image="onFiveImageTwoRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadFiveImageTwoTag"
+                                auto-upload
+                                @media-upload-finish="onFiveImageTwoUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="fiveImageTwoModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.five-image-element.config.caption.fiveImageTwoUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onFiveImageTwoRemove"
+                                @media-modal-selection-change="onFiveImageTwoSelectionChanges"
+                                @modal-close="onCloseFiveImageTwoModal"
+                        ></sw-media-modal-v2>
+                        <br><br>
+                    {% endblock %}
+
+                    {% block sw_cms_element_five_image_overlay_three %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadFiveImageThreeTag"
+                                :source="previewFiveImageThreeSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.five-image-element.config.caption.fiveImageThreeUpload')"
+                                @media-upload-sidebar-open="onOpenFiveImageThreeModal"
+                                @media-upload-remove-image="onFiveImageThreeRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadFiveImageThreeTag"
+                                auto-upload
+                                @media-upload-finish="onFiveImageThreeUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="fiveImageThreeModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.five-image-element.config.caption.fiveImageThreeUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onFiveImageThreeRemove"
+                                @media-modal-selection-change="onFiveImageThreeSelectionChanges"
+                                @modal-close="onCloseFiveImageThreeModal"
+                        ></sw-media-modal-v2>
+                        <br><br>
+                    {% endblock %}
+
+                    {% block sw_cms_element_five_image_overlay_four %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadFiveImageFourTag"
+                                :source="previewFiveImageFourSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.five-image-element.config.caption.fiveImageFourUpload')"
+                                @media-upload-sidebar-open="onOpenFiveImageFourModal"
+                                @media-upload-remove-image="onFiveImageFourRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadFiveImageFourTag"
+                                auto-upload
+                                @media-upload-finish="onFiveImageFourUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="fiveImageFourModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.five-image-element.config.caption.fiveImageFourUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onFiveImageFourRemove"
+                                @media-modal-selection-change="onFiveImageFourSelectionChanges"
+                                @modal-close="onCloseFiveImageFourModal"
+                        ></sw-media-modal-v2>
+                        <br><br>
+                    {% endblock %}
+                    {% block sw_cms_element_five_image_overlay_five %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadFiveImageFiveTag"
+                                :source="previewFiveImageFiveSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.five-image-element.config.caption.fiveImageFiveUpload')"
+                                @media-upload-sidebar-open="onOpenFiveImageFiveModal"
+                                @media-upload-remove-image="onFiveImageFiveRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadFiveImageFiveTag"
+                                auto-upload
+                                @media-upload-finish="onFiveImageFiveUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="fiveImageFiveModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.five-image-element.config.caption.fiveImageFiveUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onFiveImageFiveRemove"
+                                @media-modal-selection-change="onFiveImageFiveSelectionChanges"
+                                @modal-close="onCloseFiveImageFiveModal"
+                        ></sw-media-modal-v2>
+                        <br><br>
+                    {% endblock %}
+
+                    {% block sw_cms_element_five_image_background %}
+                        <sw-media-upload-v2
+                                variant="regular"
+                                :upload-tag="uploadBackgroundImageTag"
+                                :source="previewBackgroundImageSource"
+                                :allow-multi-select="false"
+                                :default-folder="cmsPageState.pageEntityName"
+                                :label="$tc('sw-cms.elements.five-image-element.config.caption.backgroundImageUpload')"
+                                @media-upload-sidebar-open="onOpenBackgroundImageModal"
+                                @media-upload-remove-image="onBackgroundImageRemove"
+                        ></sw-media-upload-v2>
+                        <sw-upload-listener
+                                :upload-tag="uploadBackgroundImageTag"
+                                auto-upload
+                                @media-upload-finish="onBackgroundImageUpload"
+                        ></sw-upload-listener>
+                        <sw-media-modal-v2
+                                v-if="backgroundImageModalIsOpen"
+                                variant="full"
+                                :caption="$tc('sw-cms.elements.five-image-element.config.caption.backgroundImageUpload')"
+                                :entity-context="cmsPageState.entityName"
+                                :allow-multi-select="false"
+                                :initial-folder-id="cmsPageState.defaultMediaFolderId"
+                                @media-upload-remove-image="onBackgroundImageRemove"
+                                @media-modal-selection-change="onBackgroundImageSelectionChanges"
+                                @modal-close="onCloseBackgroundImageModal"
+                        ></sw-media-modal-v2>
+                    {% endblock %}
+
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

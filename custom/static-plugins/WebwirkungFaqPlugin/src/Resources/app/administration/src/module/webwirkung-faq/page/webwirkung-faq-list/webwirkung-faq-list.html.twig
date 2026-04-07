@@ -1,0 +1,34 @@
+{% block webwirkung_faq_list %}
+    <sw-page class="webwirkung-faq-list">
+        <template #language-switch>
+            <sw-language-switch
+                    @on-change="changeLanguageSelection">
+            </sw-language-switch>
+        </template>
+        {% block webwirkung_faq_list_smart_bar_actions %}
+            <template #smart-bar-actions>
+                <sw-button variant="primary" :routerLink="{ name: 'webwirkung.faq.create' }">
+                    {{ $t('faq.list.addButtonText') }}
+                </sw-button>
+            </template>
+        {% endblock %}
+        <template #sidebar>
+            {% block faq_side_content %}
+                <faq-vertical-tabs />
+            {% endblock %}
+        </template>
+
+        <template #content>
+            {% block webwirkung_faq_list_content %}
+                <sw-entity-listing
+                        v-if="faq"
+                        :items="faq"
+                        :showSelection="false"
+                        :columns="columns"
+                        :repository="repository"
+                        detailRoute="webwirkung.faq.detail">
+                </sw-entity-listing>
+            {% endblock %}
+        </template>
+    </sw-page>
+{% endblock %}

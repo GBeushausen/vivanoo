@@ -1,0 +1,129 @@
+// =================
+// Glossary Page
+// =================
+.content-main {
+  .glossary {
+    &-alphabet-filter {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      overflow: scroll;
+      background: $surface-overlay-light;
+      border-radius: $border-radius;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;
+      @include media-breakpoint-up(lg) {
+        margin-bottom: 64px;
+        padding: 16px 20px;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      &-link {
+        @extend .text-large;
+        display: inline-block;
+        margin-bottom: 0;
+        padding: 0 14px;
+        color: $sw-headline-color;
+        font-weight: 600;
+        border-right: 1px solid $sw-border-color;
+        cursor: pointer;
+        &.active {
+          color: $sw-color-brand-primary;
+        }
+        &:first-child {
+          padding-left: 0;
+        }
+        &:last-child {
+          padding-right: 0;
+        }
+        &:before {
+          display: none;
+        }
+        &.disabled {
+          color: $text-disabled;
+          font-weight: 400;
+          cursor: not-allowed;
+        }
+
+        &-reset {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          margin-bottom: 0;
+          margin-left: auto;
+          padding: 10px 10px;
+          background-color: $sw-color-brand-primary;
+          border-radius: $border-radius-small;
+          cursor: pointer;
+
+          &:before {
+            display: none;
+          }
+
+          .icon {
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+
+            svg {
+              top: 1px;
+            }
+          }
+        }
+      }
+    }
+    &-listing {
+      h5 {
+        margin-bottom: 12px;
+      }
+    }
+    &-letter {
+      color: $primary-100;
+      font-weight: 600;
+      font-size: 56px;
+      line-height: 76px;
+      @include media-breakpoint-up(lg) {
+        float: left;
+        font-size: 76px;
+        line-height: 76px;
+      }
+    }
+    &-term {
+      margin-bottom: 32px;
+      margin-left: auto;
+      @extend .text-small;
+
+      p {
+        @extend .text-small;
+      }
+    }
+  }
+
+  // =================
+  // Glossary Terms List
+  // =================
+  .glossary-matching {
+    h5 {
+      margin-bottom: 12px;
+    }
+    hr {
+      margin-bottom: 20px;
+    }
+    .glossary-term-list {
+      a {
+        @extend .label-badge;
+        margin: 0 12px 12px 0;
+        transition: background-color 0.3s ease-in-out;
+
+        &:hover {
+          text-decoration: none;
+          background-color: $primary-300
+        }
+      }
+    }
+  }
+}

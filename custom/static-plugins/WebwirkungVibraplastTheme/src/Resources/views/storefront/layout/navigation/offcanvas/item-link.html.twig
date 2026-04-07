@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/offcanvas/item-link.html.twig' %}
+
+{% block layout_navigation_offcanvas_navigation_categories_list_category_item_link_text %}
+    <span itemprop="name">
+        {% if item.category.media.url is defined %}
+            <span class="nav-item-image{% if (item.category.media.fileName|default('')) starts with 'icon-' %} nav-item-image--icon{% endif %}"><img src="{{ item.category.media.url }}" /></span>
+        {% endif %}
+        {{ name }}
+    </span>
+    {% if hasChildren %}
+        {% block layout_navigation_offcanvas_navigation_categories_list_category_item_link_icon %}
+            <span class="navigation-offcanvas-link-icon js-navigation-offcanvas-loading-icon">
+                {% sw_icon 'arrow-right-black' style { 'pack':'WebwirkungIcons' } %}
+            </span>
+        {% endblock %}
+    {% endif %}
+{% endblock %}

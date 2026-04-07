@@ -1,0 +1,15 @@
+{% set currencyIsoCode = order.currency.isoCode %}
+{% set return = order.extensions.returns|first %}
+{% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+Nous avons reçu votre demande de retour du {{ return.createdAt|format_datetime('medium', 'short', locale='fr-FR') }}.
+Numéro de commande : {{ order.orderNumber }}
+Numéro de retour : {{ return.returnNumber }}
+Informations sur votre retour :
+Pos.   Quantités                       Nom du produit                    Prix unitaire                      TVA                     Total
+{% for returnItem in return.lineItems %}
+    {{ loop.index }}      {{ returnItem.quantity }}        {{ returnItem.lineItem.label|u.wordwrap(80) }}        {{ returnItem.price.unitPrice|currency(currencyIsoCode) }}
+    {%if returnItem.price.taxRules|length > 0 %} {{ (returnItem.price.taxRules|first).taxRate }}% {% endif %}                   {{ returnItem.price.totalPrice|currency(currencyIsoCode) }}
+{% endfor %}
+Vous pouvez consulter à tout moment le statut actuel de votre retour sur notre site web dans la rubrique « Mon compte » - « Mes commandes » : {{ rawUrl('frontend.account.order.single.page', { 'deepLinkCode': order.deepLinkCode }, salesChannel.domains|first.url) }}
+N'hésitez pas à nous contacter pour toute question.
+Cependant, si vous avez choisi l'achat sans inscription ou sans compte client, cette possibilité ne vous est pas offerte.

@@ -1,0 +1,6 @@
+{% block block_hero_header %}
+    {% set element = block.slots.getSlot('header') %}
+    <div class="{{ element.type }}-wrapper">
+        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+    </div>
+{% endblock %}

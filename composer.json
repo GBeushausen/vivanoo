@@ -1,0 +1,129 @@
+{
+    "license": "proprietary",
+    "type": "project",
+    "require": {
+        "ext-dom": "*",
+        "composer-runtime-api": "^2.0",
+        "boxblinkracer/phpunuhi": "^1.23",
+        "frosh/tools": "^3.0",
+        "league/flysystem-async-aws-s3": "^3.28",
+        "shopware/administration": "6.6.10.9",
+        "shopware/core": "6.6.10.9",
+        "shopware/elasticsearch": "6.6.10.9",
+        "shopware/storefront": "6.6.10.9",
+        "store.shopware.com/froshplatformtemplatemail": "^3.0",
+        "store.shopware.com/sasblogmodule": "^3.0.9",
+        "store.shopware.com/swaganalytics": "^2.9",
+        "store.shopware.com/swagcmsextensions": "^4.4.0",
+        "store.shopware.com/swagcommercial": "^6.10",
+        "store.shopware.com/swagcustomizedproducts": "^5.2.0",
+        "store.shopware.com/swagdynamicaccess": "^3.0.1",
+        "store.shopware.com/swaggmvreporting": "^1.0",
+        "store.shopware.com/swaglanguagepack": "^4.8.0",
+        "store.shopware.com/swagplatformsecurity": "^3.0",
+        "store.shopware.com/swagpublisher": "^3.2.1",
+        "store.shopware.com/webwirkungpropertyset": "2.0.0",
+        "symfony/flex": "~2",
+        "symfony/runtime": "^6.0|^7.0",
+        "webwirkung/abacus-integration": "^2.0",
+        "webwirkung/faq-plugin": "^2.0",
+        "webwirkung/glossary-plugin": "^2.0",
+        "webwirkung/minimum-order-surcharge-plugin": "^1.0",
+        "webwirkung/opensearch-auth": "^1.0",
+        "webwirkung/peter-hefti-theme": "^1.0",
+        "webwirkung/product-download": "^1.0",
+        "webwirkung/product-finder": "^2.0",
+        "webwirkung/product-video": "^2.0",
+        "webwirkung/tagmanager-plugin": "^1.0",
+        "webwirkung/vibraplast-abacus-integration": "^1.0",
+        "webwirkung/vibraplast-theme": "^2.0",
+        "vivanoo/theme": "^1.0"
+    },
+    "repositories": {
+        "shopware-packages": {
+            "type": "composer",
+            "url": "https://packages.shopware.com"
+        },
+        "0": {
+            "type": "path",
+            "url": "custom/plugins/*",
+            "options": {
+                "symlink": true
+            }
+        },
+        "1": {
+            "type": "path",
+            "url": "custom/plugins/*/packages/*",
+            "options": {
+                "symlink": true
+            }
+        },
+        "2": {
+            "type": "path",
+            "url": "custom/static-plugins/*",
+            "options": {
+                "symlink": true
+            }
+        },
+        "webwirkung-opensearch-auth": {
+            "type": "vcs",
+            "url":  "git@github.com:Webwirkung/WebwirkungOpensearchAuth.git"
+        },
+        "webwirkung-product-download": {
+            "type": "vcs",
+            "url":  "git@github.com:Webwirkung/webwirkung-product-download.git"
+        },
+        "webwirkung-product-video": {
+            "type": "vcs",
+            "url":  "git@github.com:Webwirkung/WebwirkungProductVideo.git"
+        },
+        "webwirkung/abacus-integration": {
+            "type": "vcs",
+            "url" : "git@github.com:Webwirkung/abacus-shopware-plugin"
+        },
+        "webwirkung/opensearch-auth": {
+            "type": "vcs",
+            "url" : "git@github.com:Webwirkung/webwirkung-opensearch-auth.git"
+        },
+        "webwirkung-tagmanager-plugin": {
+            "type": "vcs",
+            "url":  "git@github.com:Webwirkung/WebwirkungTagmanagerPlugin.git"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true,
+            "php-http/discovery": true
+        },
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "scripts": {
+        "auto-scripts": {
+            "assets:install": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": true,
+            "endpoint": [
+                "https://raw.githubusercontent.com/shopware/recipes/flex/main/index.json",
+                "flex://defaults"
+            ],
+            "docker": true
+        }
+    },
+    "require-dev": {
+        "shopware/dev-tools": "^1.0",
+        "symfony/web-profiler-bundle": "^7.3"
+    }
+}

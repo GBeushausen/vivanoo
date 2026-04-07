@@ -1,0 +1,12 @@
+{
+  "WebwirkungProductFinder": {
+    "productFinder": {
+      "next": "Weiter",
+      "prev": "Zurück",
+      "reset": "Starten Sie eine neue Suche",
+      "selectCategory": "Kategorie auswählen",
+      "resultLabel": "Ergebnisse",
+      "resultHeading": "Wir haben für Sie einige Produkte ausgewählt, die Ihren Bedürfnissen entsprechen"
+    }
+  }
+}

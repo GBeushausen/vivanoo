@@ -1,0 +1,74 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template
+                #content="{ active }"
+        >
+
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+                <div v-for='(historyItem, index) in element.config.historyItems.value' class="historyItem">
+                    <h3>{{ $tc('sw-cms.elements.history-element.config.itemTitle') }} {{ historyItem.year }}</h3>
+                    <sw-text-field
+                            :key='historyItem.sort'
+                            v-model:value="historyItem.year"
+                            :label="$tc('sw-cms.elements.history-element.config.yearText')"
+                            :allow-inline-data-mapping="true"
+                    ></sw-text-field>
+                    <sw-text-editor
+                            :key='historyItem.sort'
+                            v-model:value="historyItem.text"
+                            :label="$tc('sw-cms.elements.history-element.config.text')"
+                            :allow-inline-data-mapping="true"
+                    ></sw-text-editor>
+                    {# Image #}
+                    <sw-upload-listener
+                            :upload-tag="'cms-block-media-config-history-image-' + index + '-' + element.id"
+                            auto-upload
+                            @media-upload-finish="onFinishUploadHistoryImage($event, historyItem)">
+                    </sw-upload-listener>
+                    <sw-media-compact-upload-v2
+                            :label="$tc('sw-cms.elements.history-element.config.historyImage')"
+                            :source="historyImagePreviews[index]"
+                            :upload-tag="'cms-block-media-config-history-image-' + index + '-' + element.id"
+                            :default-folder="cmsPageState.pageEntityName"
+                            file-accept="*/*"
+                            @media-upload-remove-image="onRemoveHistoryImage(historyItem)"
+                            @selection-change="onChangeHistoryImage($event, historyItem)">
+                    </sw-media-compact-upload-v2>
+                </div>
+                <div>
+                    <sw-button v-if="counter < 8" :disabled="false" :square="false" :block="false" :isLoading="false"
+                               size="small"
+                               @click="onClickAddItem()"
+                    >
+                        +
+                        {{ $tc('sw-cms.elements.history-element.config.addTextButton') }}
+                    </sw-button>
+                    <sw-button v-if="counter < 8" :disabled="false" :square="false" :block="false" :isLoading="false"
+                               size="small"
+                               @click="onClickRemoveItem()"
+                    >
+                        -
+                        {{ $tc('sw-cms.elements.history-element.config.removeTextButton') }}
+                    </sw-button>
+                </div>
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

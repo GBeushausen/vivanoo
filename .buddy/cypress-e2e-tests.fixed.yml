@@ -1,0 +1,185 @@
+- pipeline: Cypress E2E Tests
+  auto_clear_cache: true
+  fail_on_prepare_env_warning: true
+  resources: XLARGE
+  events:
+    - type: PUSH
+      refs:
+        - refs/heads/*
+  targets:
+    - target: develop_ssh_server
+      type: SSH
+      name: develop_SSH_SERVER
+      host: $develop_SSH_SERVER
+      auth:
+        method: ASSETS_KEY
+        username: $develop_SSH_USERNAME
+        asset: creoline
+  actions:
+    - action: Generate variables from integration
+      type: INTEGRATION_VARIABLES
+      integration: NYRomQjOy5eVoqROaEP4V27qrx
+    - action: Vars to ENV file
+      type: BUILD
+      working_directory: /buddy/shopware6-demo
+      execute_commands:
+        - cd /var/www/html
+        - ""
+        - rm -rf .env.local
+        - touch .env.local
+        - echo "APP_ENV=prod" >> .env.local
+        - ""
+        - touch tmp.env
+        - echo "APP_URL=https://localhost" >> tmp.env
+        - echo "DATABASE_URL=mysql://root:root@mariadb:3306/shopware" >> tmp.env
+        - ""
+        - echo "SHOPWARE_CDN_STRATEGY_DEFAULT=id" >> tmp.env
+        - ""
+        - echo "SHOPWARE_SKIP_WEBINSTALLER=0" >> tmp.env
+        - echo "COMPOSER_PLUGIN_LOADER=1" >> tmp.env
+        - ""
+        - echo "JWT_PUBLIC_KEY=$JWT_PUBLIC_KEY" >> tmp.env
+        - echo "JWT_PRIVATE_KEY=$JWT_PRIVATE_KEY" >> tmp.env
+        - echo "AWS_CDN_DOMAIN=$AWS_CDN_DOMAIN" >> tmp.env
+        - echo "AWS_BUCKET=$AWS_BUCKET" >> tmp.env
+        - echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> tmp.env
+        - echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> tmp.env
+        - ""
+        - echo "ABACUS_LIVE_CLIENT_ID=$ABACUS_TEST_CLIENT_ID" >> tmp.env
+        - echo "ABACUS_LIVE_CLIENT_SECRET=$ABACUS_TEST_CLIENT_SECRET" >> tmp.env
+        - echo "ABACUS_TEST_CLIENT_ID=$ABACUS_TEST_CLIENT_ID" >> tmp.env
+        - echo "ABACUS_TEST_CLIENT_SECRET=$ABACUS_TEST_CLIENT_SECRET" >> tmp.env
+        - echo "ABACUS_TEST_LIVE_API_URL=$ABACUS_TEST_LIVE_API_URL" >> tmp.env
+        - echo "ABACUS_TEST_MANDANT_NUMBER=$ABACUS_TEST_MANDANT_NUMBER" >> tmp.env
+        - ""
+        - ""
+        - echo "MAIN_DOMAIN=$main_DOMAIN" >> tmp.env
+        - echo "DEVELOP_DOMAIN=$develop_DOMAIN" >> tmp.env
+        - ""
+        - echo "LICENSE_DOMAIN=$develop_LICENSE_DOMAIN" >> tmp.env
+        - echo "SHOP_ID=$develop_SHOP_ID" >> tmp.env
+        - ""
+        - ""
+        - mv tmp.env .env.prod
+        - cat .env.prod
+      shell: BASH
+      volume_mappings:
+        - /:/var/www/html
+      main_service_name: Main
+      run_as_user: root
+      docker_image_name: dockware/essentials
+      docker_image_tag: 2.0
+    - action: Download staging database
+      type: SSH_COMMAND
+      commands:
+        - "# Delete if there is already a dump of today"
+        - rm -f /var/www/vhosts/$develop_V_HOST/shopware-staging.sql
+        - rm -f /var/www/vhosts/$develop_V_HOST/shopware-staging.sql.gz
+        - ""
+        - "# Download Script"
+        - cd /var/www/vhosts/$develop_V_HOST
+        - rm -f shopware6-database-dump.sh
+        - 'rm -f dump.sql.gz '
+        - ""
+        - wget https://raw.githubusercontent.com/Webwirkung/shopware6-database-dump/main/shopware6-database-dump.sh
+        - chmod +x shopware6-database-dump.sh
+        - ""
+        - "# Run script"
+        - ./shopware6-database-dump.sh -d $develop_DB_NAME -u $develop_DB_USER -l "$develop_DB_PASSWD" --gdpr
+        - ""
+      targets:
+        - develop_ssh_server
+      run_as_script: true
+    - action: Download database dump
+      type: DOWNLOAD
+      overwrite: true
+      targets:
+        - develop_ssh_server
+    - action: Disable redis & frosh config
+      type: BUILD
+      working_directory: /buddy/shopware6-demo
+      execute_commands:
+        - cd /var/www/html/config/packages
+        - mv redis.yaml redis.yaml.temp || true
+        - ""
+        - mv frosh_tools.yaml frosh_tools.yaml.bak || true
+      shell: BASH
+      volume_mappings:
+        - /:/var/www/html
+      main_service_name: Main
+      run_as_user: root
+      docker_image_name: dockware/essentials
+      docker_image_tag: 2.0
+    - action: Install & Run Tests
+      type: BUILD
+      execute_commands:
+        - "# Necessary until PHP 8.2 is the default in dockware:flex"
+        - cd /var/www
+        - make switch-php version=8.2
+        - nvm install 20
+        - nvm use 20
+        - ""
+        - "### end"
+        - cd /var/www/html
+        - touch install.lock
+        - sudo cp config/packages/dev/system_config.yaml config/packages/prod/system_config.yaml
+        - ""
+        - "### Import database"
+        - "##add host to mysql"
+        - mysql -h mariadb -u root -proot -e "DROP DATABASE IF EXISTS shopware"
+        - mysql -h mariadb -u root -proot -e "CREATE DATABASE IF NOT EXISTS shopware"
+        - rm -f dump.sql
+        - gunzip dump.sql.gz
+        - mysql -h mariadb -u root -proot shopware < dump.sql
+        - "mysql -h mariadb -u root -proot -e \"USE shopware; UPDATE sales_channel_domain SET url = 'https://localhost' WHERE url = '${develop_DOMAIN}';\""
+        - mysql -h mariadb -u root -proot -e "USE shopware; DELETE FROM system_config WHERE configuration_key = 'core.mailerSettings.disableDelivery';"
+        - "mysql -h mariadb -u root -proot -e \"USE shopware; INSERT INTO system_config (id, configuration_key, configuration_value, sales_channel_id, created_at) VALUES (UNHEX(REPLACE(UUID(), '-', '')), 'core.mailerSettings.disableDelivery', '{\\\"_value\\\":true}', NULL, NOW());\""
+        - mysql -h mariadb -u root -proot -e "USE shopware; DELETE FROM system_config WHERE configuration_key = 'WebwirkungTagmanagerPlugin.config.tagmanager';"
+        - mysql -h mariadb -u root -proot -e "USE shopware; UPDATE sales_channel_analytics set tracking_id ='';"
+        - "mysql -h mariadb -u root -proot -e \"USE shopware; UPDATE system_config SET configuration_value = '{\\\"_value\\\":{\\\"honeypot\\\":{\\\"name\\\":\\\"Honeypot\\\",\\\"isActive\\\":false},\\\"basicCaptcha\\\":{\\\"name\\\":\\\"basicCaptcha\\\",\\\"isActive\\\":false},\\\"googleReCaptchaV2\\\":{\\\"name\\\":\\\"googleReCaptchaV2\\\",\\\"isActive\\\":false},\\\"googleReCaptchaV3\\\":{\\\"name\\\":\\\"googleReCaptchaV3\\\",\\\"isActive\\\":false},\\\"hCaptcha\\\":{\\\"name\\\":\\\"hCaptcha\\\",\\\"isActive\\\":false,\\\"config\\\":{\\\"siteKey\\\":\\\"\\\",\\\"secretKey\\\":\\\"\\\",\\\"theme\\\":\\\"default\\\",\\\"size\\\":\\\"default\\\"}},\\\"fCaptcha\\\":{\\\"name\\\":\\\"fCaptcha\\\",\\\"isActive\\\":false,\\\"config\\\":{\\\"siteKey\\\":\\\"\\\",\\\"secretKey\\\":\\\"\\\",\\\"theme\\\":\\\"light\\\",\\\"EUEndpoint\\\":false}}}}' WHERE configuration_key ='core.basicInformation.activeCaptchasV2';\""
+        - mysql -h mariadb -u root -proot -e "USE shopware; DELETE FROM user;"
+        - ""
+        - "### end"
+        - ""
+        - "composer config bearer.packages.shopware.com ${TOKEN_SHOPWARE}"
+        - "composer config github-oauth.github.com ${GITHUB_TOKEN}"
+        - composer install --no-scripts
+        - "#composer remove store.shopware.com/postfinancecheckoutpayment"
+        - ""
+        - php bin/console theme:refresh
+        - php bin/console theme:dump 018d3f69a4f3733b91712b490770e0f4 018d3f4ebb797113a4d8e59f7ffd6acb
+        - npm install --prefix ./vendor/shopware/administration/Resources/app/administration
+        - ./bin/build-js.sh
+        - php bin/console theme:compile
+        - php bin/console sales-channel:maintenance:disable --all
+        - php bin/console cache:clear
+        - php bin/console user:create admin -a -pshopware
+        - sudo chmod 777 -R var/ e2e/
+        - ""
+        - cd /var/www/html/e2e
+        - npm install
+        - npm run cy:run
+      setup_commands:
+        - apt-get update && apt-get install -y xvfb libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      cached_dirs:
+        - /root/.cache/Cypress
+      shell: BASH
+      volume_mappings:
+        - /:/var/www/html
+      main_service_name: Main
+      run_as_user: root
+      docker_image_name: dockware/essentials
+      docker_image_tag: 2.0
+      services:
+        - type: MARIADB
+          version: 10.11
+          connection:
+            host: mariadb
+            user: root
+            password: root
+    - action: Send email-1
+      type: EMAIL
+      trigger_time: ON_FAILURE
+      content: The Cypress tests have failed.
+      title: "$BUDDY_PIPELINE_NAME execution #$BUDDY_EXECUTION_ID"
+      recipients: ria.spirjak@webwirkung.ch

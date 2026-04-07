@@ -1,0 +1,168 @@
+<div style="font-family:arial; font-size:12px;">
+
+    {% set currencyIsoCode = order.currency.isoCode %}
+
+    <h3>{% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }}</h3>
+    <br>
+    Nous avons reçu votre commande le {{ order.orderDateTime|format_datetime('medium', 'short', locale='de-DE') }}<br>
+    <br>
+    <strong>Numéro de commande :</strong> {{ order.orderNumber }}<br>
+    <br>
+    Vous pouvez consulter à tout moment le statut actuel de votre commande en cliquant sur ce lien: <a href="{{ url('frontend.account.order.single.page', { 'deepLinkCode': order.deepLinkCode }, salesChannel.domains|first.url) }}">Statut de la commande</a><br>
+    Ce lien vous permet également d'éditer votre commande, de modifier le mode de paiement ou d'effectuer un paiement a posteriori.
+    <br>
+    <br>
+    <strong>Informations sur votre commande:</strong><br>
+    <br>
+    <table border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:12px;">
+        <tr>
+            <td bgcolor="#F7F7F2" style="border-bottom:1px solid #cccccc;"><strong>Numéro de produit</strong></td>
+            <td bgcolor="#F7F7F2" style="border-bottom:1px solid #cccccc;"><strong>Image du produit</strong></td>
+            <td bgcolor="#F7F7F2" style="border-bottom:1px solid #cccccc;"><strong>Désignation</strong></td>
+            <td bgcolor="#F7F7F2" style="border-bottom:1px solid #cccccc;"><strong>Quantité</strong></td>
+            <td bgcolor="#F7F7F2" style="border-bottom:1px solid #cccccc;"><strong>Prix</strong></td>
+            <td bgcolor="#F7F7F2" style="border-bottom:1px solid #cccccc;"><strong>Total</strong></td>
+        </tr>
+
+        {% for lineItem in order.nestedLineItems %}
+            {% set nestingLevel = 0 %}
+            {% set nestedItem = lineItem %}
+            {% block lineItem %}
+                <tr>
+                    <td>{% if nestedItem.payload.productNumber is defined %}{{ nestedItem.payload.productNumber|u.wordwrap(80) }}{% endif %}</td>
+                    <td>{% if nestedItem.cover is defined and nestedItem.cover is not null %}<img
+                            src="{{ nestedItem.cover.url }}" width="75" height="auto"/>{% endif %}</td>
+                    <td>
+                        {% if nestingLevel > 0 %}
+                            {% for i in 1..nestingLevel %}
+                                <span style="position: relative;">
+                                <span style="display: inline-block;
+                                        position: absolute;
+                                        width: 6px;
+                                        height: 20px;
+                                        top: 0;
+                                        border-left:  2px solid rgba(0, 0, 0, 0.15);
+                                        margin-left: {{ i * 10 }}px;"></span>
+                            </span>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div{% if nestingLevel > 0 %} style="padding-left: {{ (nestingLevel + 1) * 10 }}px"{% endif %}>
+                            {{ nestedItem.label|u.wordwrap(80) }}
+                        </div>
+
+                        {% if nestedItem.payload.options is defined and nestedItem.payload.options|length >= 1 %}
+                            <div>
+                                {% for option in nestedItem.payload.options %}
+                                    {{ option.group }}: {{ option.option }}
+                                    {% if nestedItem.payload.options|last != option %}
+                                        {{ " | " }}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if nestedItem.payload.features is defined and nestedItem.payload.features|length >= 1 %}
+                            {% set referencePriceFeatures = nestedItem.payload.features|filter(feature => feature.type == 'referencePrice') %}
+                            {% if referencePriceFeatures|length >= 1 %}
+                                {% set referencePriceFeature = referencePriceFeatures|first %}
+                                <div>
+                                    {{ referencePriceFeature.value.purchaseUnit }} {{ referencePriceFeature.value.unitName }}
+                                    ({{ referencePriceFeature.value.price|currency(currencyIsoCode) }}*
+                                    / {{ referencePriceFeature.value.referenceUnit }} {{ referencePriceFeature.value.unitName }}
+                                    )
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td style="text-align: center">{{ nestedItem.quantity }}</td>
+                    <td>{{ nestedItem.unitPrice|currency(currencyIsoCode) }}</td>
+                    <td>{{ nestedItem.totalPrice|currency(currencyIsoCode) }}</td>
+                </tr>
+
+                {% if nestedItem.children.count > 0 %}
+                    {% set nestingLevel = nestingLevel + 1 %}
+                    {% for lineItem in nestedItem.children %}
+                        {% set nestedItem = lineItem %}
+                        {{ block('lineItem') }}
+                    {% endfor %}
+                {% endif %}
+            {% endblock %}
+        {% endfor %}
+    </table>
+
+    {% set delivery = order.deliveries.first %}
+
+    {% set displayRounded = order.totalRounding.interval != 0.01 or order.totalRounding.decimals != order.itemRounding.decimals %}
+    {% set decimals = order.totalRounding.decimals %}
+    {% set total = order.price.totalPrice %}
+    {% if displayRounded %}
+        {% set total = order.price.rawTotal %}
+        {% set decimals = order.itemRounding.decimals %}
+    {% endif %}
+    <p>
+        <br>
+        <br>
+
+        {% set isMinimumOrderSurchargeValue = order.customFields.minimumOrderSurcharge.totalPrice is defined
+            and order.customFields.minimumOrderSurcharge.totalPrice is not null
+            and order.customFields.minimumOrderSurcharge.totalPrice > 0 %}
+
+        {% if isMinimumOrderSurchargeValue %}
+            Supplément pour petites quantités : {{ order.customFields.minimumOrderSurcharge.totalPrice|currency(currencyIsoCode) }}
+            <br>
+        {% endif %}
+
+        {% for shippingCost in order.deliveries %}
+            Frais de port : {{ shippingCost.shippingCosts.totalPrice|currency(currencyIsoCode) }}<br>
+        {% endfor %}
+        Coût total net : {{ order.amountNet|currency(currencyIsoCode) }}<br>
+        {% for calculatedTax in order.price.calculatedTaxes %}
+            {% if order.taxStatus is same as('net') %}zzgl.{% else %}incluse{% endif %} TVA de {{ calculatedTax.taxRate }}% {{ calculatedTax.tax|currency(currencyIsoCode) }}
+            <br>
+        {% endfor %}
+        {% if not displayRounded %}<strong>{% endif %}
+            Coût total brut : {{ total|currency(currencyIsoCode,decimals=decimals) }}{% if not displayRounded %}</strong>{% endif %}
+        <br>
+        {% if displayRounded %}
+            <strong>Coût total brut arrondi : {{ order.price.totalPrice|currency(currencyIsoCode,decimals=order.totalRounding.decimals) }}</strong>
+            <br>
+        {% endif %}
+        <br>
+
+        {% if delivery %}
+            <strong>Mode d'expédition choisi :</strong> {{ delivery.shippingMethod.translated.name }}<br>
+            {{ delivery.shippingMethod.translated.description }}<br>
+            <br><br>
+        {% endif %}
+
+        {% set billingAddress = order.addresses.get(order.billingAddressId) %}
+        <strong>Adresse de facturation :</strong><br>
+        {{ billingAddress.company }}<br>
+        {{ billingAddress.firstName }} {{ billingAddress.lastName }}<br>
+        {{ billingAddress.street }} <br>
+        {{ billingAddress.zipcode }} {{ billingAddress.city }}<br>
+        {{ billingAddress.country.translated.name }}<br>
+        <br>
+
+        {% if delivery %}
+            <strong>Adresse de livraison :</strong><br>
+            {{ delivery.shippingOrderAddress.company }}<br>
+            {{ delivery.shippingOrderAddress.firstName }} {{ delivery.shippingOrderAddress.lastName }}<br>
+            {{ delivery.shippingOrderAddress.street }} <br>
+            {{ delivery.shippingOrderAddress.zipcode }} {{ delivery.shippingOrderAddress.city }}<br>
+            {{ delivery.shippingOrderAddress.country.translated.name }}<br>
+            <br>
+        {% endif %}
+        {% if order.orderCustomer.vatIds %}
+            Ihre Umsatzsteuer-ID: {{ order.orderCustomer.vatIds|first }}
+            Bei erfolgreicher Prüfung und sofern Sie aus dem EU-Ausland
+            bestellen, erhalten Sie Ihre Ware umsatzsteuerbefreit. <br>
+        {% endif %}
+        <br/>
+        Vous pouvez également consulter le statut actuel de votre commande à tout moment sur notre site web dans la rubrique « Mon compte » > « Mes commandes »: <a href="{{ url('frontend.account.order.single.page', { 'deepLinkCode': order.deepLinkCode }, salesChannel.domains|first.url) }}">Mon compte</a>
+        <br><br>
+        N'hésitez pas à nous contacter pour toute question.
+    </p>
+    <br>
+</div>

@@ -1,0 +1,10 @@
+.container-main {
+  padding-top: 0;
+}
+
+.icon {
+  > svg path,
+  > svg use {
+    fill: transparent;
+  }
+}

@@ -1,0 +1,14 @@
+<div style="font-family:arial; font-size:12px;">
+    {% set decidedBy = pendingOrder.decidedBy ?? pendingOrder.customer %}
+    <br/>
+        <p>
+            Bonjour {{ pendingOrder.employee.firstName }} {{ pendingOrder.employee.lastName }},
+            <br>
+            <br>
+            Votre commande en attente chez {{ salesChannel.translated.name }} (numéro de commande en attente : <a href="{{ rawUrl('frontend.employee.pending-order.detail.page', { 'pendingId': pendingOrder.id }, salesChannel.domains|first.url) }}"> {{ pendingOrder.number }} </a>) a été approuvée par {{ decidedBy.firstName }} {{ decidedBy.lastName }}.
+            <br>
+            <br>
+            La commande n'est pas encore terminée. Veuillez retourner à la
+            <a href="{{ rawUrl('frontend.employee.pending-order.detail.page', { 'pendingId': pendingOrder.id }, salesChannel.domains|first.url) }}"> caisse </a> et finaliser le processus en effectuant un paiement.
+        </p>
+</div>

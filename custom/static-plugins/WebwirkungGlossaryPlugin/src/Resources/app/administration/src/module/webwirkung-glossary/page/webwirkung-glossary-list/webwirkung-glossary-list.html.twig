@@ -1,0 +1,29 @@
+{% block webwirkung_glossary_list %}
+    <sw-page class="glossary-list">
+        <template #language-switch>
+            <sw-language-switch
+                    @on-change="changeLanguageSelection">
+            </sw-language-switch>
+        </template>
+        {% block webwirkung_glossary_list_smart_bar_actions %}
+            <template #smart-bar-actions>
+                <sw-button variant="primary" :routerLink="{ name: 'webwirkung.glossary.create' }">
+                    {{ $t('webwirkung.glossary.list.addButtonText') }}
+                </sw-button>
+            </template>
+        {% endblock %}
+
+        <template #content>
+            {% block webwirkung_glossary_list_content %}
+                <sw-entity-listing
+                        v-if="glossary"
+                        :items="glossary"
+                        :showSelection="false"
+                        :columns="columns"
+                        :repository="repository"
+                        detailRoute="webwirkung.glossary.detail">
+                </sw-entity-listing>
+            {% endblock %}
+        </template>
+    </sw-page>
+{% endblock %}

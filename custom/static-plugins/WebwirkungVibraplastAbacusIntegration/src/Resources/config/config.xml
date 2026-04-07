@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Vibraplast Abacus Integration</title>
+        <title lang="de-DE">Vibraplast Abacus Integration</title>
+        <component name="sw-entity-single-select">
+            <name>squareMeterUnitId</name>
+            <entity>unit</entity>
+            <label>Square Meter Unit</label>
+            <label lang="de-DE">Quadratmeter-Einheit</label>
+            <helpText>Define the unit that should be treated as square meter unit for area calculations</helpText>
+            <helpText lang="de-DE">Definieren Sie die Einheit, die als Quadratmeter-Einheit für Flächenberechnungen behandelt werden soll</helpText>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>lineMeterUnitId</name>
+            <entity>unit</entity>
+            <label>Line Meter Unit</label>
+            <label lang="de-DE">Laufmeter-Einheit</label>
+            <helpText>Define the unit that should be treated as line meter unit for length-based calculations</helpText>
+            <helpText lang="de-DE">Definieren Sie die Einheit, die als Laufmeter-Einheit für längenbasierte Berechnungen behandelt werden soll</helpText>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>squareMeterPieceUnitId</name>
+            <entity>unit</entity>
+            <label>Square Meter Piece Unit</label>
+            <label lang="de-DE">Quadratmeter-Stück-Einheit</label>
+            <helpText>Define the unit that should be treated as square meter piece unit</helpText>
+            <helpText lang="de-DE">Definieren Sie die Einheit, die als Quadratmeter-Stück-Einheit behandelt werden soll</helpText>
+        </component>
+    </card>
+</config>

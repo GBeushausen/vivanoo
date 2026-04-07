@@ -1,0 +1,7 @@
+{% if quote.customer.salutation %}{{ quote.customer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ quote.customer.firstName }} {{ quote.customer.lastName }},
+
+The status of your quote at {{ salesChannel.translated.name }} (Quote number: {{ quote.quoteNumber }}) on {{ quote.createdAt|format_datetime('medium', 'short', locale='en-GB') }}  has changed.
+The new status is as follows: {{ quote.stateMachineState.translated.name }}.
+
+You can check the current status of your quote on our website under "My account" - "Quotes" anytime: {{ rawUrl('frontend.account.quote.detail', { 'id': quote.id }, salesChannel.domains|first.url) }}
+If you have any questions, do not hesitate to contact us.

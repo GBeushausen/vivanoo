@@ -1,0 +1,15 @@
+<div class="product-finder-result row">
+    <div class="col-12">
+        <div class="row" v-if="stepLabel">
+            <div class="step-label caption">{{ stepLabel }}</div>
+        </div>
+        <div class="row" v-if="stepQuestion">
+            <div class="step-label"><h4>{{ stepQuestion }}</h4></div>
+        </div>
+        <div class="row" ref="resultContainer" v-html="result"/>
+    </div>
+</div>
+<div class="product-finder-footer">
+    <button class="btn btn-secondary" @click="onPreviousStepClicked">{{ previousStepLabel }}</button>
+    <button class="btn btn-primary" @click="onResetClicked">{{ resetLabel }}</button>
+</div>

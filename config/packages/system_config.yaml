@@ -1,0 +1,4 @@
+shopware:
+  system_config:
+    default:
+      core.store.licenseHost: '%env(LICENSE_DOMAIN)%'

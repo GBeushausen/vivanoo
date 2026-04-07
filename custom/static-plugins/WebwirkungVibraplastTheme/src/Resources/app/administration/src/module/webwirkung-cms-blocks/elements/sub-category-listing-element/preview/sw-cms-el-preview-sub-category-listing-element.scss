@@ -1,0 +1,10 @@
+.sw-cms-preview-sub-category-listing {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+
+    img {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,33 @@
+{% block sw_element_glossary_category_listing %}
+    {% block webwirkung_element_glossary_category_listing_wrapper %}
+        {% set searchResult = element.data %}
+        {% set config = element.fieldConfig.elements %}
+        {% set alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'] %}
+        <div class="cms-element-glossary-listing">
+            {% if searchResult.total > 0 %}
+                <ul class="glossary-alphabet-filter" id="glossaryFilter">
+                    {% for letter in alphabet %}
+                        <li data-filter-by="{{ letter|lower }}" class="glossary-alphabet-filter-link">{{ letter|upper }}</li>
+                    {% endfor %}
+                    <li data-filter-by="all" class="glossary-alphabet-filter-link-reset" title="{{ 'glossary.filter.reset'|trans }}">{% sw_icon 'reset' style {'pack' : 'WebwirkungIcons'} %}</li>
+                </ul>
+                <div class="glossary-listing">
+                    {% set currentLetter = '' %}
+                    {% for glossaryTerm in searchResult %}
+                        {% set firstLetter = glossaryTerm.translated.name|slice(0, 1)|lower %}
+                        {% if firstLetter != currentLetter %}
+                            <div class="glossary-letter" data-filter-letter="{{ firstLetter }}">
+                                {{ firstLetter|upper }}{{ firstLetter|lower }}
+                            </div>
+                            {% set currentLetter = firstLetter %}
+                        {% endif %}
+                            <div class="glossary-term col-lg-9" data-filter-letter="{{ firstLetter }}" id="{{ glossaryTerm.translated.name|lower }}">
+                                <h5>{{ glossaryTerm.translated.name }}</h5>
+                                {{ glossaryTerm.translated.description|raw }}
+                            </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    {% endblock %}
+{% endblock %}

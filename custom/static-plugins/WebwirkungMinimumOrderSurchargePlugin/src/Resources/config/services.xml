@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="Webwirkung\MinimumOrderSurchargePlugin\Plugin\Config">
+            <argument id="Shopware\Core\System\SystemConfig\SystemConfigService" type="service"/>
+        </service>
+
+        <service id="Webwirkung\MinimumOrderSurchargePlugin\Core\Checkout\MinimumOrderSurchargeProcessor">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <tag name="shopware.cart.processor" priority="-4500" />
+        </service>
+
+        <service id="Webwirkung\MinimumOrderSurchargePlugin\Core\Checkout\MinimumOrderSurchargeCollector">
+            <argument type="service" id="Webwirkung\MinimumOrderSurchargePlugin\Plugin\Config"/>
+            <tag name="shopware.cart.collector" priority="-4500" />
+        </service>
+
+        <service id="Webwirkung\MinimumOrderSurchargePlugin\Subscriber\CartSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Webwirkung\MinimumOrderSurchargePlugin\Service\CustomerCustomFieldsInstaller">
+            <argument type="service" id="custom_field.repository"/>
+            <argument type="service" id="custom_field_set.repository"/>
+            <argument type="service" id="custom_field_set_relation.repository"/>
+        </service>
+
+    </services>
+</container>

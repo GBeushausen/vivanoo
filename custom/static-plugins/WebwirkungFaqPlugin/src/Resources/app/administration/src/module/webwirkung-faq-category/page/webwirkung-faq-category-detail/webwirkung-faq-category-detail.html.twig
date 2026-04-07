@@ -1,0 +1,49 @@
+{% block webwirkung_faq_category_detail %}
+    <sw-page class="webwirkung-faq-category-detail">
+        <template #language-switch>
+            <sw-language-switch
+                    v-if="changedToDefaultLanguage || !faqCategory.name"
+                    disabled>
+            </sw-language-switch>
+            <sw-language-switch
+                    v-if="!changedToDefaultLanguage && faqCategory.name"
+                    @on-change="changeLanguageSelection"
+                    :saveChangesFunction="saveOnLanguageChange">
+            </sw-language-switch>
+        </template>
+        <template #smart-bar-actions>
+            <sw-button :routerLink="{ name: 'webwirkung.faq.category.list' }">
+                {{ $t('faq-category.detail.cancelButtonText') }}
+            </sw-button>
+            <sw-button-process
+                    :isLoading="isLoading"
+                    :processSuccess="processSuccess"
+                    variant="primary"
+                    @process-finish="saveFinish"
+                    @click="onClickSave">
+                {{ $t('faq-category.detail.saveButtonText') }}
+            </sw-button-process>
+        </template>
+
+        <template #content>
+            <sw-card-view>
+                <div v-if="changedToDefaultLanguage">
+                    <p class="sw-language-info">
+                        <span class="sw_language-info__info">
+                            {{ $t('faq.detail.infoDefaultLanguage') }}
+                        </span>
+                    </p>
+                </div>
+                <sw-card v-if="faqCategory" :isLoading="isLoading">
+                    <div v-if="!faqCategory.name && hasError" class="sw-field__error" style="margin-bottom: 5px;">
+                        {{ $t('faq.detail.nameRequiredErrorMessage') }}
+                    </div>
+                    <sw-text-field
+                        :label="$t('faq-category.general.nameField')"
+                        v-model:value="faqCategory.name"></sw-text-field>
+                </sw-card>
+            </sw-card-view>
+        </template>
+
+    </sw-page>
+{% endblock %}

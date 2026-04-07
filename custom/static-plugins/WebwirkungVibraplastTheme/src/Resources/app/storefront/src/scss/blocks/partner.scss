@@ -1,0 +1,10 @@
+.cms-block-image-three-column {
+  &.cms-block .cms-block-container .cms-block-container-row {
+    align-items: center;
+  }
+  .cms-element-image .cms-image {
+    width: auto;
+    max-height: 95px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,46 @@
+{
+    "webwirkung": {
+        "glossary": {
+            "general": {
+                "mainMenuItemGeneral": "Glossar",
+                "descriptionTextModule": "Glossar Plugin",
+                "nameField": "Name",
+                "descriptionField": "Beschreibung",
+                "activeField": "Aktiv"
+            },
+            "list": {
+                "addButtonText": "Neues Wort hinzufügen"
+            },
+            "detail": {
+                "cancelButtonText": "Abbrechen",
+                "saveButtonText": "Speichern",
+                "errorTitle": "Es ist ein Fehler aufgetreten",
+                "infoDefaultLanguage": "Der Datensatz muss zuerst in der Standardsprache erstellt werden.",
+                "nameRequiredErrorMessage": "Name ist ein Pflichtfeld",
+                "descriptionRequiredErrorMessage": "Beschreibung ist ein Pflichtfeld"
+            },
+            "blocks": {
+                "glossary": {
+                    "listing": {
+                        "label": "Glossar Liste"
+                    }
+                }
+            },
+            "elements": {
+                "glossary": {
+                    "listing": {
+                        "label": "Glossar Liste (ABC)",
+                        "description": "Zeigt eine Liste aller Glossar Einträge sortiert nach ABC und mit Filter."
+                    }
+                }
+            }
+        }
+    },
+    "sw-privileges": {
+        "permissions": {
+            "ww_glossary": {
+                "label": "Glossar Plugin"
+            }
+        }
+    }
+}

@@ -1,0 +1,5 @@
+Bonjour {{ employee.firstName }} {{ employee.lastName }},
+Vous avez été invité{% if customer.company|length > 0 %} par {{ customer.company }}{% endif %} à créer un compte de collaborateur sur {{ shopName }}.
+Cliquez sur le lien suivant pour définir un mot de passe et terminer le processus d'inscription.
+Accepter l'invitation : {{ inviteLink }}
+Ce lien est valable pour les 2 prochaines heures. Après cette période, une nouvelle invitation devra être demandée.

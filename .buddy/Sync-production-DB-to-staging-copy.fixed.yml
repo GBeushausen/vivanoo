@@ -1,0 +1,83 @@
+- pipeline: "Sync production DB to staging copy"
+  on: "CLICK"
+  fail_on_prepare_env_warning: true
+  actions:
+    - action: "Dump prod DB with mysqldump and remove GDPR data"
+      type: "SSH_COMMAND"
+      commands:
+        - "# Download Script"
+        - "cd /var/www/vhosts/$main_V_HOST"
+        - "rm -f shopware6-database-dump.sh"
+        - "rm -f dump.sql.gz "
+        - ""
+        - "wget https://raw.githubusercontent.com/Webwirkung/shopware6-database-dump/main/shopware6-database-dump.sh"
+        - "chmod +x shopware6-database-dump.sh"
+        - ""
+        - "# Run script"
+        - "./shopware6-database-dump.sh -d $main_DB_NAME -u $main_DB_USER -l \"$main_DB_PASSWD\" --gdpr --keep-user-data"
+        - ""
+      targets:
+        - type: "SSH"
+          id: "main_SSH_SERVER"
+          host: "$main_SSH_SERVER"
+          auth:
+            method: "ASSETS_KEY"
+            username: "$main_SSH_USERNAME"
+            asset: "Creoline"
+    - action: "Download files from Host"
+      type: "DOWNLOAD"
+      targets:
+        - type: "SSH"
+          id: "main_SSH_SERVER"
+          host: "$main_SSH_SERVER"
+          path: "/var/www/vhosts/$main_V_HOST/dump.sql.gz"
+          auth:
+            method: "ASSETS_KEY"
+            username: "$main_SSH_USERNAME"
+            asset: "Creoline"
+      overwrite: true
+    - action: "Transfer dump to staging"
+      type: "TRANSFER"
+      input_type: "BUILD_ARTIFACTS"
+      local_path: "dump.sql.gz"
+      deletion_disabled: true
+      targets:
+        - type: "SSH"
+          id: "develop_SSH_SERVER"
+          host: "$develop_SSH_SERVER"
+          path: "/var/www/vhosts/$develop_V_HOST"
+          auth:
+            method: "ASSETS_KEY"
+            username: "$develop_SSH_USERNAME"
+            asset: "Creoline"
+    - action: "Wait for approval"
+      type: "WAIT_FOR_APPLY"
+      description: "It will overwritte the staging DB!"
+      comment: "Do you want to import the production DB into the staging DB?"
+    - action: "Import DB in staging environment"
+      type: "SSH_COMMAND"
+      commands:
+        - "mysql -u$develop_DB_USER -p$develop_DB_PASSWD -e \"DROP DATABASE IF EXISTS $develop_DB_NAME;\""
+        - "mysql -u$develop_DB_USER -p$develop_DB_PASSWD -e \"CREATE DATABASE $develop_DB_NAME CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;\""
+        - "gunzip < dump.sql.gz | mysql -u$develop_DB_USER -p$develop_DB_PASSWD --force $develop_DB_NAME "
+      targets:
+        - type: "SSH"
+          id: "develop_SSH_SERVER"
+          host: "$develop_SSH_SERVER"
+          path: "/var/www/vhosts/$develop_V_HOST"
+          auth:
+            method: "ASSETS_KEY"
+            username: "$develop_SSH_USERNAME"
+            asset: "Creoline"
+    - action: "SSH Post Deployment bin/console tasks"
+      type: "SSH_COMMAND"
+      commands:
+        - "yes | /var/www/vhosts/$develop_V_HOST/.phpenv/shims/php /var/www/vhosts/$develop_V_HOST/httpdocs/bin/console system:setup:staging"
+      targets:
+        - type: "SSH"
+          id: "develop_SSH_SERVER"
+          host: "$develop_SSH_SERVER"
+          auth:
+            method: "ASSETS_KEY"
+            username: "$develop_SSH_USERNAME"
+            asset: "Creoline"

@@ -1,0 +1,22 @@
+{% block block_image_caption_element %}
+    <div class="image-caption">
+        {% if element.config.imageCaptionImage.value is not null %}
+             <div class="image-caption-image">
+                {% set mediaCollection = searchMedia([element.config.imageCaptionImage.value], context.context) %}
+                {% set image =  mediaCollection.elements|first %}
+                {% sw_thumbnails 'image-caption-image' with {
+                    media: image,
+                    attributes: {
+                        'alt': image.alt,
+                        'loading': 'lazy',
+                    }
+                } %}
+            </div>
+        {% endif %}
+        {% if element.config.imageCaption.value %}
+            <div class="image-caption-text">
+                {{ element.config.imageCaption.value|raw }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

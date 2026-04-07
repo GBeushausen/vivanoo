@@ -1,0 +1,50 @@
+.is-act-home {
+  .cms-breadcrumb {
+    display: none;
+  }
+}
+
+.breadcrumb.cms-breadcrumb {
+  margin-bottom: 0;
+}
+
+nav[aria-label="breadcrumb"] {
+  margin-top: 24px;
+  margin-bottom: 0;
+  @include media-breakpoint-up(md) {
+    margin-top: 40px;
+  }
+}
+ol.breadcrumb {
+  margin-bottom: 20px;
+  padding-left: 0;
+  @include media-breakpoint-up(md) {
+    margin-bottom: 24px;
+  }
+  .breadcrumb-item,
+  .breadcrumb-placeholder {
+    margin-right: 8px;
+  }
+  a, li {
+    color: $text-secondary;
+    font-weight: 500;
+    @extend .text-small;
+  }
+  .breadcrumb-item {
+    &:last-child {
+      color: $sw-headline-color;
+      a {
+        color: $sw-headline-color;
+      }
+    }
+  }
+
+  .icon {
+    width: 10px;
+    height: 10px;
+
+    svg {
+      top: -2px;
+    }
+  }
+}

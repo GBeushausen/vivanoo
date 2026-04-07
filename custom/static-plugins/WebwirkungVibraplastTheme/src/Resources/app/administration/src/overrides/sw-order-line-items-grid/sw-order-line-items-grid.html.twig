@@ -1,0 +1,16 @@
+{% block sw_order_line_items_grid_grid_columns_label %}
+    {% parent %}
+
+    <template v-for="configuratorOptionsSlot in configuratorOptionsColumnsSlots"
+              #[configuratorOptionsSlot.slotName]="{ item }">
+
+        <template v-if="item.payload.configuratorOptions && item.payload.configuratorOptions[configuratorOptionsSlot.optionId]">
+            {{ item.payload.configuratorOptions[configuratorOptionsSlot.optionId].value }}
+        </template>
+
+        <template v-if="item.payload.variantPropertyOptionData && item.payload.variantPropertyOptionData.groupId ==configuratorOptionsSlot.optionId">
+            {{ item.payload.variantPropertyOptionData.name }}
+        </template>
+    </template>
+{% endblock %}
+

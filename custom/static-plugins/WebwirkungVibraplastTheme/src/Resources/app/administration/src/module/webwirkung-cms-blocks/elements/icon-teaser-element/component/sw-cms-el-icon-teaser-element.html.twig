@@ -1,0 +1,15 @@
+{% block sw_cms_element_label_text_button %}
+    <div class="sw-cms-el-icon-teaser-element">
+        <div class="ww-label-element">{{ $tc('sw-cms.elements.icon-teaser-element.label') }}</div>
+        <span>Icon</span>
+        <sw-text-editor
+                v-model:value="element.config.iconTeaserText.value"
+                :disabled="disabled"
+                :allow-inline-data-mapping="true"
+                :is-inline-edit="true"
+                sanitize-input
+                enable-transparent-background
+                @input="onInput"
+        />
+    </div>
+{% endblock %}

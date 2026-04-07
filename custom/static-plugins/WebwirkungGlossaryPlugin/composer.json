@@ -1,0 +1,32 @@
+{
+    "name": "webwirkung/glossary-plugin",
+    "description": "Glossary plugin",
+    "type": "shopware-platform-plugin",
+    "version": "2.0.0",
+    "authors": [
+        {
+            "name": "Webwirkung GmbH"
+        }
+    ],
+    "license": "proprietary",
+    "require": {
+        "shopware/core": "~6.6"
+    },
+    "extra": {
+        "shopware-plugin-class": "Webwirkung\\GlossaryPlugin\\WebwirkungGlossaryPlugin",
+        "label": {
+            "de-DE": "Glossar Plugin",
+            "en-GB": "Glossary plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Webwirkung\\GlossaryPlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Webwirkung\\GlossaryPlugin\\Tests\\": "tests/"
+        }
+    }
+}

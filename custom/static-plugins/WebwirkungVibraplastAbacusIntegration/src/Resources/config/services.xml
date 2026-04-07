@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults autowire="true" autoconfigure="true"/>
+        <prototype namespace="Webwirkung\VibraplastAbacusIntegration\" resource="../../"/>
+
+        <!-- Decorate the original service with our custom decorator -->
+        <service id="Webwirkung\VibraplastAbacusIntegration\Decorator\OverwriteCustomerPriceDecorator" 
+                 decorates="WebwirkungAbacusIntegration\Service\Abacus\Action\OverwriteCustomerPrice">
+            <argument type="service" id="WebwirkungAbacusIntegration\Service\Abacus\Price"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <argument type="service" id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\CalculatorFactoryInterface"/>
+        </service>
+
+        <!-- Pricing calculators and factory -->
+        <service id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\PieceCalculator"/>
+
+        <service id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\SquareMeterCalculator"/>
+        <service id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\LineMeterCalculator"/>
+        <service id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\SquareMeterPieceCalculator"/>
+
+        <service id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\CalculatorFactoryInterface" class="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\CalculatorFactory">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\PieceCalculator"/>
+            <argument type="service" id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\SquareMeterCalculator"/>
+            <argument type="service" id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\LineMeterCalculator"/>
+            <argument type="service" id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\SquareMeterPieceCalculator"/>
+            <argument type="service" id="unit.repository"/>
+        </service>
+
+        <!-- Decorate the cart prices service with our custom decorator using the factory -->
+        <service id="Webwirkung\VibraplastAbacusIntegration\Decorator\OverwriteCustomerCartPricesDecorator" 
+                 decorates="WebwirkungAbacusIntegration\Service\Abacus\Action\OverwriteCustomerCartPrices">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <argument type="service" id="WebwirkungAbacusIntegration\Service\Abacus\Price"/>
+            <argument type="service" id="WebwirkungAbacusIntegration\Plugin\ConfigFactoryInterface"/>
+            <argument type="service" id="WebwirkungAbacusIntegration\System\CustomerGroup"/>
+            <argument type="service" id="Webwirkung\VibraplastAbacusIntegration\Pricing\Calculator\CalculatorFactoryInterface"/>
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\CashRounding"/>
+        </service>
+    </services>
+</container>

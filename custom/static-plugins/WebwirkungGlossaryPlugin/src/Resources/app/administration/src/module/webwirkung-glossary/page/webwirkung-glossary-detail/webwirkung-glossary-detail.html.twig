@@ -1,0 +1,61 @@
+{% block webwirkung_glossary_detail %}
+    <sw-page class="webwirkung-glossary-detail">
+        <template #language-switch>
+            <sw-language-switch
+                    v-if="changedToDefaultLanguage || !glossary.name"
+                    disabled>
+            </sw-language-switch>
+            <sw-language-switch
+                    v-if="!changedToDefaultLanguage && glossary.name"
+                    @on-change="changeLanguageSelection"
+                    :saveChangesFunction="saveOnLanguageChange">
+            </sw-language-switch>
+        </template>
+        <template #smart-bar-actions>
+            <sw-button :routerLink="{ name: 'webwirkung.glossary.list' }">
+                {{ $t('webwirkung.glossary.detail.cancelButtonText') }}
+            </sw-button>
+
+            <sw-button-process
+                    :isLoading="isLoading"
+                    :processSuccess="processSuccess"
+                    variant="primary"
+                    @process-finish="saveFinish"
+                    @click="onClickSave">
+                {{ $t('webwirkung.glossary.detail.saveButtonText') }}
+            </sw-button-process>
+        </template>
+
+        <template #content>
+            <sw-card-view>
+                <div v-if="changedToDefaultLanguage">
+                    <p class="sw-language-info">
+                        <span class="sw_language-info__info">
+                            {{ $t('webwirkung.glossary.detail.infoDefaultLanguage') }}
+                        </span>
+                    </p>
+                </div>
+                <sw-card v-if="glossary" :isLoading="isLoading">
+                    <div v-if="!glossary.name && hasError" class="sw-field__error" style="margin-bottom: 5px;">
+                        {{ $t('webwirkung.glossary.detail.nameRequiredErrorMessage') }}
+                    </div>
+                    <sw-text-field
+                            :label="$t('webwirkung.glossary.general.nameField')"
+                            v-model:value="glossary.name"
+                    ></sw-text-field>
+                    <div v-if="!glossary.description && hasError" class="sw-field__error" style="margin-bottom: 5px;">
+                        {{ $t('webwirkung.glossary.detail.descriptionRequiredErrorMessage') }}
+                    </div>
+                    <sw-text-editor
+                            :label="$t('webwirkung.glossary.general.descriptionField')"
+                            v-model:value="glossary.description"
+                    ></sw-text-editor>
+                    <sw-switch-field
+                            v-model:value="glossary.active"
+                            :label="$t('webwirkung.glossary.general.activeField')">
+                    </sw-switch-field>
+                </sw-card>
+            </sw-card-view>
+        </template>
+    </sw-page>
+{% endblock %}

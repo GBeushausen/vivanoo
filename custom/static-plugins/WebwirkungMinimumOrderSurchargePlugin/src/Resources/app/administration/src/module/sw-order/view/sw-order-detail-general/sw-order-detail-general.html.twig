@@ -1,0 +1,10 @@
+{% block sw_order_detail_general_line_items_summary_amount %}
+    {% parent %}
+
+    {% block sw_order_detail_general_line_items_minimum_order_surcharge_amount %}
+        <template v-if="isMinimumOrderSurcharge">
+            <dt>{{ $tc('sw-order.detailBase.minimumOrderSurchargeAmount') }}</dt>
+            <dd>{{ currencyFilter(order.customFields.minimumOrderSurcharge.totalPrice, currency.isoCode, order.totalRounding.decimals) }}</dd>
+        </template>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,48 @@
+.footer-main,
+.footer-minimal {
+  &-newsletter {
+    background-image: url('/bundles/webwirkungpeterheftitheme/img/footer-newsletter-background.svg');
+  }
+  &-content {
+    .footer-contact {
+      &-information-address {
+        .icon {
+          > svg {
+            path, use {
+              stroke: $sw-color-brand-primary;
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer-vibraplast-link {
+    .btn-primary {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      float: left;
+      width: 100%;
+      margin-bottom: 32px;
+      @include media-breakpoint-up(md) {
+        width: auto;
+      }
+      .icon {
+        width: 16px;
+        height: 16px;
+        > svg {
+          top: 0;
+        }
+      }
+    }
+  }
+}
+.googlemaps-text {
+  .icon {
+    > svg {
+      path, use {
+        stroke: $sw-color-brand-primary;
+      }
+    }
+  }
+}

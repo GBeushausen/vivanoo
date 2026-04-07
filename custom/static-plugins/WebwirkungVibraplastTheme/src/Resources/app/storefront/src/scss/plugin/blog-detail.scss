@@ -1,0 +1,60 @@
+.is-ctl-cachedblog.is-act-detailaction {
+  .cms-breadcrumb {
+    display: none;
+  }
+  .cms-section .narrow > div {
+    @extend .offset-md-2;
+    @extend .col-md-8;
+  }
+}
+.sas-blog-detail-cms {
+  // Fix spacing issue on blog detail page because of multiple doubled containers
+  .cms-section .cms-section-sidebar.boxed {
+    margin-right: calc(-0.5* var(--bs-gutter-x));
+    margin-left: calc(-0.5* var(--bs-gutter-x));
+    padding: 0;
+  }
+}
+
+.sas-blog-detail {
+
+  .blog-image-teaser {
+    margin-bottom: 32px !important;
+  }
+  .sas-blog-detail-article {
+    .sas-blog-detail-title {
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid $sw-border-color;
+    }
+    &-author {
+      text-align: right;
+      @extend .text-small;
+    }
+    &-meta {
+      margin-bottom: 80px;
+      border-bottom: 1px solid $sw-border-color;
+    }
+    &-meta-label {
+      display: block;
+      color: $text-secondary;
+      font-weight: 400;
+    }
+    .sas-blog-detail-item-date {
+      @extend .text-small;
+      color: $sw-headline-color;
+      font-weight: 500;
+    }
+    .sas-author {
+      .icon {
+        display: none;
+      }
+      span {
+        @extend .text-small;
+        color: $sw-headline-color;
+        font-weight: 500;
+      }
+    }
+  }
+
+}

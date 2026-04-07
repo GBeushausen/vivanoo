@@ -1,0 +1,227 @@
+{
+  "name": "WebwirkungVibraplastTheme",
+  "author": "Webwirkung GmbH",
+  "previewMedia": "app/storefront/src/assets/preview.png",
+  "views": [
+     "@Storefront",
+     "@Plugins",
+     "@WebwirkungVibraplastTheme"
+  ],
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@StorefrontBootstrap",
+    "app/storefront/src/scss/base.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "app/storefront/dist/storefront/js/webwirkung-vibraplast-theme/webwirkung-vibraplast-theme.js"
+  ],
+  "asset": [
+    "@Storefront",
+    "app/storefront/src/assets"
+  ],
+  "config": {
+    "blocks": {},
+    "sections": {},
+    "fields": {
+      "sw-color-brand-primary": {
+        "label": {
+          "en_GB": "Primary Color",
+          "de_DE": "Hauptfarbe"
+        },
+        "type": "color",
+        "block": "settings",
+        "section": "overriddenVariables",
+        "value": "#53C0D8"
+      },
+      "primary-100": {
+        "value": "#D0E8ED",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-200": {
+        "value": "#BAE6EF",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-300": {
+        "value": "#98D9E8",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-400": {
+        "value": "#75CDE0",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-600": {
+        "value": "#429AAD",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-700": {
+        "value": "#327382",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-800": {
+        "value": "#214D56",
+        "type": "color",
+        "block": "settings"
+      },
+      "primary-900": {
+        "value": "#11262B",
+        "type": "color",
+        "block": "settings"
+      },
+      "sw-color-brand-secondary": {
+        "value": "#213246"
+      },
+      "secondary-100": {
+        "value": "#D3D6DA",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-200": {
+        "value": "#A6ADB5",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-300": {
+        "value": "#7A8490",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-400": {
+        "value": "#4D5B6B",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-600": {
+        "value": "#1A2838",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-800": {
+        "value": "#0D141C",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "secondary-900": {
+        "value": "#070A0E",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "sw-border-color": {
+        "value": "#E4E7EB"
+      },
+      "border-dark": {
+        "value": "#ECF2F3",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "sw-border-color-disabled": {
+        "value": "#DEDEDE",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "surface-overlay-light": {
+        "value": "#F4F5F6",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "surface-overlay-dark": {
+        "value": "#BFC8D2",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "surface-overlay-disabled": {
+        "value": "#F2F2F2",
+        "type": "color",
+        "block": "themeColors"
+      },
+      "sw-font-family-base": {
+        "value": "'Manrope', Arial, sans-serif"
+      },
+      "sw-text-color": {
+        "value": "#111A24"
+      },
+      "text-secondary": {
+        "value": "#7A8490",
+        "type": "color",
+        "block": "typography"
+      },
+      "text-disabled": {
+        "value": "#A1A1A1",
+        "type": "color",
+        "block": "typography"
+      },
+      "sw-font-family-headline": {
+        "value": "'Manrope', Arial, sans-serif"
+      },
+      "sw-headline-color": {
+        "value": "#111A24"
+      },
+      "sw-color-success": {
+        "value": "#08A979"
+      },
+      "success-border": {
+        "value": "#6BCBAE",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "success-background": {
+        "value": "#E6F8F2",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "warning-main": {
+        "value": "#FFBA07",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "warning-border": {
+        "value": "#FCDE86",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "warning-background": {
+        "value": "#FFF9E6",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "info-main": {
+        "value": "#53C0D8",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "sw-color-info": {
+        "value": "#98D9E8"
+      },
+      "info-background": {
+        "value": "#E3F4F8",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "sw-color-danger": {
+        "value": "#E04050"
+      },
+      "error-border": {
+        "value": "#EC8C96",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "error-background": {
+        "value": "#FFEDEF",
+        "type": "color",
+        "block": "statusColors"
+      },
+      "sw-color-price": {
+        "value": "#111A24"
+      },
+      "sw-color-buy-button": {
+        "value": "#213246"
+      }
+    }
+  }
+}

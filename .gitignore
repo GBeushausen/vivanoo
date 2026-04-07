@@ -1,0 +1,66 @@
+###> IDE ###
+/.idea/
+/.run/
+/.vscode/
+*.iml
+
+###> OS ###
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+
+###> shopware/core ###
+.env.local
+.env.local.php
+.env.*.local
+/public/bundles/*
+/public/media/*
+/public/theme/*
+/public/thumbnail/*
+/public/sitemap/*
+/public/asset-manifest.json
+/files/*
+!/files/.htaccess
+!/files/theme-config
+/var/*
+!/var/.htaccess
+!/var/plugins.json
+!/var/theme-files.json
+!/var/theme-variables.scss
+/auth.json
+/install.lock
+###< shopware/core ###
+
+###> vendor ###
+/vendor/
+###< vendor ###
+
+###> node ###
+node_modules/
+###< node ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> shopware/storefront ###
+/public/sw-service-worker.js
+###< shopware/storefront ###
+
+###> backups & dumps ###
+*.sql
+*.sql.gz
+*.gz
+*.bak
+*.zip
+###< backups & dumps ###
+
+###> misc ###
+.uniqueid.txt
+/nbproject/
+###< misc ###
+
+###> project assets (source files, not for repo) ###
+25091 vivanoo*
+###< project assets ###

@@ -1,0 +1,34 @@
+{% sw_extends '@Storefront/storefront/page/account/addressbook/index.html.twig' %}
+{% block page_account_address_welcome_headline %}
+    <h3>{{ "account.addressWelcome"|trans|sw_sanitize }}</h3>
+{% endblock %}
+{% block page_account_address_list %}
+    <div class="address-list">
+        <h4>
+            {{ "account.addressListHeader"|trans|sw_sanitize }}
+        </h4>
+        <div class="row">
+            {% for address in page.addresses %}
+                <div class="col-sm-6 card-col address-card">
+                    <div class="card other-address">
+                        <div class="card-body">
+                            {% block page_account_address_overview_body %}
+                                {{ parent() }}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_account_address_item_content_create %}
+    <div class="address-action-create">
+        <a href="{{ path('frontend.account.address.create.page') }}"
+           title="{{ "account.addressCreateBtn"|trans|striptags }}"
+           class="btn btn-primary btn-sm">
+            {{ "account.addressCreateBtn"|trans|sw_sanitize }}
+        </a>
+    </div>
+{% endblock %}

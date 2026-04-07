@@ -1,0 +1,28 @@
+.modal {
+  .cms-section {
+    margin-bottom: 0;
+  }
+  .cms-section-default,
+  .cms-block-container {
+    padding: 0 !important;
+  }
+
+  &-header.only-close {
+    position: absolute;
+    right: 40px;
+    z-index: 1;
+  }
+
+  &-content {
+    padding: 40px;
+    border-radius: 16px;
+  }
+  &-body {
+    padding: 0;
+  }
+  .card {
+    &-title {
+      @extend h4;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/component/checkout/offcanvas-cart.html.twig' %}
+
+{% block component_offcanvas_cart_header_item_counter %}
+
+    {% set cartLineItems = [] %}
+
+    {% for item in page.cart.lineItems %}
+        {% if item.type != 'minimum-order-surcharge' %}
+            {% set cartLineItems = cartLineItems|merge([item]) %}
+        {% endif %}
+    {% endfor %}
+
+    {% set checkoutItemCounter = cartLineItems|length %}
+
+    {{ parent() }}
+
+{% endblock %}

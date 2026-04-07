@@ -1,0 +1,19 @@
+.sw-cms-preview-icon-teaser-three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 10px;
+
+  span {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: lightblue;
+    border-radius: 100%;
+  }
+
+  &-inner {
+    padding: 10px;
+    background: lightgrey;
+  }
+}

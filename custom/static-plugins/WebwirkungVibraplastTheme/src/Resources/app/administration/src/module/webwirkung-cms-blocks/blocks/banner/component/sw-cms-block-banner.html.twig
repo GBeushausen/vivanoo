@@ -1,0 +1,6 @@
+{% block sw_cms_block_banner %}
+    <div class="sw-cms-block-banner">
+        <div class="ww-label-block">{{ $tc('sw-cms.blocks.banner.label') }}</div>
+        <slot name="content">{% block sw_cms_block_webwirkung_banner_slot_content %}{% endblock %}</slot>
+    </div>
+{% endblock %}

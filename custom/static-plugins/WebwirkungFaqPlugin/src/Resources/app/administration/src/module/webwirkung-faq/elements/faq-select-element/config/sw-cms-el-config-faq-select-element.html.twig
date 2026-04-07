@@ -1,0 +1,26 @@
+{% block sw_cms_element_faq_select_element_config %}
+    <div class="sw-cms-el-config-faq-select-element">
+        <sw-entity-multi-select
+            :placeholder="$tc('faq.elements.select.selectFieldLabel')"
+            :label="$tc('faq.elements.select.selectFieldLabel')"
+            entity="ww_faq"
+            :context="faqMultiSelectContext"
+            v-model:entityCollection="faqCollection"
+            @update:entity-collection="onFaqChange">
+
+            <template #selection-label-property="{ item }">
+                <slot name="selection-label-property" v-bind="{ item }">
+                    {{ item.question }} ({{ item.variant }})
+                </slot>
+            </template>
+
+            <template #result-item="{ item, index }">
+                <slot name="result-item" v-bind="{ item, index }">
+                    <li is="sw-select-result" v-bind="{ item, index }">
+                        {{ item.question }} ({{ item.variant }})
+                    </li>
+                </slot>
+            </template>
+        </sw-entity-multi-select>
+    </div>
+{% endblock %}

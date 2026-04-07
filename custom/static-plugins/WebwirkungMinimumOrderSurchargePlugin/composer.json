@@ -1,0 +1,32 @@
+{
+    "name": "webwirkung/minimum-order-surcharge-plugin",
+    "description": "Plugin allow to add a surcharge to carts below a certain value",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Webwirkung GmbH"
+        }
+    ],
+    "license": "proprietary",
+    "require": {
+        "shopware/core": "6.6.*"
+    },
+    "extra": {
+        "shopware-plugin-class": "Webwirkung\\MinimumOrderSurchargePlugin\\WebwirkungMinimumOrderSurchargePlugin",
+        "label": {
+            "de-DE": "Minimum Order Surcharge Plugin",
+            "en-GB": "Minimum Order Surcharge Plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Webwirkung\\MinimumOrderSurchargePlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Webwirkung\\MinimumOrderSurchargePlugin\\Tests\\": "tests/"
+        }
+    }
+}

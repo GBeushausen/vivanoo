@@ -1,0 +1,27 @@
+.btn {
+  &.btn-primary {
+    --bs-btn-bg: #00A276;
+    --bs-btn-border-color: #00A276;
+    --bs-btn-hover-bg: #3A564F;
+    --bs-btn-hover-border-color: #3A564F;
+    --bs-btn-active-bg: #006147;
+    --bs-btn-active-border-color: #006147;
+    --bs-btn-disabled-bg: #66C7AD;
+    --bs-btn-disabled-border-color: #66C7AD;
+  }
+  &.btn-secondary {
+    --bs-btn-bg: #3A564F;
+    --bs-btn-border-color: #3A564F;
+    --bs-btn-hover-bg: #00A276;
+    --bs-btn-hover-border-color: #00A276;
+    --bs-btn-active-bg: #00825E;
+    --bs-btn-active-border-color: #00825E;
+    --bs-btn-disabled-bg: #899A95;
+    --bs-btn-disabled-border-color: #899A95;
+
+    &:hover {
+      background-color: #00A276;
+      border-color: #00A276;
+    }
+  }
+}

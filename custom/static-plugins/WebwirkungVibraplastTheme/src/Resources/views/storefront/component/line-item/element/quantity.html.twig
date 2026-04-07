@@ -1,0 +1,33 @@
+{% sw_extends '@Storefront/storefront/component/line-item/element/quantity.html.twig' %}
+
+{% block component_line_item_quantity_select_input %}
+    <div class="input-group line-item-quantity-group quantity-selector-group" data-quantity-selector="true">
+        <button
+                {% if isDigital %}disabled="disabled"{% endif %}
+                type="button"
+                class="btn btn-outline-light btn-minus js-btn-minus"
+                aria-label="{{ "component.product.quantitySelect.decrease"|trans|striptags }}"
+        >
+            {% sw_icon 'minus' style {'pack' : 'WebwirkungIcons'} %}
+        </button>
+        <input
+                {% if isDigital %}disabled="disabled"{% endif %}
+                type="number"
+                name="quantity"
+                class="form-control js-quantity-selector quantity-selector-group-input quantity-input-{{ lineItem.id }} {% if displayMode === 'offcanvas' %} js-offcanvas-cart-change-quantity-number{% endif %}"
+                min="{{ quantityInformation.minPurchase }}"
+                max="{{ maxQuantity }}"
+                step="{{ quantityInformation.purchaseSteps }}"
+                value="{{ lineItem.quantity }}"
+                aria-label="{{ "component.product.quantitySelect.label"|trans|striptags }}"
+        />
+        <button
+                {% if isDigital %}disabled="disabled"{% endif %}
+                type="button"
+                class="btn btn-outline-light btn-plus js-btn-plus"
+                aria-label="{{ "component.product.quantitySelect.increase"|trans|striptags }}"
+        >
+            {% sw_icon 'plus' style {'pack' : 'WebwirkungIcons'} %}
+        </button>
+    </div>
+{% endblock %}

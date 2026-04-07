@@ -1,0 +1,20 @@
+.sw-cms-preview-5-7-column {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  background: lightgrey;
+  gap: 20px;
+  padding: 10px;
+
+  span {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: lightblue;
+    border-radius: 100%;
+  }
+
+  &-inner {
+    padding: 10px;
+    background: lightgrey;
+  }
+}

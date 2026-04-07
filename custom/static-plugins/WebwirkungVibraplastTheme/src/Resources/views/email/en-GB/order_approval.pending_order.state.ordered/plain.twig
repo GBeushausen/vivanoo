@@ -1,0 +1,6 @@
+{% set decidedBy = pendingOrder.decidedBy ?? pendingOrder.customer %}
+Hello {{ pendingOrder.employee.firstName }} {{ pendingOrder.employee.lastName }},
+
+Your Pending Order at {{ salesChannel.translated.name }} (Pending Order number: {{ pendingOrder.number }}) has been approved by {{ decidedBy.firstName }} {{ decidedBy.lastName }}.
+
+The order is already being processed at the moment, you do not have to do anything further.

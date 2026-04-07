@@ -1,0 +1,9 @@
+.cms-block-intro-teaser {
+  .intro-teaser {
+    align-items: center;
+    p {
+      color: $text-secondary;
+      @extend .text-medium;
+    }
+  }
+}

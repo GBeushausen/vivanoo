@@ -1,0 +1,13 @@
+.bottom-bar {
+  .header-search {
+    @include media-breakpoint-up(md) {
+      max-width: none;
+    }
+
+    &-form {
+      &:has(.header-search-input:focus) {
+        box-shadow: 0px 0px 0px 3px rgba(0, 0, 128, 0.35);
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.sw-cms-preview-image-caption-element {
+  display: flex;
+  grid-gap: 5px;
+  align-items: center;
+
+  &-image {
+    img {
+      max-width: 100%;
+    }
+  }
+
+}

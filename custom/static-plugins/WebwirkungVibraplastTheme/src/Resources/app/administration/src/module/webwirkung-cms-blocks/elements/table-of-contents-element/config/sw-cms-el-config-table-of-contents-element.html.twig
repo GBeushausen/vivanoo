@@ -1,0 +1,41 @@
+<div>
+    <sw-tabs
+            class="sw-cms-el-config-text__tabs"
+            default-item="content"
+    >
+        <template #default="{ active }">
+
+            <sw-tabs-item
+                    :title="$tc('sw-cms.elements.general.config.tab.content')"
+                    name="content"
+                    :active-tab="active"
+            >
+                {{ $tc('sw-cms.elements.general.config.tab.content') }}
+            </sw-tabs-item>
+        </template>
+
+        <template
+                #content="{ active }"
+        >
+
+            <sw-container
+                    v-if="active === 'content'"
+                    class="sw-cms-el-config-text__tab-content"
+            >
+                <sw-text-field
+                        v-model:value="tableLabel"
+                        :label="$tc('sw-cms.elements.table-of-contents-element.config.tableLabel')"
+                        :allow-inline-data-mapping="true"
+                ></sw-text-field>
+                <sw-select-field
+                        :label="$tc('sw-cms.elements.table-of-contents-element.config.titleType.label')"
+                        v-model:value="titleType"
+                >
+                    <option value="h2">{{ $tc('sw-cms.elements.table-of-contents-element.config.titleType.h2') }}</option>
+                    <option value="h3">{{ $tc('sw-cms.elements.table-of-contents-element.config.titleType.h3') }}</option>
+                    <option value="h4">{{ $tc('sw-cms.elements.table-of-contents-element.config.titleType.h4') }}</option>
+                </sw-select-field>
+            </sw-container>
+        </template>
+    </sw-tabs>
+</div>

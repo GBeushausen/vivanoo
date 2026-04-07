@@ -1,0 +1,67 @@
+{
+    "faq": {
+        "general": {
+            "mainMenuItemGeneral": "FAQs",
+            "mainMenuItemList": "FAQs",
+            "categoryMenuItemGeneral": "FAQ Kategorien",
+            "questionField": "Frage",
+            "answerField": "Antwort",
+            "categoryField": "Kategorien wählen",
+            "variantField": "Name Variante",
+            "hiddenField": "In Liste 'Alle FAQs' verstecken"
+        },
+        "list": {
+            "addButtonText": "Neue Frage hinzufügen"
+        },
+        "detail": {
+            "cancelButtonText": "Abbrechen",
+            "saveButtonText": "Speichern",
+            "errorTitle": "Fehler beim Speichern",
+            "infoDefaultLanguage": "Der Datensatz muss zuerst in der Standardsprache erstellt werden.",
+            "questionRequiredErrorMessage": "Frage ist ein Pflichtfeld"
+        },
+        "blocks": {
+            "faq": {
+                "listing": {
+                    "label": "Liste «Häufige Fragen» (alle)",
+                    "previewTitle": "Liste «Häufige Fragen» (alle)"
+                },
+                "select": {
+                    "label": "Ausgewählte «Häufige Fragen»",
+                    "previewTitle": "Ausgewählte «Häufige Fragen»"
+                }
+            }
+        },
+        "elements": {
+            "title": "Titel FAQs",
+            "listing": {
+                "preview": {
+                    "label": "Liste FAQs"
+                },
+                "component": {
+                    "elementTitle": "Liste FAQs",
+                    "elementText": "Alle FAQs werden automatisch abgerufen und sortiert nach Kategorien als Accordion ausgegeben."
+                }
+            },
+            "select": {
+                "label": "Ausgewählte FAQs",
+                "selectFieldLabel": "FAQ wählen",
+                "previewText": "Meine Frage previewText",
+                "elementText": "Ihre ausgewählten FAQs werden hier dargestellt (Einstellungen)."
+            },
+            "config": {
+                "faqCategory": {
+                    "label": "Kategorie",
+                    "placeholder": "Kategorie wählen..."
+                }
+            }
+        }
+    },
+    "sw-privileges": {
+        "permissions": {
+            "ww_faq": {
+                "label": "FAQ Plugin"
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "addresses": [
+    {
+      "countryId": "018d3f4cd3b471fdb241d2b40657a421",
+      "salutationId": "01937167a8057392bb8a3af0b241cc80",
+      "firstName": "Pep",
+      "lastName": "Eroni",
+      "street": "Main St",
+      "additionalAddressLine1": "123",
+      "city": "St.Gallen",
+      "state": "SG",
+      "zipcode": "9000",
+      "phoneNumber": "1234567890"
+    }
+  ]
+}

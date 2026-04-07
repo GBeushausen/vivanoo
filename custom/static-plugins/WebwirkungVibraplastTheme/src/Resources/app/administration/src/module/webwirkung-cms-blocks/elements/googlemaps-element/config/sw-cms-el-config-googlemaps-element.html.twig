@@ -1,0 +1,27 @@
+{% block sw_cms_element_googlemaps_element_config %}
+    <div>
+        <sw-text-field
+                v-model:value="mapsUrl"
+                class="swag-googlemaps-element-field"
+                :label="$tc('sw-cms.elements.googlemaps-element.config.mapsUrl')"
+                placeholder="Google Maps Link"
+                @input="onElementUpdate"
+                @change="onElementUpdate">
+        </sw-text-field>
+        <sw-text-field
+            v-model:value="mapsAddress"
+            :label="$tc('sw-cms.elements.googlemaps-element.config.mapsAddress')"
+            :allow-inline-data-mapping="true"
+        />
+        <sw-text-field
+            v-model:value="mapsPhone"
+            :label="$tc('sw-cms.elements.googlemaps-element.config.mapsPhone')"
+            :allow-inline-data-mapping="true"
+        />
+        <sw-text-field
+            v-model:value="mapsEmail"
+            :label="$tc('sw-cms.elements.googlemaps-element.config.mapsEmail')"
+            :allow-inline-data-mapping="true"
+        />
+    </div>
+{% endblock %}

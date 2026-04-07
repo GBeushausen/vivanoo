@@ -1,0 +1,65 @@
+.content-main {
+  .pagination {
+    gap: 4px;
+    input[type=radio] {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+    li {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      &:before {
+        display: none !important;
+      }
+      .page-link {
+        @extend .text-small;
+        color: $text-secondary;
+        text-align: center;
+        border-radius: $border-radius-button;
+        .icon > svg {
+          top: 3px;
+        }
+      }
+      &:hover,
+      &.active {
+        .page-link {
+          color: $sw-headline-color;
+          background-color: $border-dark;
+        }
+      }
+      &.disabled {
+        .page-link {
+          color: $text-secondary;
+          .icon {
+            > svg {
+              path {
+                stroke: $text-secondary;
+              }
+            }
+          }
+        }
+        &:hover {
+          .page-link {
+            background-color: $white;
+          }
+        }
+      }
+      &.page-next,
+      &.page-prev {
+        .icon {
+          width: 12px;
+          height: 12px;
+          > svg {
+            top: 1px;
+          }
+        }
+      }
+    }
+  }
+}

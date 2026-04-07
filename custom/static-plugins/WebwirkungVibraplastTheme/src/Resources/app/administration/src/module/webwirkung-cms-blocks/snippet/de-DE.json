@@ -1,0 +1,341 @@
+{
+  "sw-cms": {
+    "detail":{
+      "label": {
+        "sizingOptionNarrow": "Schmal"
+      }
+    },
+    "blocks": {
+      "hero-header": {
+        "label": "Webwirkung Block: Hero-Header"
+      },
+      "category-listing": {
+        "label": "Webwirkung Block: Kategorie Listing"
+      },
+      "category-filter": {
+        "label": "Webwirkung Block: Kategorie Filter"
+      },
+      "header-slider": {
+        "label": "Webwirkung Block: Header Slider"
+      },
+      "intro-teaser": {
+        "label": "Webwirkung Block: Intro Teaser (2-Spalten)"
+      },
+      "icon-teaser": {
+        "label": "Webwirkung Block: Icon Teaser (2-Spalten)"
+      },
+      "icon-teaser-three-col": {
+        "label": "Webwirkung Block: Icon Teaser (3-Spalten)"
+      },
+      "title-button": {
+        "label": "Webwirkung: Titel und Button (2-Spalten)"
+      },
+      "table-of-contents": {
+        "label": "Webwirkung: Inhaltsverzeichnis"
+      },
+      "step-by-step": {
+        "label": "Webwirkung: Schritt für Schritt"
+      },
+      "image-caption": {
+        "label": "Webwirkung: Bild mit Bildunterschrift"
+      },
+      "history": {
+        "label": "Webwirkung: Geschichte"
+      },
+      "googlemaps": {
+        "label": "Webwirkung: Google Maps mit Adressblock"
+      },
+      "5-7-column": {
+        "label": "Webwirkung: 5/7 Spalten (mit Hintergrund)"
+      },
+      "variants-buy-table": {
+          "label": "Webwirkung: Varianten Tabelle"
+      },
+      "banner": {
+          "label": "Webwirkung: Banner"
+      },
+      "sub-category-listing": {
+        "label": "Webwirkung Block: Unter-Kategorie Liste"
+      },
+      "accordion": {
+        "label": "Webwirkung Block: Akkordeon"
+      }
+    },
+    "elements": {
+      "hero-header-element": {
+        "label": "Webwirkung Element: Hero-Header",
+        "component": {
+          "title": "Hero-Header",
+          "text": "Texte und Bilder können in den Einstellungen des Elements angepasst werden."
+        },
+        "config": {
+          "caption": {
+            "heroImageUpload": "Bild hochladen",
+            "heroBackgroundUpload": "Hintergrundbild hochladen"
+          }
+        }
+      },
+      "category-listing-element": {
+        "label": "Webwirkung Element: Kategorie-Listing",
+        "component": {
+          "title": "Kategorie-Listing",
+          "text": "Die Kategorien können in den Einstellungen ausgewählt werden."
+        },
+        "config": {
+          "label": {
+            "selection": "Kategorieauswahl"
+          },
+          "placeholder": {
+            "selection": "Kategorie auswählen"
+          },
+          "columns": {
+            "label": "Anzahl der Spalten",
+            "two": "2 Spalten",
+            "three": "3 Spalten"
+          }
+        }
+      },
+      "category-filter-element": {
+        "label": "Webwirkung Element: Kategorie-Filter",
+        "component": {
+          "title": "Kategorie-Filter",
+          "text": "Zeigt einen Filter aller Unterkategorien der aktuellen Kategorie."
+        }
+      },
+      "label-text-button": {
+        "label": "Webwirkung Element: Text mit Label",
+        "config": {
+          "alignment": {
+            "label": "Text-Ausrichtung",
+            "left": "Links",
+            "center": "Zentriert"
+          }
+        }
+      },
+      "variants-buy-table": {
+        "label": "Webwirkung: Varianten Tabelle"
+      },
+      "header-slider-element": {
+        "label": "Webwirkung Element: Header-Slider",
+        "component": {
+          "title": "Header-Slider",
+          "text": "Slides können in den Einstellungen hinzugefügt oder bearbeitet werden."
+        },
+        "config": {
+          "slideTitle": "Slide",
+          "priceLabel": "Preis Element",
+          "pricePosition": {
+            "label": "Preiselement Position",
+            "top": "Oben",
+            "bottom": "Unten"
+          },
+          "priceText": "Aktionspreis",
+          "strikePriceText": "Streichpreis",
+          "labelText": "Label",
+          "text": "Text",
+          "backgroundMedia": "Hintergrundbild",
+          "overlayMedia": "Bild",
+          "addTextButton": "Slide hinzufügen",
+          "removeTextButton": "Slide entfernen"
+        }
+      },
+      "double-image-element": {
+        "label": "Webwirkung Element: Hintergrund- & 2 Overlay-Bilder",
+        "component": {
+          "title": "Hintergrund- & 2 Overlay-Bilder",
+          "text": "Das Hintergrund- & das Overlay-Bild können in den Einstellungen des Elements angepasst werden."
+        },
+        "config": {
+          "caption": {
+            "overlayImageOneUpload": "Bild 1 hochladen",
+            "overlayImageTwoUpload": "Bild 2 hochladen",
+            "backgroundImageUpload": "Hintergrundbild hochladen"
+          }
+        }
+      },
+      "five-image-element": {
+        "label": "Webwirkung Element: Hintergrund- & 5 Overlay-Bilder",
+        "component": {
+          "title": "Hintergrund- & 5 Overlay-Bilder",
+          "text": "Das Hintergrund- & die Overlay-Bilder können in den Einstellungen des Elements angepasst werden."
+        },
+        "config": {
+          "caption": {
+            "fiveImageOneUpload": "Bild 1 hochladen",
+            "fiveImageTwoUpload": "Bild 2 hochladen",
+            "fiveImageThreeUpload": "Bild 3 hochladen",
+            "fiveImageFourUpload": "Bild 4 hochladen",
+            "fiveImageFiveUpload": "Bild 5 hochladen",
+            "backgroundImageUpload": "Hintergrundbild hochladen"
+          }
+        }
+      },
+      "icon-teaser-element": {
+        "label": "Webwirkung Element: Icon-Teaser",
+        "config": {
+          "iconTeaserImage": "Icon hochladen",
+          "iconTeaserText": "Text",
+          "iconTeaserBackground": {
+            "label": "Hintergrundfarbe wählen",
+            "blue": "Blau",
+            "lightblue": "Hellblau",
+            "grey": "Grau",
+            "transparent": "Kein Hintergrund"
+          },
+          "iconBackground": {
+            "label": "Icon-Hintergrundfarbe wählen (Kreis)",
+            "blue": "Blau",
+            "transparent": "Kein Hintergrund"
+          },
+          "iconPosition": {
+            "label": "Icon-Position wählen",
+            "top": "Oberhalb des Textes",
+            "left": "Links neben dem Text"
+          },
+          "iconTeaserSmallSpace": "Kleiner Abstand danach",
+          "iconTeaserTitleBefore": "Titel vor dem Icon-Teaser (optional)"
+        }
+      },
+      "table-of-contents-element": {
+        "label": "Webwirkung Element: Inhaltsverzeichnis",
+        "component": {
+          "title": "Inhaltsverzeichnis",
+          "text": "Wählen sie den Überschrift-Typ, aus welchem ein Inhaltsverzeichnis erstellt werden soll, in den Einstellungen. (Standard H4)"
+        },
+        "config": {
+          "tableLabel": "Inhaltsübersicht",
+          "titleType": {
+            "label": "Überschrift-Type wählen",
+            "h2": "Überschrift 2",
+            "h3": "Überschrift 3",
+            "h4": "Überschrift 4"
+          }
+        }
+      },
+      "step-by-step-element": {
+        "label": "Webwirkung Element: Schritt für Schritt",
+        "component": {
+          "title": "Schritt für Schritt",
+          "text": "Die einzelnen Schritte können in den Einstellungen bearbeitet werden."
+        },
+        "config": {
+          "stepTitle": "Schritt",
+          "title": "Titel",
+          "text": "Text",
+          "addTextButton": "Schritt hinzufügen",
+          "removeTextButton": "Schritt entfernen"
+        }
+      },
+      "image-caption-element": {
+        "label": "Webwirkung: Bild mit Bildunterschrift",
+        "component": {
+          "title": "Bild mit Bildunterschrift",
+          "text": "Das Bild und die Bildunterschrift können in den Einstellungen bearbeitet werden."
+        },
+        "config": {
+          "imageCaptionImage": "Bild hochladen",
+          "imageCaption": "Bildunterschrift"
+        }
+      },
+      "history-element": {
+        "label": "Webwirkung: Geschichts-Element",
+        "component": {
+          "title": "Geschichts Element",
+          "text": "Fügen Sie weitere Meilensteine in den Einstellungen hinzu."
+        },
+        "config": {
+          "itemTitle": "Meilensteine",
+          "yearText": "Jahr",
+          "text": "Meilensteine dieses Jahres (Listen-Element)",
+          "historyImage": "Bild hochladen",
+          "addTextButton": "Jahr hinzufügen",
+          "removeTextButton": "Jahr entfernen"
+        }
+      },
+      "googlemaps-element": {
+        "label": "Webwirkung: Google Maps mit Adressblock",
+        "component": {
+          "title": "Google Maps mit Adressblock",
+          "text": "Die Adresse und die Maps URL (iframe) können in den Einstellungen bearbeitet werden."
+        },
+        "config": {
+          "mapsUrl": "Maps URL (iframe)",
+          "mapsAddress": "Adresse",
+          "mapsPhone": "Telefonnummer",
+          "mapsEmail": "E-Mail Adresse"
+        }
+      },
+      "banner-element": {
+        "label": "Webwirkung Element: Banner",
+        "component": {
+          "title": "Banner",
+          "text": "Texte und Bilder können in den Einstellungen des Elements angepasst werden."
+        },
+        "config": {
+          "caption": {
+            "bannerImageUpload": "Bild hochladen",
+            "bannerBackgroundUpload": "Hintergrundbild hochladen"
+          },
+          "bannerSize": {
+            "label": "Bannergrösse",
+            "narrow": "Schmal",
+            "broad": "Breit"
+          },
+          "bannerArrangement": {
+            "label": "Anordnung",
+            "text-left": "Text links",
+            "text-right": "Text rechts"
+          }
+        }
+      },
+      "sub-category-listing-element": {
+        "label": "Webwirkung Element: Unter-Kategorie Liste",
+        "config": {
+          "selection": {
+            "label": "Kategorie wählen (optional)",
+            "placeholder": "Kategorie wählen",
+            "helpText": "Wird hier keine Eltern-Kategorie ausgewählt, wird automatisch die aktuelle Kategorie als Eltern Kategorie gewählt."
+          }
+        },
+        "component": {
+          "text": "Es werden automatisch Unter-Kategorien der aktuellen Katgeorie ausgegeben, wenn nicht anders konfiguriert.",
+          "title": "Unter-Kategorie Liste"
+        }
+      },
+      "accordion-element": {
+        "label": "Webwirkung Element: Akkordeon",
+        "component": {
+          "text": "Titel und Text des Accordion in den Einstellungen bearbeiten.",
+          "title": "Akkordeon"
+        }
+      }
+    }
+  },
+  "component": {
+    "sw-cms-sidebar": {
+      "webwirkung-blocks": "Webwirkung Blocks"
+    }
+  },
+  "sas-blog":{
+    "blocks": {
+      "blog": {
+        "similarListing": {
+          "label": "Blog: Ähnliche Blog-Artikel",
+          "previewTitle": "Ähnliche Blog-Artikel"
+        }
+      }
+    },
+    "elements": {
+      "listing": {
+        "config": {
+          "hideImage": "Bild verbergen",
+          "showDate": "Datum statt Kategorie darstellen",
+          "filterAside": "Filter links darstellen",
+          "firstElBig": "Ersten Beitrag grösser darstellen",
+          "showTeaser": "Teaser Text anzeigen",
+          "infinityLoop": "Endlosschleife"
+        }
+      }
+    }
+  }
+}

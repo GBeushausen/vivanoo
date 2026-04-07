@@ -1,0 +1,12 @@
+<div style="font-family:arial; font-size:12px;">
+    <br/>
+    <p>
+        Une réponse a été apportée à votre demande de devis {{ quote.quoteNumber }} sur {{ salesChannel.translated.name }}.<br>
+    </p>
+    <p>
+        <br>
+        Vous pouvez consulter votre devis sur notre site web dans la rubrique « Mon compte » > « Devis » : {{ rawUrl('frontend.account.quote.detail', { 'id': quote.id }, salesChannel.domains|first.url) }}
+        <br>
+        N'hésitez pas à nous contacter pour toute question.
+    </p>
+</div>

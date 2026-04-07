@@ -1,0 +1,9 @@
+.sw-cms-block-table-of-contents {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: 1fr;
+
+  .sw-alert--info {
+    width: 100%;
+  }
+}

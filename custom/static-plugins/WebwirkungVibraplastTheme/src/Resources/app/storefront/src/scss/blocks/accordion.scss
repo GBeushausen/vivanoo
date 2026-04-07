@@ -1,0 +1,37 @@
+.cms-block.cms-block-accordion {
+  margin-bottom: 12px;
+}
+.accordion {
+  --bs-accordion-color: #18342D;
+  --bs-accordion-bg: #F6F6F6;
+  --bs-accordion-border-color: transparent;
+  --bs-accordion-border-radius: 12px;
+  --bs-accordion-btn-padding-x: 0;
+  --bs-accordion-btn-padding-y: 0;
+  --bs-accordion-btn-color: #18342D;
+  --bs-accordion-btn-bg: #F6F6F6;
+  --bs-accordion-btn-icon-width: 24px;
+  --bs-accordion-btn-icon-height: 24px;
+  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2318342D'%3e%3cpath d='M8 1.5a.5.5 0 0 1 .5.5v5.5H14a.5.5 0 0 1 0 1H8.5V14a.5.5 0 0 1-1 0V8.5H2a.5.5 0 0 1 0-1h5.5V2a.5.5 0 0 1 .5-.5z'/%3e%3c/svg%3e");
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2318342D'%3e%3cpath d='M3.5 3.5a.5.5 0 0 1 .7 0L8 7.3l3.8-3.8a.5.5 0 1 1 .7.7L8.7 8l3.8 3.8a.5.5 0 0 1-.7.7L8 8.7l-3.8 3.8a.5.5 0 0 1-.7-.7L7.3 8 3.5 4.2a.5.5 0 0 1 0-.7z'/%3e%3c/svg%3e");
+  --bs-accordion-btn-focus-border-color: transparent;
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-body-padding-x: 0;
+  --bs-accordion-body-padding-y: 0;
+  --bs-accordion-active-color: #18342D;
+  --bs-accordion-active-bg: #F6F6F6;
+}
+
+.accordion-item {
+  padding: 24px;
+
+  .accordion {
+    &-button {
+      font-weight: 600;
+    }
+    &-body {
+      padding-top: 12px;
+      @extend .text-small;
+    }
+  }
+}

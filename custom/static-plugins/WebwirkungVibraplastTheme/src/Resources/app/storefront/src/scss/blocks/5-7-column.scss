@@ -1,0 +1,42 @@
+.block-5-7-column {
+  .row {
+    align-items: flex-start;
+  }
+  .col-lg-5 {
+    margin-bottom: 20px;
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 0;
+    }
+  }
+  &-background {
+    margin-bottom: 24px;
+    padding: 24px;
+    background-color: $surface-overlay-light;
+    border-radius: $border-radius;
+    @include media-breakpoint-up(lg) {
+      padding: 40px;
+    }
+
+    .icon-teaser--position-left.icon-teaser {
+      padding: 0;
+
+      .icon-teaser-icon--background-blue {
+        width: 48px;
+        height: 48px;
+        @include media-breakpoint-up(lg) {
+          width: 64px;
+          height: 64px;
+        }
+
+        img {
+          width: 24px;
+          height: 24px;
+          @include media-breakpoint-up(lg) {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+}
