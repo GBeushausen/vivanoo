@@ -39,83 +39,83 @@
         "type": "color",
         "block": "settings",
         "section": "overriddenVariables",
-        "value": "#000080"
+        "value": "#0000B0"
       },
       "primary-100": {
-        "value": "#CCCCF0",
+        "value": "#D6D6F3",
         "type": "color",
         "block": "settings"
       },
       "primary-200": {
-        "value": "#9999E0",
+        "value": "#ADADEA",
         "type": "color",
         "block": "settings"
       },
       "primary-300": {
-        "value": "#6666D0",
+        "value": "#7070D8",
         "type": "color",
         "block": "settings"
       },
       "primary-400": {
-        "value": "#3333C0",
+        "value": "#3838C4",
         "type": "color",
         "block": "settings"
       },
       "primary-600": {
-        "value": "#000066",
+        "value": "#00008D",
         "type": "color",
         "block": "settings"
       },
       "primary-700": {
-        "value": "#00004D",
+        "value": "#00006A",
         "type": "color",
         "block": "settings"
       },
       "primary-800": {
-        "value": "#000033",
+        "value": "#000046",
         "type": "color",
         "block": "settings"
       },
       "primary-900": {
-        "value": "#00001A",
+        "value": "#000023",
         "type": "color",
         "block": "settings"
       },
       "sw-color-brand-secondary": {
-        "value": "#CC0000"
+        "value": "#ED1C24"
       },
       "secondary-100": {
-        "value": "#F5CCCC",
+        "value": "#FCDCDE",
         "type": "color",
         "block": "themeColors"
       },
       "secondary-200": {
-        "value": "#EB9999",
+        "value": "#F9A5A9",
         "type": "color",
         "block": "themeColors"
       },
       "secondary-300": {
-        "value": "#E06666",
+        "value": "#F47278",
         "type": "color",
         "block": "themeColors"
       },
       "secondary-400": {
-        "value": "#D63333",
+        "value": "#F04A51",
         "type": "color",
         "block": "themeColors"
       },
       "secondary-600": {
-        "value": "#A30000",
+        "value": "#C4151C",
         "type": "color",
         "block": "themeColors"
       },
       "secondary-800": {
-        "value": "#520000",
+        "value": "#7A0D12",
         "type": "color",
         "block": "themeColors"
       },
       "secondary-900": {
-        "value": "#290000",
+        "value": "#3D0709",
         "type": "color",
         "block": "themeColors"
       },
@@ -227,7 +227,7 @@
         "value": "#1A1A2E"
       },
       "sw-color-buy-button": {
-        "value": "#CC0000"
+        "value": "#ED1C24"
       }
     }
   }
