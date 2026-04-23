@@ -134,12 +134,6 @@
         },
         {
             "extensions": [],
-            "filepath": "\/var\/www\/html\/custom\/static-plugins\/WebwirkungVibraplastTheme\/src\/Resources\/app\/storefront\/src\/main.js",
-            "resolveMapping": [],
-            "assetName": "webwirkung-vibraplast-theme"
-        },
-        {
-            "extensions": [],
             "filepath": "\/var\/www\/html\/custom\/static-plugins\/VivanooTheme\/src\/Resources\/app\/storefront\/src\/main.js",
             "resolveMapping": [],
             "assetName": "vivanoo-theme"
@@ -154,22 +148,10 @@
         },
         {
             "extensions": [],
-            "filepath": "\/var\/www\/html\/custom\/static-plugins\/WebwirkungVibraplastTheme\/src\/Resources\/app\/storefront\/src\/scss\/overrides.scss",
-            "resolveMapping": [],
-            "assetName": null
-        },
-        {
-            "extensions": [],
             "filepath": "\/var\/www\/html\/vendor\/shopware\/storefront\/Theme\/..\/Resources\/app\/storefront\/src\/scss\/base.scss",
             "resolveMapping": {
                 "vendor": "\/var\/www\/html\/vendor\/shopware\/storefront\/Theme\/..\/Resources\/app\/storefront\/vendor"
             },
-            "assetName": null
-        },
-        {
-            "extensions": [],
-            "filepath": "\/var\/www\/html\/custom\/static-plugins\/WebwirkungVibraplastTheme\/src\/Resources\/app\/storefront\/src\/scss\/base.scss",
-            "resolveMapping": [],
             "assetName": null
         },
         {

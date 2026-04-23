@@ -1,0 +1,14 @@
+<div style="font-family:arial; font-size:12px;">
+    {% set decidedBy = pendingOrder.decidedBy ?? pendingOrder.customer %}
+    <br/>
+        <p>
+            Hello {{ pendingOrder.employee.firstName }} {{ pendingOrder.employee.lastName }},
+            <br>
+            <br>
+            Your Pending Order at {{ salesChannel.translated.name }} (Pending Order number: <a href="{{ rawUrl('frontend.employee.pending-order.detail.page', { 'pendingId': pendingOrder.id }, salesChannel.domains|first.url) }}"> {{ pendingOrder.number }} </a>) has been approved by {{ decidedBy.firstName }} {{ decidedBy.lastName }}.
+            <br>
+            <br>
+            The order is not complete yet. Please return to the
+            <a href="{{ rawUrl('frontend.employee.pending-order.detail.page', { 'pendingId': pendingOrder.id }, salesChannel.domains|first.url) }}"> checkout </a> and finish the process by making a payment.
+        </p>
+</div>

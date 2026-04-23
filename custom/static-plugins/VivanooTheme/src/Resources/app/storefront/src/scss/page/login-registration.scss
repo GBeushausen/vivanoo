@@ -1,0 +1,67 @@
+
+.is-act-checkoutregisterpage {
+  .line-item-quantity,
+  .line-item-total-price {
+    display: none;
+  }
+}
+
+.register-login-collapse-toogle {
+  margin-bottom: 16px;
+}
+
+.is-act-loginpage,
+.is-ctl-register {
+  .flashbags {
+    padding-top: 15px;
+    .alert {
+      margin-top: 0;
+    }
+  }
+  .content-main {
+    background-image: url("/bundles/webwirkungvibraplasttheme/img/bg-login-registration.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+  }
+  .account-register {
+    padding: 70px 0;
+  }
+  .register-card,
+  .login-card,
+  .login-advantages,
+  .checkout-aside-container {
+    padding: 40px;
+    background: $white;
+    border-radius: $border-radius;
+
+    .card-title {
+      @extend h4;
+    }
+  }
+  .register-card {
+    margin-bottom: 100px;
+  }
+  .checkout-aside-products {
+    display: none;
+  }
+
+  .login-card {
+    margin-bottom: 40px;
+    .login-form-description,
+    .login-password-recover {
+      @extend .text-small;
+    }
+  }
+
+  .register-required-info {
+    @extend .text-small;
+  }
+}
+
+// Password page
+.is-act-recoveraccountform {
+  .content-main {
+    padding-top: 40px;
+  }
+}

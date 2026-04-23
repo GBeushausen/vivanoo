@@ -1,0 +1,18 @@
+{% block block_title_button %}
+    {% set left = block.slots.getSlot('left') %}
+    {% set right = block.slots.getSlot('right') %}
+    <div class="title-button-wrapper">
+        <div class="row">
+            <div class="col-lg-6">
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ left.type ~ ".html.twig" ignore missing with {
+                    element: left
+                }  %}
+            </div>
+            <div class="col-lg-6">
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ right.type ~ ".html.twig" ignore missing with {
+                    element: right
+                }  %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

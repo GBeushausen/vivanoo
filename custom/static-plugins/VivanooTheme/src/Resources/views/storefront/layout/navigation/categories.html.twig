@@ -1,0 +1,38 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/categories.html.twig' %}
+
+{% block layout_navigation_categories_item %}
+    <div class="{% if level == 0 %}col-6 col-md-4 col-lg-3 {% endif %}navigation-flyout-col">
+        {% block layout_navigation_categories_item_link %}
+            {% if treeItem.category.type == 'folder' %}
+                <div class="nav-item nav-link navigation-flyout-link is-level-{{ level }}"
+                     title="{{ name }}">
+                    {% if treeItem.category.media.url %}
+                        <span class="nav-item-image{% if (treeItem.category.media.fileName|default('')) starts with 'icon-' %} nav-item-image--icon{% endif %}">
+                            <img src="{{ treeItem.category.media.url }}" />
+                        </span>
+                    {% endif %}
+                    <span itemprop="name">{{ name }}</span>
+                </div>
+            {% else %}
+                <a class="nav-item nav-link navigation-flyout-link is-level-{{ level }}{% if id == activeId or id in activePath %} active{% endif %}"
+                   href="{{ link }}"
+                   itemprop="url"
+                   {% if category_linknewtab(treeItem.category) %}target="_blank"
+                   {% if treeItem.category.linkType == "external" %}rel="noopener noreferrer"{% endif %}
+                        {% endif %}
+                   title="{{ name }}">
+                    {% if treeItem.category.media.url %}
+                        <span class="nav-item-image{% if (treeItem.category.media.fileName|default('')) starts with 'icon-' %} nav-item-image--icon{% endif %}">
+                            <img src="{{ treeItem.category.media.url }}" />
+                        </span>
+                    {% endif %}
+                    <span itemprop="name">{{ name }}</span>
+                </a>
+            {% endif %}
+        {% endblock %}
+
+        {% block layout_navigation_categories_recoursion %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}

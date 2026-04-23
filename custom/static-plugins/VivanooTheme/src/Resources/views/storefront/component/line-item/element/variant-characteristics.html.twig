@@ -1,0 +1,25 @@
+{% sw_extends '@Storefront/storefront/component/line-item/element/variant-characteristics.html.twig' %}
+
+{% block component_line_item_variant_characteristics %}
+    <div class="line-item-details-characteristics">
+        {% set optionSpecial = lineItem.payload.properties['018e811aab3074cf891489c2c7285120'] %}
+        {% if optionSpecial %}
+            {{ optionSpecial.label }}: {{ optionSpecial.value }}<br>
+        {% endif %}
+        {% for option in lineItem.payload.options %}
+            {% block component_line_item_variant_characteristics_option_group %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block component_line_item_variant_characteristics_option %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% if lineItem.payload.options|last != option %}
+                {% block component_line_item_variant_characteristics_divider %}
+                    {{ ' <br> ' }}
+                {% endblock %}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

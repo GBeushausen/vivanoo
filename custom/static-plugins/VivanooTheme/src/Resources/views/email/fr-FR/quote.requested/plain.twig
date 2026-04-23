@@ -1,0 +1,20 @@
+{% set currencyIsoCode = quote.currency.isoCode %}
+{% if quote.customer.salutation %}{{ quote.customer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ quote.customer.firstName }} {{ quote.customer.lastName }},
+
+Nous avons bien reçu votre demande de devis du {{ quote.createdAt|format_datetime('medium', 'short', locale='fr-FR') }}.
+
+Numéro de devis : {{ quote.quoteNumber }}
+
+Informations sur votre devis :
+
+Pos.   Quantités                       Nom du produit                    Prix unitaire                      Total
+{% for item in quote.lineItems %}
+    {{ loop.index }}      {{ item.quantity }}        {{ item.label|u.wordwrap(80) }}{% if item.payload.options is defined and item.payload.options|length >= 1 %}, {% for option in item.payload.options %}{{ option.group }}: {{ option.option }}{% if item.payload.options|last != option %}{{ " | " }}{% endif %}{% endfor %}{% endif %}        {{ item.price.unitPrice|currency(currencyIsoCode) }}
+    {{ item.price.totalPrice|currency(currencyIsoCode) }}
+{% endfor %}
+
+Prix total : {{ quote.amountTotal }}
+
+Vous pouvez consulter à tout moment le statut actuel de votre devis sur notre site web dans la rubrique « Mon compte » > « Devis » : {{ rawUrl('frontend.account.quote.detail', { 'id': quote.id }, salesChannel.domains|first.url) }}
+
+N'hésitez pas à nous contacter pour toute question.

@@ -1,0 +1,38 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_noscript %}
+    {% if config('WebwirkungVibraplastTheme.config.tagmanager') is not null %}
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('WebwirkungVibraplastTheme.config.tagmanager')}}"
+                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block base_navigation %}
+    {% if config('WebwirkungTagmanagerPlugin.config').automaticCookieActivation and page.extensions.cookieAccept.elements|length() > 0 %}
+        {% block cookie_accept %}
+            {% set cookies = [] %}
+            {% for cookie in page.extensions.cookieAccept.elements %}
+                {% set cookies = cookies|merge({ (loop.index0): (cookie.name ~ '|' ~ cookie.value ~ '|' ~ cookie.expiration) }) %}
+            {% endfor %}
+            {% set cookieAcceptOptions = {
+                cookies,
+            } %}
+            <div data-cookie-accept="true"
+                 data-cookie-accept-options="{{ cookieAcceptOptions|json_encode }}"></div>
+        {% endblock %}
+    {% endif %}
+{% endblock %}
+
+{% block base_header %}
+    {% sw_include '@Storefront/storefront/utilities/staging-info.html.twig' %}
+
+    <header class="header-main">
+        {% block base_header_inner %}
+            {% sw_include '@Storefront/storefront/layout/header/header.html.twig' %}
+        {% endblock %}
+    </header>
+{% endblock %}

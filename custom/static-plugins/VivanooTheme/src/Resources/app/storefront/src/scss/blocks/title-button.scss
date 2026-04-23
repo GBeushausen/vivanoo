@@ -1,0 +1,51 @@
+.cms-block-title-button {
+  margin-bottom: 24px;
+  @include media-breakpoint-up(md) {
+    margin-bottom: 40px;
+  }
+}
+.title-button-wrapper {
+  &:after {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    border-bottom: 1px solid $sw-border-color;
+    content: '';
+  }
+  .row {
+    align-items: center;
+
+    >div:last-child {
+      display: flex;
+      align-items: unset;
+      justify-content: end;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    .cms-element-text {
+      width: 100%;
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  .btn-primary {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 16px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 0;
+    }
+    &:before {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-image: url('/bundles/webwirkungvibraplasttheme/img/productfinder.svg');
+      background-repeat: no-repeat;
+      background-size: 16px;
+      content: '';
+    }
+  }
+}

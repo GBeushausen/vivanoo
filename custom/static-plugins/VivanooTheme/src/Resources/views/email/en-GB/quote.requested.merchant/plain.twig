@@ -1,0 +1,15 @@
+{% set currencyIsoCode = quote.currency.isoCode %}
+Following Quote Request was created
+
+Quote number: {{ quote.quoteNumber }}
+
+Items:
+
+Pos.   Quantities			Product name			Unit price			Total
+
+{% for item in quote.lineItems %}
+    {{ loop.index }}      {{ item.quantity }}        {{ item.label|u.wordwrap(80) }}{% if item.payload.options is defined and item.payload.options|length >= 1 %}, {% for option in item.payload.options %}{{ option.group }}: {{ option.option }}{% if item.payload.options|last != option %}{{ " | " }}{% endif %}{% endfor %}{% endif %}        {{ item.price.unitPrice|currency(currencyIsoCode) }}
+    {{ item.price.totalPrice|currency(currencyIsoCode) }}
+{% endfor %}
+
+Total price: {{ quote.amountTotal }}

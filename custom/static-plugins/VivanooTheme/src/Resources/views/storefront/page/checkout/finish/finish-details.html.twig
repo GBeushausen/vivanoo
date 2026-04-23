@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/page/checkout/finish/finish-details.html.twig' %}
+
+{% block page_checkout_finish_order_payment_method %}
+    <p>
+        <strong>{{ 'checkout.finishInfoPayment'|trans|sw_sanitize }}</strong>
+        <br>{{ page.order.transactions.last.paymentMethod.translated.name }}
+    </p>
+{% endblock %}
+
+{% block page_checkout_finish_order_dispatch_method %}
+    {% if page.order.deliveries.first.shippingMethod is defined %}
+        <p>
+            <strong>{{ 'checkout.finishInfoShipping'|trans|sw_sanitize }}</strong>
+            <br>{{ page.order.deliveries.first.shippingMethod.translated.name }}
+        </p>
+    {% endif %}
+{% endblock %}

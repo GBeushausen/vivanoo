@@ -1,0 +1,9 @@
+{% block block_variants_buy_table %}
+    {% set element = block.slots.getSlot('content') %}
+
+    <div class="variants-buy-table-block">
+        {% block block_text_inner %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+        {% endblock %}
+    </div>
+{% endblock %}

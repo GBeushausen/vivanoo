@@ -1,0 +1,33 @@
+{% block element_googlemaps %}
+   <div class="googlemaps">
+      {% block element_googlemaps_image_inner %}
+         <div class="googlemaps-maps">
+            <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+               <iframe style="width:100%; height:100%; position:absolute; left:0; top:0; overflow:hidden"
+                       src="{{ element.config.mapsUrl.value }}"
+                       frameborder="0"
+                       type="text/html"
+                       width="100%"
+                       height="100%"
+                       allowfullscreen>
+               </iframe>
+            </div>
+         </div>
+         <div class="googlemaps-text">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="googlemaps-text__inner">
+                        <h4>Standort</h4>
+                        <span class="googlemaps-text--address">{% sw_icon 'address-thin' style {'pack' : 'WebwirkungIcons'} %} {{ element.config.mapsAddress.value }}</span>
+            {#            Todo: Format phone number correctly #}
+                        <span class="googlemaps-text--phone">{% sw_icon 'phone-thin' style {'pack' : 'WebwirkungIcons'} %} <a href="tel:{{ element.config.mapsPhone.value }}">{{ element.config.mapsPhone.value }}</a></span>
+                        <span class="googlemaps-text--mail">{% sw_icon 'email-thin' style {'pack' : 'WebwirkungIcons'} %} <a href="mailto:{{ element.config.mapsEmail.value }}">{{ element.config.mapsEmail.value }}</a></span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      {% endblock %}
+   </div>
+{% endblock %}

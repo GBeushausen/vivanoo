@@ -1,0 +1,13 @@
+<div style="font-family:arial; font-size:12px;">
+    <br/>
+    {% set decidedBy = pendingOrder.decidedBy ?? pendingOrder.customer %}
+    <p>
+        Hello {{ pendingOrder.employee.firstName }} {{ pendingOrder.employee.lastName }},
+        <br>
+        <br>
+        Your Pending Order at {{ salesChannel.translated.name }} (Pending Order number: <a href="{{ rawUrl('frontend.employee.pending-order.detail.page', { 'pendingId': pendingOrder.id }, salesChannel.domains|first.url) }}"> {{ pendingOrder.number }} </a>) has been approved by {{ decidedBy.firstName }} {{ decidedBy.lastName }}.
+        <br>
+        <br>
+        The order is already being processed at the moment, you do not have to do anything further.
+    </p>
+</div>

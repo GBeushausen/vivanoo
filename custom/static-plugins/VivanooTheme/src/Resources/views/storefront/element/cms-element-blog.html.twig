@@ -1,0 +1,26 @@
+{% sw_extends '@SasBlogModule/storefront/element/cms-element-blog.html.twig' %}
+
+{% block sas_element_blog_listing_wrapper %}
+    <div class="row">
+        {% block sas_block_filter_panel %}
+            {% if config.showCategoryFilter.value or config.showAuthorFilter.value %}
+                <div id="filter-panel-wrapper"
+                     class="filter-panel-wrapper {% if config.filterAside.value === true %}col-md-3 blog-filter-aside{% else %}col-md-12 blog-filter{% endif %}"
+                     data-offcanvas-filter-content="true">
+                    {% sw_include '@Storefront/storefront/component/listing/blog-filter-panel.html.twig' with {
+                        listing: searchResult,
+                        sidebar: false
+                    } %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% sw_include '@Storefront/storefront/component/blog/listing.html.twig' with {
+            searchResult: searchResult,
+            dataUrl: dataUrl,
+            filterUrl: filterUrl,
+            params: params,
+            config: config
+        } %}
+    </div>
+{% endblock %}

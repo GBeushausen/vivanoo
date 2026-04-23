@@ -1,0 +1,13 @@
+.image-caption {
+  &-image {
+    margin-bottom: 8px;
+  }
+  img {
+    width: 100%;
+    max-width: 100%;
+  }
+  &-text {
+    @extend .text-small;
+    color: $text-secondary;
+  }
+}

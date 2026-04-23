@@ -1,0 +1,27 @@
+{% sw_extends '@Storefront/storefront/component/product/card/badges.html.twig' %}
+ {% block component_product_badges_discount %}
+     {% set price = product.calculatedPrice %}
+     {% if product.calculatedPrices.count > 0 %}
+         {% set price = product.calculatedPrices.last %}
+     {% endif %}
+
+     {% set listPrice = price.listPrice.percentage > 0 %}
+     {% set hasRange = product.calculatedPrices.count > 1 %}
+
+     {% set displayParent = product.variantListingConfig.displayParent and product.parentId === null %}
+     {% if displayParent %}
+         {% set displayFromVariants = displayParent and price.unitPrice !== product.calculatedCheapestPrice.unitPrice %}
+     {% endif %}
+
+     {% if listPrice and not hasRange and not displayFromVariants %}
+         <div class="badge bg-danger badge-discount">
+             <span>- {{ price.listPrice.percentage }} &#37;</span>
+         </div>
+     {% endif %}
+     {% set productOnRequest = product.translated.customFields.ww_vibraplast_product_on_request %}
+     {% if productOnRequest in ['yes_not_purchasable'] %}
+         <div class="badge bg-info">
+             {% sw_icon 'request' style {'pack' : 'WebwirkungIcons'} %}<span>{{ 'product.list.badge.on-request'|trans }}</span>
+         </div>
+     {% endif %}
+ {% endblock %}

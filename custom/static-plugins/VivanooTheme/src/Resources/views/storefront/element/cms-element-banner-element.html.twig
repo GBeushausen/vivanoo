@@ -1,0 +1,38 @@
+{% block block_banner_element %}
+    {% set backgroundImage = null %}
+    {% if element.config.bannerBackground.value %}
+        {% set mediaCollection = searchMedia([element.config.bannerBackground.value], context.context) %}
+        {% set backgroundImage =  mediaCollection.elements|first %}
+    {% endif %}
+    <div class="banner banner-arrangement--{{ element.config.bannerArrangement.value }} banner-size--{{ element.config.bannerSize.value }}" {% if backgroundImage is not null %}style="background-image: url({{ backgroundImage.url }}){% endif %}">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="banner-text">
+                    {{ element.config.bannerText.value|raw }}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                {% if element.config.bannerImage.value is not null %}
+                    <div class="banner-image">
+                        {% set mediaCollection = searchMedia([element.config.bannerImage.value], context.context) %}
+                        {% set image =  mediaCollection.elements|first %}
+                        {% sw_thumbnails 'banner-image' with {
+                            media: image,
+                            sizes: {
+                                'xs': '680px',
+                                'sm': '680px',
+                                'md': '680px',
+                                'lg': '1040px',
+                                'xl': '1040px',
+                            },
+                            attributes: {
+                                'alt': image.alt,
+                                'loading': 'lazy',
+                            }
+                        } %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,6 +1,6 @@
 {
   "name": "vivanoo/theme",
-  "description": "Vivanoo B2C shop theme inheriting from the Vibraplast Theme.",
+  "description": "Vivanoo B2C shop theme.",
   "type": "shopware-platform-plugin",
   "version": "1.0.0",
   "authors": [

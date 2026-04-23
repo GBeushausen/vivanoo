@@ -1,0 +1,27 @@
+{% set order = subscription.convertedOrder %}
+{% if subscription.subscriptionCustomer.salutation %}{{ subscription.subscriptionCustomer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ subscription.subscriptionCustomer.firstName }} {{ subscription.subscriptionCustomer.lastName }},
+
+Nous tenions à vous informer que votre {{ subscription.subscriptionPlanName }} a été réactivé avec succès, comme vous l'avez demandé.
+
+L'abonnement se poursuivra à la date suivante : {{ subscription.nextSchedule|format_datetime('medium', 'short', locale='fr-FR') }}
+
+Informations sur votre abonnement :
+
+Plan d'abonnement : {{ subscription.subscriptionPlanName }}
+Date de début : {{ subscription.createdAt|format_datetime('medium', 'short', locale='fr-FR') }}
+
+Pos.   Réf. produit		Image du produit		Désignation			Quantité			Prix			Total
+{% for lineItem in subscription.convertedOrder.lineItems %}
+{% if lineItem.coverId is defined and lineItem.coverId is not null %}
+    {% set cover = searchMedia([lineItem.coverId], context).first %}
+{% endif %}
+{{ loop.index }}      {% if lineItem.payload.productNumber is defined %}{{ lineItem.payload.productNumber|u.wordwrap(80) }}{% endif %}        {% if cover is defined and cover is not null %}{{ cover.alt }}{% endif %}        {{ lineItem.label|u.wordwrap(80) }}{% if lineItem.payload.options is defined and lineItem.payload.options|length >= 1 %}, {% for option in lineItem.payload.options %}{{ option.group }}: {{ option.option }}{% if lineItem.payload.options|last != option %}{{ " | " }}{% endif %}{% endfor %}{% endif %}{% if lineItem.payload.features is defined and lineItem.payload.features|length >= 1 %}{% set referencePriceFeatures = lineItem.payload.features|filter(feature => feature.type == 'referencePrice') %}{% if referencePriceFeatures|length >= 1 %}{% set referencePriceFeature = referencePriceFeatures|first %}, {{ referencePriceFeature.value.purchaseUnit }} {{ referencePriceFeature.value.unitName }}({{ referencePriceFeature.value.price|currency(subscription.currency.isoCode) }}* / {{ referencePriceFeature.value.referenceUnit }} {{ referencePriceFeature.value.unitName }}){% endif %}{% endif %}
+{{ lineItem.quantity }}                 {{ lineItem.price.unitPrice|currency(subscription.currency.isoCode) }}                  {{ lineItem.price.totalPrice|currency(subscription.currency.isoCode) }}
+{% endfor %}
+
+Coûts de l'abonnement : {{ order.price.totalPrice|currency(subscription.currency.isoCode,decimals=order.totalRounding.decimals) }}
+Cycle de facturation : {{ subscription.subscriptionInterval.translated.name }}
+
+Vous pouvez gérer votre abonnement sur notre site web sous « Mon compte » - « Mes abonnements » à tout moment.
+
+N'hésitez pas à nous contacter pour toute question.

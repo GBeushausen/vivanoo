@@ -1,0 +1,7 @@
+{% if subscription.customer.salutation %}{{ subscription.customer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ subscription.customer.firstName }} {{ subscription.customer.lastName }},
+
+Nous vous confirmons la résiliation de votre abonnement {{ subscription.subscriptionNumber }} pour le produit {{ subscription.lineItem.label }}.
+
+La résiliation prendra effet le {{ subscription.nextActionDate|format_datetime('medium', 'short', locale='fr-FR') }}.
+
+N'hésitez pas à nous contacter pour toute question.

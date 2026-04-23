@@ -1,0 +1,88 @@
+{% block page_product_detail_intro %}
+    <div class="product-detail-content">
+        {% set mediaItems = page.product.media.media %}
+        {% block page_product_detail_main %}
+            <div class="row product-detail-main">
+                {% block page_product_detail_media %}
+                    <div class="col-lg-5 product-detail-media">
+                        {% if page.product.media %}
+                            {% sw_include '@Storefront/storefront/element/cms-element-image-gallery.html.twig' with {
+                                'mediaItems': mediaItems,
+                                'zoom': false,
+                                'zoomModal': false,
+                                'displayMode': 'contain',
+                                'gutter': 5,
+                                'minHeight': '380px',
+                                'navigationArrows': 'inside',
+                                'nav': false,
+                                'navigationDots': 'false',
+                                'galleryPosition': 'underneath',
+                                'isProduct': true,
+                                'fallbackImageTitle': page.product.translated.name,
+                                'startIndexThumbnails': 1,
+                                'startIndexSlider': 1,
+                                'keepAspectRatioOnZoom': false
+                            } %}
+                        {% endif %}
+                    </div>
+                {% endblock %}
+                {% block page_product_detail_description %}
+                    <div class="col-lg-7">
+                        {% block page_product_detail_headline %}
+                            <div class="row align-items-center product-detail-headline">
+                                {% sw_include '@Storefront/storefront/page/product-detail/headline.html.twig' %}
+                            </div>
+                        {% endblock %}
+                        <div class="product-detail-description-text"
+                             data-glossary-text>
+                            {{ page.product.translated.description|raw }}
+                        </div>
+                        {% set productOnRequest = page.product.translated.customFields.ww_vibraplast_product_on_request %}
+                        {% if productOnRequest in ['yes_purchasable','yes_not_purchasable'] %}
+                            {% block product_question_button %}
+                                <div class="product-detail-request-button">
+                                    <a data-ajax-modal="true"
+                                       data-url="{{ path('frontend.cms.page', { id: config('WebwirkungVibraplastTheme.config.requestFormPage') }) }}"
+                                       href="{{ path('frontend.cms.page', { id: config('WebwirkungVibraplastTheme.config.requestFormPage') }) }}"
+                                       title="{{ 'product.detail.request-form'|trans }}"
+                                       class="btn btn-primary btn-md btn-request"
+                                       id="requestFormModalLink">
+                                        {% sw_icon 'request' style {'pack' : 'WebwirkungIcons'} %}{{ 'product.detail.request-form'|trans }}
+                                    </a>
+                                    {% set productImageFirst = mediaItems|first %}
+                                    {% set options = {
+                                        productName: page.product.translated.name,
+                                        productImage: productImageFirst.url,
+                                    } %}
+                                    <template data-product-request-form-modal-plugin data-product-request-form-modal-plugin-options='{{ options|json_encode }}'></template>
+                                </div>
+                            {% endblock %}
+                        {% endif %}
+                        {% block page_product_detail_glossary %}
+                            {% set options = {
+                                apiKey: context.salesChannel.accessKey,
+                                salesChannelBaseURL: app.request.attributes.get('sw-sales-channel-base-url'),
+                            } %}
+                            <div class="glossary-matching">
+                                <h5>{{ 'glossary.title'|trans }}</h5>
+                                <hr/>
+                                <div class="glossary-term-list" data-glossary-terms></div>
+                                <template data-glossary-plugin
+                                          data-glossary-plugin-options='{{ options|json_encode }}'></template>
+                            </div>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+
+            </div>
+        {% endblock %}
+        {% block buy_widget_ordernumber %}
+            <meta itemprop="productID"
+                  content="{{ page.product.id }}">
+            <span class="product-detail-ordernumber d-none"
+                  itemprop="sku">
+                  {{ page.product.productNumber }}
+            </span>
+        {% endblock %}
+    </div>
+{% endblock %}

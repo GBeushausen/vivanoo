@@ -1,0 +1,9 @@
+Guten Tag, 
+
+es ist eine neue Produktanfrage im Shop eingegangen. 
+
+{% for field in form.groups.fields %}
+{% if field.technicalName in formData|keys %}
+{{ field.label ?: field.technicalName }}: {{ attribute(formData, field.technicalName) }}
+{% endif %}
+{% endfor %}

@@ -1,0 +1,384 @@
+{% block variants_buy_table %}
+    {% if data %}
+        {% set hasColorPropertySet = false %}
+        {% for variant in data.variants %}
+            {% set colorProperty = variant.properties|filter(property => property.groupId === config('WebwirkungVibraplastTheme.config.colorProperty'))|first %}
+            {% if colorProperty is not empty %}
+                {% set hasColorPropertySet = true %}
+            {% endif %}
+        {% endfor %}
+
+        {% set hasDeliveryInfo = false %}
+        {% for variant in data.variants %}
+            {% if variant.deliveryTimeId is defined %}
+                {% set hasDeliveryInfo = true %}
+            {% endif %}
+        {% endfor %}
+
+        {% set variantTablePropertiesToDisplay = wwGetVariantTablePropertiesToDisplay(page.product, context.context) %}
+        {% set variantTableDimensionPropertiesToDisplay = wwVariantTableDimensionPropertiesToDisplay(page.product) %}
+        {% set filtersDataForTablePropertiesToDisplay = wwGetFiltersDataForTablePropertiesToDisplay(data.variants) %}
+        {% set formAction = path('frontend.checkout.line-item.add') %}
+        <div class="variants-buy-table" data-variants-buy-table>
+            {% set variantsTablePropertyGroup= data.variantsTablePropertyGroup %}
+            <div class="variants-dimension-property-options">
+                <div class="row">
+                    <div class="col-lg-5 col-xl-4">
+                        <div class="variants-dimension-product-overview">
+                            <div class="variants-dimension-product-overview-image d-none d-lg-block">
+                                {% if data.product.media.elements %}
+                                    {% set mainImage = data.product.media.media|first %}
+                                    {% sw_thumbnails 'product-overview-image' with {
+                                        media: mainImage,
+                                        attributes: {
+                                            'alt': mainImage.alt,
+                                            'loading': 'lazy',
+                                        }
+                                    } %}
+                                {% endif %}
+                            </div>
+                            <div class="variants-dimension-product-overview-info">
+                                {% if data.product.translated.customFields.ww_vibraplast_theme_product_set_erp_search_term_designation %}
+                                    <b>{{ data.product.translated.customFields.ww_vibraplast_theme_product_set_erp_search_term_designation }}</b>{% endif %}
+                                {% if data.product.translated.customFields.ww_vibraplast_theme_product_set_detail_text %}
+                                    <p>{{ data.product.translated.customFields.ww_vibraplast_theme_product_set_detail_text }}</p>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% if variantsTablePropertyGroup %}
+                        <div class="col-lg-5">
+                            <div class="variants-dimension-main-select">
+                                <span class="variants-dimension-main-select-label">
+                                {{ variantsTablePropertyGroup.translated.name ?? variantsTablePropertyGroup.name }}
+                            </span>
+                                <select name="option"
+                                        id="variantsTableSelect"
+                                        class="form-select">
+                                    {% if variantsTablePropertyGroup.options|length > 0 %}
+                                        <option value="">
+                                            {{ 'product.detail.variant-configurator.variantSelectBtn'|trans }}
+                                        </option>
+                                    {% endif %}
+                                    {% for option in variantsTablePropertyGroup.options %}
+                                        <option value="{{ option.id }}">
+                                            {{ option.translated.name ?? option.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if data.hasCustomProductVariants %}
+                        <div class="col-lg-4">
+                            <span class="configurator-label">{{ 'product.detail.variant-configurator.configuratorHint'|trans }}</span>
+                            <button class="btn btn-secondary btn-sm product-configurator-btn"
+                                    id="product-configurator-btn">
+                                {{ 'product.detail.variant-configurator.configuratorBtn'|trans }}
+                            </button>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="variants-dimension-sliders row">
+                {% for variantTableDimension in variantTableDimensionPropertiesToDisplay %}
+                    {% if variantTableDimension is same as(variantTableDimensionPropertiesToDisplay.get('length')) %}
+                        <div class="col-md-4 mb-md-3 sliders-length">
+                            <div class="range-slider">
+                                <span class="variants-dimension-sliders-label">{{ 'product.detail.variant-configurator.length'|trans }}</span>
+                                <input type="number" min="0" max="{{ data.maxLength }}" value="0"
+                                       class="slider-length-input-from"
+                                       id="length-input-from" data-dimension="length">
+                                <input type="range" min="0" max="{{ data.maxLength }}" value="0"
+                                       class="slider-length-from"
+                                       id="length-from" data-dimension="length">
+                                <input type="range" min="0" max="{{ data.maxLength }}" value="{{ data.maxLength }}"
+                                       class="slider-length-to" id="length-to" data-dimension="length">
+                                <input type="number" min="0" max="{{ data.maxLength }}" value="{{ data.maxLength }}"
+                                       class="slider-length-input-to"
+                                       id="length-input-to" data-dimension="length">
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if variantTableDimension is same as(variantTableDimensionPropertiesToDisplay.get('width')) %}
+                        <div class="col-md-4 mb-md-3 sliders-width">
+                            <div class="range-slider">
+                                <span class="variants-dimension-sliders-label">{{ 'product.detail.variant-configurator.width'|trans }}</span>
+                                <input type="number" min="0" max="{{ data.maxWidth }}" value="0"
+                                       class="slider-width-input-from"
+                                       id="width-input-from" data-dimension="width">
+                                <input type="range" min="0" max="{{ data.maxWidth }}" value="0"
+                                       class="slider-width-from"
+                                       id="width-from" data-dimension="width">
+                                <input type="range" min="0" max="{{ data.maxWidth }}" value="{{ data.maxWidth }}"
+                                       class="slider-width-to" id="width-to" data-dimension="width">
+                                <input type="number" min="0" max="{{ data.maxWidth }}" value="{{ data.maxWidth }}"
+                                       class="slider-width-input-to"
+                                       id="width-input-to" data-dimension="width">
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if variantTableDimension is same as(variantTableDimensionPropertiesToDisplay.get('height')) %}
+                        <div class="col-md-4 mb-md-3 sliders-height">
+                            <div class="range-slider">
+                                <span class="variants-dimension-sliders-label">{{ 'product.detail.variant-configurator.height'|trans }}</span>
+                                <input type="number" min="0" max="{{ data.maxHeight }}" value="0"
+                                       class="slider-height-input-from"
+                                       id="height-input-from" data-dimension="height">
+                                <input type="range" min="0" max="{{ data.maxHeight }}" value="0"
+                                       class="slider-height-from"
+                                       id="height-from" data-dimension="height">
+                                <input type="range" min="0" max="{{ data.maxHeight }}" value="{{ data.maxHeight }}"
+                                       class="slider-height-to" id="height-to" data-dimension="height">
+                                <input type="number" min="0" max="{{ data.maxHeight }}" value="{{ data.maxHeight }}"
+                                       class="slider-height-input-to"
+                                       id="height-input-to" data-dimension="height">
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% for data in filtersDataForTablePropertiesToDisplay %}
+                    {% set maxValue = data.name|number_format(3 ,null, '') %}
+                    {% set propertyName = data.group.translated['name'] %}
+                    {% set propertySluggedName = propertyName|wwSlug %}
+                    <div class="col-md-4 mb-md-3">
+                        <div class="range-slider custom-range-slider sliders-{{ propertySluggedName }}"
+                             data-dimension="{{ propertySluggedName }}">
+                            <span class="variants-dimension-sliders-label">{{ propertyName }}</span>
+                            <input type="number" min="0" max="{{ maxValue }}" value="0"
+                                   class="slider-{{ propertySluggedName }}-input-from"
+                                   id="{{ propertySluggedName }}-input-from" data-dimension="{{ propertySluggedName }}">
+                            <input type="range" min="0" max="{{ maxValue }}" value="0"
+                                   class="slider-{{ propertySluggedName }}-from"
+                                   id="{{ propertySluggedName }}-from" data-dimension="{{ propertySluggedName }}">
+                            <input type="range" min="0" max="{{ maxValue }}" value="{{ maxValue }}"
+                                   class="slider-{{ propertySluggedName }}-to" id="{{ propertySluggedName }}-to"
+                                   data-dimension="{{ propertySluggedName }}">
+                            <input type="number" min="0" max="{{ maxValue }}" value="{{ maxValue }}"
+                                   class="slider-{{ propertySluggedName }}-input-to"
+                                   id="{{ propertySluggedName }}-input-to" data-dimension="{{ propertySluggedName }}">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="variants-dimension-table">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>{{ 'product.detail.variant-configurator.table.productNumber'|trans }}</th>
+                                    {% for variantTableDimension in variantTableDimensionPropertiesToDisplay %}
+                                        <th>{{ variantTableDimension.translated['name'] }}</th>
+                                    {% endfor %}
+
+                                    {% for propertyToDisplay in variantTablePropertiesToDisplay %}
+                                        {% set shouldDisplayVariantTablePropertyColumn = wwShouldDisplayVariantTableProperty(page.product, propertyToDisplay.id) %}
+                                        {% if shouldDisplayVariantTablePropertyColumn %}
+                                            <th>{{ propertyToDisplay.translated.name }}</th>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <th>{{ 'product.detail.variant-configurator.table.price'|trans }}</th>
+                                    <th>{{ 'product.detail.variant-configurator.table.priceList'|trans }}</th>
+                                    {% if hasDeliveryInfo %}
+                                        <th>{{ 'product.detail.variant-configurator.table.deliveryTime'|trans }}</th>{% endif %}
+                                    <th>{{ 'product.detail.variant-configurator.table.quantity'|trans }}</th>
+                                    <th>{{ 'product.detail.variant-configurator.table.action'|trans }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for variant in data.variants %}
+                                    {% set variantWidth = wwVariantTableWidth(variant) %}
+                                    {% set variantHeight = wwVariantTableHeight(variant) %}
+                                    {% set variantLength = wwVariantTableLength(variant) %}
+                                    {% set variantColor = wwVariantTableColor(variant) %}
+                                    {% set variantIsVariantsTableOption = variant.properties|filter(property => property.groupId === variantsTablePropertyGroup.id)|first %}
+                                    {% set variantProperties = wwGetValuesForTablePropertiesToDisplay(variant) %}
+                                    <tr
+                                            class="variant-row"
+                                            data-variant-length="{{ variantLength }}"
+                                            data-variant-width="{{ variantWidth }}"
+                                            data-variant-height="{{ variantHeight }}"
+                                            {% for variantProperty in variantProperties %}
+                                                {% set propertyName = variantProperty.group.translated['name'] %}
+                                                {% set propertySluggedName = propertyName|wwSlug %}
+                                                data-variant-{{ propertySluggedName }}="{{ variantProperty.translated.name }}"
+                                            {% endfor %}
+                                            data-variant-table-property-option="{{ variantIsVariantsTableOption.id }}"
+                                    >
+
+                                        <td>{{ variant.productNumber }}</td>
+                                        {% for variantTableDimension in variantTableDimensionPropertiesToDisplay %}
+                                            <td>
+                                                {% if variantTableDimension is same as(variantTableDimensionPropertiesToDisplay.get('width')) %}
+                                                    <span class="variant-dimension-property">{% sw_icon 'property-width' style {'pack' : 'WebwirkungIcons'} %} {{ variantWidth }} {# TODO translations #}</span>
+                                                {% elseif variantTableDimension is same as(variantTableDimensionPropertiesToDisplay.get('height')) %}
+                                                    <span class="variant-dimension-property">{% sw_icon 'property-height' style {'pack' : 'WebwirkungIcons'} %} {{ variantHeight }} {# TODO translations #}</span>
+                                                {% elseif variantTableDimension is same as(variantTableDimensionPropertiesToDisplay.get('length')) %}
+                                                    <span class="variant-dimension-property">{% sw_icon 'property-length' style {'pack' : 'WebwirkungIcons'} %} {{ variantLength }} {# TODO translations #}</span>
+                                                {% elseif variantTableDimension is same as(variantTableDimensionPropertiesToDisplay.get('color')) %}
+                                                    {% if variantColor %}
+                                                        <div class="variant-color">
+                                                            <span class="variant-color--color"
+                                                                  style="background-color: {{ variantColor }}"></span>
+                                                        </div>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td>
+                                        {% endfor %}
+                                        {% for variantProperty in variantProperties %}
+                                            {% set propertyName = variantProperty.group.translated['name'] %}
+                                            {% set propertySluggedName = propertyName|wwSlug %}
+                                            {% set groupIconId = variantProperty.group.translated.customFields.ww_vibraplast_theme_property_group_icon ?? null %}
+                                            {% set groupIconMedia = wwMediaById(groupIconId, context.context) %}
+                                            <td>
+                                                {% if groupIconMedia %}
+                                                    <span class="variant-dimension-property variant-{{ propertySluggedName }}-property">
+                                                        <span class="icon icon-property-length">
+                                                            <img src="{{ groupIconMedia|sw_encode_media_url }}" alt=""
+                                                                 class="variant-table-property-icon" loading="lazy"
+                                                                 width="23" height="16"
+                                                                 style="vertical-align: middle; margin-right: 4px;"/>
+
+                                                        </span>
+                                                        {{ variantProperty.translated.name }}
+                                                    </span>
+                                                {% else %}
+                                                    <span class="variant-{{ propertySluggedName }}-property">
+                                                        {{ variantProperty.translated.name }}
+                                                    </span>
+                                                {% endif %}
+                                            </td>
+                                        {% endfor %}
+                                        <td>
+                                            {% sw_include '@Storefront/storefront/component/product/variants-buy-table-price.html.twig' with {
+                                                variantPrice: variant.calculatedPrice
+                                            } %}
+                                        </td>
+                                        <td>
+                                            <div class="dropdown variant-bulk-price-dropdown">
+                                                <button class="dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton1"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                    {% sw_icon 'bulk-price' style {'pack' : 'WebwirkungIcons'} %}
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    {{ wwGetBulkPriceText(variant, context)|trans }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        {% if hasDeliveryInfo %}
+                                            <td class="delivery-info-cell">
+                                                {% sw_include '@Storefront/storefront/component/delivery-information.html.twig' with {
+                                                    variantProduct: variant
+                                                } %}
+                                            </td>
+                                        {% endif %}
+                                        <td>
+                                            <div class="variant-quantity-form">
+                                                <form
+                                                        id="productDetailPageBuyProductForm-{{ variant.id }}"
+                                                        action="{{ formAction }}"
+                                                        method="post"
+                                                        class="buy-widget"
+                                                        data-add-to-cart="true"><input
+                                                            type="number"
+                                                            name="lineItems[{{ variant.id }}][quantity]"
+                                                            class="form-control"
+                                                            min="{{ variant.minPurchase }}"
+                                                            max="{{ variant.calculatedMaxPurchase }}"
+                                                            step="{{ variant.purchaseSteps }}"
+                                                            value="{{ variant.minPurchase }}"
+                                                            aria-label="{{ "component.product.quantitySelect.label"|trans|striptags }}"
+                                                    />
+                                                    <input type="hidden"
+                                                           name="product-number"
+                                                           value="{{ variant.productNumber }}">
+                                                </form>
+                                                {% set computed = wwComputedQuantityUnit(variant, context) %}
+                                                {% if computed and computed.unitHtml %}
+                                                    <div class="variant-quantity-container">
+                                                        <span class="variant-quantity-calculated"
+                                                              data-initial-quantity="{{ computed.quantity }}">{{ computed.quantity|round(2) }}</span>{{ computed.unitHtml|raw }}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input form="productDetailPageBuyProductForm-{{ variant.id }}"
+                                                   type="hidden"
+                                                   name="redirectTo"
+                                                   value="frontend.cart.offcanvas">
+                                            <input form="productDetailPageBuyProductForm-{{ variant.id }}"
+                                                   type="hidden"
+                                                   name="redirectParameters"
+                                                   data-redirect-parameters="true"
+                                                   value='{"productId": "{{ variant.id }}"}'>
+                                            <input form="productDetailPageBuyProductForm-{{ variant.id }}"
+                                                   type="hidden"
+                                                   name="lineItems[{{ variant.id }}][id]"
+                                                   value="{{ variant.id }}">
+                                            <input form="productDetailPageBuyProductForm-{{ variant.id }}"
+                                                   type="hidden"
+                                                   name="lineItems[{{ variant.id }}][type]"
+                                                   value="product">
+                                            <input form="productDetailPageBuyProductForm-{{ variant.id }}"
+                                                   type="hidden"
+                                                   name="lineItems[{{ variant.id }}][referencedId]"
+                                                   value="{{ variant.id }}">
+                                            <input form="productDetailPageBuyProductForm-{{ variant.id }}"
+                                                   type="hidden"
+                                                   name="lineItems[{{ variant.id }}][stackable]"
+                                                   value="1">
+                                            <input form="productDetailPageBuyProductForm-{{ variant.id }}"
+                                                   type="hidden"
+                                                   name="lineItems[{{ variant.id }}][removable]"
+                                                   value="1">
+                                            <input form="productDetailPageBuyProductForm-{{ variant.id }}"
+                                                   type="hidden"
+                                                   name="product-name"
+                                                   value="{{ variant.translated.name }}">
+                                            <input form="productDetailPageBuyProductForm-{{ variant.id }}"
+                                                   type="hidden"
+                                                   name="brand-name"
+                                                   value="{{ variant.manufacturer.getName() }}">
+                                            <button form="productDetailPageBuyProductForm-{{ variant.id }}"
+                                                    class="btn btn-primary btn-sm btn-buy"
+                                                    title="{{ "detail.addProduct"|trans|striptags }}"
+                                                    aria-label="{{ "detail.addProduct"|trans|striptags }}">
+                                                {% sw_icon 'cart' style {'pack' : 'WebwirkungIcons'} %}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="product-detail-buy-table-no-variants d-none">
+                            {% sw_icon 'search' style {'pack' : 'WebwirkungIcons'} %}
+                            <b>{{ 'product.detail.variant-configurator.no-variants.title'|trans }}</b>
+                            <p>{{ 'product.detail.variant-configurator.no-variants.text'|trans }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% if data.hasCustomProductVariants %}
+            {% set options = {
+                endpoint: path('frontend.variant.custom-configurator', { productId: data.product.id }),
+            } %}
+            <div class="variant-configurator d-none" data-variant-configurator-wrapper
+                 data-variant-configurator-wrapper-options="{{ options|json_encode }}">
+
+                <div class="variant-configurator-wrapper">
+
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

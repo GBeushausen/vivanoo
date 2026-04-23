@@ -1,0 +1,59 @@
+.top-bar {
+  height: 44px;
+  color: $white;
+  background-color: $sw-color-brand-secondary;
+  a, p {
+    color: $white;
+    @extend .text-small;
+    font-weight: 500;
+  }
+
+  .d-flex {
+    justify-content: end;
+  }
+
+  // Service Navigation
+  .header-service-menu {
+    &-item {
+      float: left;
+    }
+    &-link {
+      display: inline-block;
+      padding: 0 20px;
+      font-weight: 500;
+      line-height: 44px;
+      @extend .text-small;
+    }
+  }
+
+  // Language
+  .languages-menu {
+    button.btn {
+      padding: 0 20px;
+      color: $white;
+      line-height: 44px;
+      &:focus,
+      &:active,
+      &.show {
+        border: 0;
+        outline: 0;
+      }
+      &.show {
+
+      }
+      .top-bar-nav-text {
+        display: none;
+      }
+    }
+
+  }
+}
+.language-flag {
+  border: 0;
+}
+.language-flag.country-fr {
+  background-image: url('/bundles/webwirkungvibraplasttheme/img/french.svg');
+}
+.language-flag.country-ch {
+  background-image: url('/bundles/webwirkungvibraplasttheme/img/german.svg');
+}

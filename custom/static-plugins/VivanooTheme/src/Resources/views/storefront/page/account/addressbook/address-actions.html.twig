@@ -1,0 +1,27 @@
+{% sw_extends '@Storefront/storefront/page/account/addressbook/address-actions.html.twig' %}
+
+{% block page_account_address_actions_update %}
+    <div class="col-auto">
+        <a href="{{ path('frontend.account.address.edit.page', {'addressId': address.id}) }}"
+           title="{{ "account.addressesContentItemActionEdit"|trans|striptags }}"
+           class="btn btn-edit btn-sm">
+            {% sw_icon 'edit' style {'pack' : 'WebwirkungIcons'} %} {{ "account.addressesContentItemActionEdit"|trans|sw_sanitize }}
+        </a>
+    </div>
+{% endblock %}
+
+{% block page_account_address_actions_delete %}
+    {% if defaultShippingAddress.id != address.id and defaultBillingAddress.id != address.id %}
+        <div class="col-auto">
+            <form action="{{ path('frontend.account.address.delete', {'addressId': address.id}) }}"
+                  class="address-action-delete"
+                  method="post">
+                <button type="submit"
+                        class="btn btn-edit btn-sm"
+                        title="{{ "account.addressesContentItemActionDelete"|trans|striptags }}">
+                    {% sw_icon 'trash' style {'pack' : 'WebwirkungIcons'} %} {{ "account.addressesContentItemActionDelete"|trans|sw_sanitize }}
+                </button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

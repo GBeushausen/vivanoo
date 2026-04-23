@@ -1,0 +1,54 @@
+.table-of-contents {
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+  &.sticky {
+    position: fixed;
+    top: 0;
+    width: 260px; /* Adjust based on your layout */
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+
+  &-label {
+    display: block;
+    margin-bottom: 12px;
+    padding-top: 8px;
+    @extend .text-small;
+    color: $text-secondary;
+  }
+
+  &-list {
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 0 !important;
+      list-style: none;
+      &:before {
+        display: none !important;
+      }
+      a {
+        display: block;
+        margin-bottom: 8px;
+        padding: 10px 16px;
+        color: $sw-headline-color;
+        font-weight: 500;
+        border-radius: $border-radius-small;
+        transition: background-color 0.3s ease-in-out;
+        @extend .text-small;
+
+        &:hover,
+        &:active {
+          text-decoration: none;
+          background: $border-dark;
+        }
+      }
+      &.active {
+        a {
+          text-decoration: none;
+          background: $border-dark;
+        }
+      }
+    }
+  }
+}

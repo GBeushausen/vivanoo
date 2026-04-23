@@ -1,0 +1,16 @@
+{% block block_hero_header %}
+    {% set title = block.slots.getSlot('title') %}
+    {% set text = block.slots.getSlot('text') %}
+    <div class="intro-teaser row">
+        <div class="col-lg-5">
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ title.type ~ ".html.twig" ignore missing with {
+                element: title
+            } %}
+        </div>
+        <div class="col-lg-6 offset-lg-1">
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ text.type ~ ".html.twig" ignore missing with {
+                element: text
+            }  %}
+        </div>
+    </div>
+{% endblock %}

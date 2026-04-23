@@ -1229,6 +1229,29 @@
             "styleFiles": []
         }
     },
+    "VivanooTheme": {
+        "basePath": "vendor\/vivanoo\/theme\/\/src\/",
+        "views": [
+            "Resources\/views"
+        ],
+        "technicalName": "vivanoo-theme",
+        "isTheme": true,
+        "administration": {
+            "path": "Resources\/app\/administration\/src",
+            "entryFilePath": "Resources\/app\/administration\/src\/main.js",
+            "webpack": null
+        },
+        "storefront": {
+            "path": "Resources\/app\/storefront\/src",
+            "entryFilePath": "Resources\/app\/storefront\/src\/main.js",
+            "webpack": null,
+            "styleFiles": [
+                "vendor\/vivanoo\/theme\/src\/Resources\/app\/storefront\/src\/scss\/overrides.scss",
+                "vendor\/vivanoo\/theme\/src\/Resources\/@Storefront",
+                "vendor\/vivanoo\/theme\/src\/Resources\/app\/storefront\/src\/scss\/base.scss"
+            ]
+        }
+    },
     "SwagGmvReporting": {
         "basePath": "vendor\/composer\/..\/store.shopware.com\/swaggmvreporting\/",
         "views": [

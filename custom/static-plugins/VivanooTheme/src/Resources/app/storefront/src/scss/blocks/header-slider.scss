@@ -1,0 +1,112 @@
+.base-slider {
+  padding-bottom: 30px;
+  button[data-action="start"],
+  button[data-action="stop"] {
+    display: none;
+  }
+  .tns-nav {
+    bottom: 3px;
+    margin: 0;
+
+    button {
+      width: 4px;
+      height: 4px;
+      padding: 4px;
+      background-color: $secondary-100;
+      &.tns-nav-active {
+        background-color: $sw-color-brand-secondary;
+      }
+    }
+  }
+}
+
+.header-slider {
+  .tns-controls {
+    display: none;
+  }
+
+  &-item {
+    min-height: 400px;
+    overflow: hidden;
+    text-align: center;
+    background: $gradient;
+    border-radius: $border-radius;
+
+    @include media-breakpoint-up(lg) {
+      text-align: left;
+    }
+  }
+  &-inner {
+    min-height: 400px;
+    padding: 0 20px;
+    @include media-breakpoint-up(lg) {
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+    }
+    @include media-breakpoint-up(xl) {
+      padding: 0 64px;
+    }
+  }
+  &-content,
+  &-image {
+    position: relative;
+  }
+  &-content {
+    padding: 20px 0;
+    &-label {
+      @extend .label-badge;
+      margin-bottom: 16px;
+    }
+
+    p {
+      @extend .text-medium;
+      margin-bottom: 36px;
+      color: $text-secondary;
+    }
+  }
+  &-image {
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    img {
+      max-width: 100%;
+    }
+  }
+
+  &-price {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    padding: 16px 20px;
+    background: $white;
+    border-radius: 8px;
+    box-shadow: 4px 8px 20px 0 rgba(33, 50, 70, 0.06);
+
+    .icon {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      width: 35px;
+      height: 35px;
+      color: $white;
+      > svg path {
+        fill: $white;
+      }
+    }
+    &-price {
+      display: block;
+      @extend .text-large;
+      font-weight: 600;
+    }
+    &-strikePrice {
+      @extend .text-small;
+      color: $text-secondary;
+      font-weight: 500;
+    }
+    &--bottom {
+      top: auto;
+      bottom: 137px;
+    }
+  }
+}

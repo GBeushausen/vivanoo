@@ -1,0 +1,13 @@
+<div style="font-family:arial; font-size:12px;">
+    <p>
+        Bonjour {{ employee.firstName }} {{ employee.lastName }},<br/>
+        <br/>
+        Vous avez été invité{% if customer.company|length > 0 %} par {{ customer.company }}{% endif %} à créer un compte de collaborateur sur {{ shopName }}.<br/>
+        <br/>
+        Cliquez sur le lien suivant pour définir un mot de passe et terminer le processus d'inscription :<br/>
+        <br/>
+        <a href="{{ inviteLink }}">Accepter l'invitation</a><br/>
+        <br/>
+        Ce lien est valable pour les 2 prochaines heures. Après cette période, une nouvelle invitation devra être demandée.<br/>
+    </p>
+</div>

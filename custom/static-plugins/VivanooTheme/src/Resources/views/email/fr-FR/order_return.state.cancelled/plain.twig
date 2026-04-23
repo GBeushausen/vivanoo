@@ -1,0 +1,9 @@
+{# Currently, it only support for the first return, will be changed in the future#}
+{% set return = order.extensions.returns|first %}
+{% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+
+Le statut de votre retour chez {{ salesChannel.translated.name }} (Numéro : {{ return.returnNumber }}) du {{ return.createdAt|format_datetime('medium', 'short', locale='fr-FR') }} a changé.
+Le nouveau statut est le suivant : {{ return.state.translated.name }}.
+
+Vous pouvez consulter à tout moment le statut actuel de vos articles retournés sur notre site web sous « Mon compte » - « Mes commandes » : {{ rawUrl('frontend.account.order.single.page', { 'deepLinkCode': order.deepLinkCode }, salesChannel.domains|first.url) }}
+Toutefois, si vous avez effectué vos achats sans inscription ou sans compte client, vous n'avez pas cette option.

@@ -1,0 +1,8 @@
+{% sw_extends '@Storefront/storefront/page/account/addressbook/create.html.twig' %}
+{% block page_account_address_action_button_send %}
+    <button type="submit"
+            class="address-form-submit btn btn-primary btn-sm"
+            title="{{ "account.addressSaveChange"|trans|striptags }}">
+        {{ "account.addressSaveChange"|trans|sw_sanitize }}
+    </button>
+{% endblock %}

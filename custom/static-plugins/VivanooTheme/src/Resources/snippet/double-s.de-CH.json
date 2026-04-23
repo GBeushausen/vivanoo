@@ -1,0 +1,47 @@
+{
+  "general": {
+    "closeMenu": "Menü schliessen",
+    "offcanvasCloseMenu": "Menü schliessen"
+  },
+  "account": {
+    "completePayment": "Zahlung abschliessen",
+    "editOrderUpdateButton": "Zahlung abschliessen",
+    "orderStatusActionCompletePayment": "Zahlung abschliessen",
+    "optInRegistrationAlert": "Vielen Dank für Ihre Anmeldung! Sie erhalten in Kürze eine Bestätigungs-E-Mail. Klicken Sie auf den darin enthaltenen Link, um die Anmeldung abzuschliessen.",
+    "doubleOptInMailConfirmationSuccessfully": "Vielen Dank für die Bestätigung Ihrer E-Mail-Adresse! Sie können Ihre Bestellung nun abschliessen.",
+    "newsletterSettings": "Ja, ich möchte regelmässig den kostenlosen Newsletter von %shopname% erhalten! (Abmeldung jederzeit möglich.)",
+    "doubleOptinAccountAlert": "Ihr Kundenkonto wurde noch nicht aktiviert. Wir haben Ihnen einen Aktivierungslink geschickt. Bitte prüfen Sie Ihr E-Mail-Postfach, um die Anmeldung abzuschliessen!",
+    "inactiveAccountAlert": "Ihr Kundenkonto wurde noch nicht aktiviert. Wir haben Ihnen einen Aktivierungslink geschickt. Bitte prüfen Sie Ihr E-Mail-Postfach, um die Anmeldung abzuschliessen!"
+  },
+  "address": {
+    "streetPlaceholder": "Strasse und Hausnummer eingeben ...",
+    "streetLabel": "Strasse und Hausnummer"
+  },
+  "checkout": {
+    "finishPaymentFailed": "Leider ist der Zahlungsprozess fehlgeschlagen. Bitte ändern Sie die Zahlungsart um Ihre Bestellung abzuschliessen. <a href=\"%editOrderUrl%\">Zahlung ändern</a>",
+    "confirmRevocationTerms": "Ja, ich möchte sofort Zugang zu dem digitalen Inhalt und weiss, dass mein Widerrufsrecht mit dem Zugang erlischt.",
+    "confirmHeader": "Bestellung abschliessen"
+  },
+  "listing": {
+    "filterRangeLowerBoundErrorMessage": "Der Mindest- und Höchstwert muss grösser oder gleich %lowerBound% sein."
+  },
+  "newsletter": {
+    "subscriptionPersistedSuccess": "Sie haben gerade unseren Newsletter abonniert. Um die Registrierung abzuschliessen, suchen Sie in Ihrer E-Mail-Box nach unserer Bestätigungsmail und klicken Sie auf den darin enthaltenen Link.",
+    "info": "Abonnieren Sie jetzt einfach unseren regelmässig erscheinenden Newsletter und Sie werden stets als Erster über neue Produkte und Angebote informiert. Der Newsletter ist natürlich jederzeit über einen Link in der E-Mail oder dieser Seite wieder abbestellbar."
+  },
+  "footer": {
+    "newsletter": "Abonnieren Sie jetzt unseren regelmässig erscheinenden Newsletter, um rechtzeitig über neue Produkte und Angebote informiert zu werden."
+  },
+  "component": {
+    "cms": {
+      "defaultMedia": {
+        "preview_plant_large": {
+          "alt": "Sukkulente in weissem Topf vor hellblauem Hintergrund"
+        },
+        "preview_plant_small": {
+          "alt": "Sukkulente in weissem Topf vor hellblauem Hintergrund"
+        }
+      }
+    }
+  }
+}

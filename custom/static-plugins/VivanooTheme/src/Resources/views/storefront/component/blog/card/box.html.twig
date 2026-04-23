@@ -1,0 +1,76 @@
+{% sw_extends '@SasBlogModule/storefront/component/blog/card/box.html.twig' %}
+{% block sas_blog_card %}
+    <article class="card blog-card">
+        {% block sas_blog_card_teaser_image %}
+            {% if element.config.hideImage.value === false || element.config.hideImage.value === null %}
+                {{ parent() }}
+            {% endif %}
+        {% endblock %}
+        {% block sas_blog_card_body %}
+            <div class="card-body{% if element.config.showTeaser.value === true %} has-teaser{% endif %}">
+                <div class="d-flex flex-column">
+                    {% block sas_blog_card_title_date %}
+                        {% if element.config.showDate.value === true %}
+                            <p class="blog-date">
+                                <small>{{ article.publishedAt|format_date('short', locale=app.request.locale) }}</small>
+                            </p>
+                        {% else %}
+                            {% set hasLevelTwo = false %}
+                            {% for category in article.blogCategories %}
+                                {% if category.level == 2 %}
+                                    {% set hasLevelTwo = true %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if hasLevelTwo %}
+                                <div class="blog-badges">
+                                    {% for category in article.blogCategories %}
+                                        {% if category.level == 2 %}
+                                            <span class="badge badge-category">
+                                                {{ category.translated.name }}
+                                            </span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <p class="blog-date">
+                                    <small>{{ article.publishedAt|format_date('short', locale=app.request.locale) }}</small>
+                                </p>
+                            {% endif %}
+                        {% endif %}
+                    {% endblock %}
+                    {% block sas_blog_card_title %}
+                        <h2 class="card-title blog-title">
+                            {% block sas_blog_card_title_link %}
+                                <a href="{{ seoUrl('sas.frontend.blog.detail', { articleId: article.id }) }}"
+                                   title="{{ article.translated.title }}"
+                                   class="text-decoration-none">
+                                    {{ article.translated.title }}
+                                </a>
+                            {% endblock %}
+                        </h2>
+                    {% endblock %}
+                </div>
+                {% block sas_blog_card_teaser %}
+                    {% if element.config.showTeaser.value === true %}
+                        <p class="card-text font-size-small mb-0">{{ article.translated.teaser }}</p>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block sas_blog_card_footer %}
+        <div class="card-footer">
+            {% block sas_blog_card_link %}
+                <a href="{{ seoUrl('sas.frontend.blog.detail', {'articleId': article.id}) }}"
+                   title="{{ article.translated.title }}"
+                   class="btn btn-link">
+                    {{ 'blog.listview.button'|trans }}
+                </a>
+            {% endblock %}
+            {% block sas_blog_card_footer_author %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+        {% endblock %}
+    </article>
+{% endblock %}

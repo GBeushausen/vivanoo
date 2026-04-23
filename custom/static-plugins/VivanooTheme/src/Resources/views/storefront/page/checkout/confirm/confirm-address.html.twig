@@ -1,0 +1,23 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/confirm-address.html.twig' %}
+
+{% block page_checkout_confirm_address_shipping_actions_link %}
+    <a href="{{ path('frontend.account.address.edit.page', {'addressId': shippingAddress.id}) }}"
+       title="{{ "account.overviewChangeShipping"|trans|striptags }}"
+       class="btn btn-edit"
+       data-address-editor="true"
+            {# ludtwig-ignore html-string-quotation #}
+       data-address-editor-options='{{ addressEditorOptions|json_encode }}'>
+        {% sw_icon 'edit' style {'pack' : 'WebwirkungIcons'} %} {{ "account.overviewChangeShipping"|trans|sw_sanitize }}
+    </a>
+{% endblock %}
+
+{% block page_checkout_confirm_address_billing_actions_link %}
+    <a href="{{ path('frontend.account.address.edit.page', {'addressId': billingAddress.id}) }}"
+       title="{{ "account.overviewChangeBilling"|trans|striptags }}"
+       class="btn btn-edit"
+       data-address-editor="true"
+            {# ludtwig-ignore html-string-quotation #}
+       data-address-editor-options='{{ addressEditorOptions|json_encode }}'>
+        {% sw_icon 'edit' style {'pack' : 'WebwirkungIcons'} %} {{ "account.overviewChangeBilling"|trans|sw_sanitize }}
+    </a>
+{% endblock %}

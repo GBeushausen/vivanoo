@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-weight: 400;
+  font-size: 16px;
+  font-family: $sw-font-family-base;
+  line-height: 24px;
+}
+
+b, strong {
+  font-weight: 700;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+// Bold: 700
+// Semi-bold: 600
+// Medium: 500
+// Regular: 400
+
+
+h1 {
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 44px;
+  @include media-breakpoint-up(md) {
+    font-size: 48px;
+    line-height: 64px;
+  }
+  @include media-breakpoint-down(xl) {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+h2 {
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+  @include media-breakpoint-up(md) {
+    font-size: 44px;
+    line-height: 60px;
+  }
+}
+
+h3 {
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  @include media-breakpoint-up(md) {
+    font-size: 32px;
+    line-height: 44px;
+  }
+}
+
+h4 {
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  @include media-breakpoint-up(md) {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+h5 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+h6 {
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+
+// Body texts
+.text-large {
+  font-size: 16px;
+  line-height: 24px;
+  @include media-breakpoint-up(lg) {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.text-medium {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.32px;
+  @include media-breakpoint-up(lg) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.text-small {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+// Caption texts
+.caption {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.content-main {
+  ol {
+    padding-left: 18px;
+    li {
+      margin-bottom: 12px;
+      @extend .text-medium;
+    }
+  }
+  ul {
+    padding-left: 0;
+    li {
+      position: relative;
+      margin-bottom: 16px;
+      padding-left: 20px;
+      list-style: none;
+      &:before {
+        position: absolute;
+        top: 8px;
+        left: 0;
+        display: block;
+        width: 8px;
+        height: 8px;
+        margin-right: 8px;
+        background-image: url('/bundles/webwirkungvibraplasttheme/img/list.svg');
+        background-repeat: no-repeat;
+        background-size: 8px;
+        content: "";
+      }
+    }
+  }
+}

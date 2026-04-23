@@ -1,0 +1,6 @@
+{% set decidedBy = pendingOrder.decidedBy ?? pendingOrder.customer %}
+Hello {{ pendingOrder.employee.firstName }} {{ pendingOrder.employee.lastName }},
+
+Your Pending Order at {{ salesChannel.translated.name }} (Pending Order number: {{ pendingOrder.number }}) has been approved by {{ decidedBy.firstName }} {{ decidedBy.lastName }}.
+
+The order is not complete yet. Please return to the checkout and finish the process by making a payment.

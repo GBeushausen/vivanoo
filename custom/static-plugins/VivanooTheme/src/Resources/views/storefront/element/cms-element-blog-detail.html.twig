@@ -1,0 +1,115 @@
+{% sw_extends '@SasBlogModule/storefront/element/cms-element-blog-detail.html.twig' %}
+
+{% block page_product_detail_review_item_info_date %}
+    {% set sortedCategories = element.data.blogCategories|sort((a, b) => a.level <=> b.level) %}
+    {% set firstLevelDisplayed = false %}
+    {% set secondLevelDisplayed = false %}
+    {% block blog_breadcrumb %}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% for breadcrumbItem in sortedCategories %}
+                    {# Display the first level item #}
+                    {% if breadcrumbItem.level == 1 and not firstLevelDisplayed %}
+                        <li class="breadcrumb-item">
+                            <span class="breadcrumb-title">{{ breadcrumbItem.translated.name }}</span>
+                        </li>
+                        <div class="breadcrumb-placeholder">
+                            {% sw_icon 'breadcrumb-arrow' style {'pack' : 'WebwirkungIcons'} %}
+                        </div>
+                        {% set firstLevelDisplayed = true %}
+                            {# Continue to the next iteration to possibly add the divider immediately #}
+                        {% continue %}
+                    {% endif %}
+
+                    {# Display the first item of the second level #}
+                    {% if breadcrumbItem.level == 2 and not secondLevelDisplayed %}
+                        <li class="breadcrumb-item">
+                            <span class="breadcrumb-title">{{ breadcrumbItem.translated.name }}</span>
+                        </li>
+                        <div class="breadcrumb-placeholder">
+                            {% sw_icon 'breadcrumb-arrow' style {'pack' : 'WebwirkungIcons'} %}
+                        </div>
+                        {% set secondLevelDisplayed = true %}
+                        {# Assuming no further items are needed, break is omitted as it's not supported in Twig #}
+                    {% endif %}
+                {% endfor %}
+
+                {# Add the current blog post title as the last item #}
+                <li class="breadcrumb-item active" aria-current="page">
+                    <span class="breadcrumb-title">{{ element.data.translated.title }}</span>
+                </li>
+            </ol>
+        </nav>
+    {% endblock %}
+    {% if element.data.blogCategories is defined %}
+        <div class="blog-badges blog-detail">
+            {% for category in element.data.blogCategories %}
+                {% if category.level == 2 %}
+                    <span class="badge badge-category">
+                        {{ category.translated.name }}
+                    </span>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+{#        Todo: Hide date when no second level category exists#}
+        <div class="col-12 sas-blog-detail-item-date">
+            <p><small>{{ element.data.publishedAt|format_date('short', locale=app.request.locale) }}</small></p>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+
+
+{% block sas_blog_detail_article_blocks %}
+    <div class="col-12 sas-blog-detail-article">
+        {% block sas_blog_detail_article_title %}
+            {{ parent() }}
+        {% endblock %}
+        {% block sas_blog_detail_article_teaser_image %}
+            {{ parent() }}
+        {% endblock %}
+        {% block sas_blog_detail_article_meta %}
+            {% if element.data.detailTeaserImage %}
+                <div class="sas-blog-detail-article-meta">
+                    <div class="row">
+                        <div class="col-6 sas-blog-detail-item-date">
+                            <span class="sas-blog-detail-article-meta-label">Veröffentlicht</span>
+                            {{ element.data.publishedAt|format_date('long', locale=app.request.locale) }}
+                        </div>
+                        <div class="col-6 sas-blog-detail-article-author">
+                            <span class="sas-blog-detail-article-meta-label">Geschrieben von</span>
+
+                            {% block sas_blog_detail_article_meta_author %}
+                                {% if element.data.blogAuthor %}
+                                    {% sw_include '@Storefront/storefront/component/blog/_partials/_block_author.html.twig' with {
+                                        author: element.data.blogAuthor
+                                    } %}
+                                {% endif %}
+                            {% endblock %}
+                            {% block sas_blog_detail_article_meta_categories %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock %}
+        {% block sas_blog_detail_article_blocks_content %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+
+    {% block sas_blog_detail_article_blocks_cms %}
+        {% if element.data.cmsPage %}
+            <div class="col-12 sas-blog-detail-cms">
+                {% set cmsPageClasses = ('cms-page ' ~ element.data.cmsPage.cssClass|striptags)|trim %}
+                <div class="{{ cmsPageClasses }}">
+                    {% block page_content_blocks %}
+                        {% sw_include "@Storefront/storefront/page/content/detail.html.twig" with {'cmsPage': element.data.cmsPage} %}
+                    {% endblock %}
+                </div>
+            </div>
+        {% endif %}
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/component/line-item/line-item.html.twig' %}
+
+{% block component_line_item_type_include %}
+    {% set isCustomProduct = lineItem.type == constant('Webwirkung\\VibraplastTheme\\Checkout\\Cart\\CustomProductLineItemFactory::CUSTOM_PRODUCT_LINE_ITEM_TYPE') %}
+    {% if isCustomProduct %}
+        {% sw_include '@WebwirkungVibraplastTheme/storefront/component/line-item/type/custom-product-variant.html.twig' %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+
+{% endblock %}

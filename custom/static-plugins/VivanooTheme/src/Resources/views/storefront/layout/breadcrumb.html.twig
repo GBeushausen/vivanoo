@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/layout/breadcrumb.html.twig' %}
+{% block layout_breadcrumb_placeholder %}
+    {% if key != breadcrumbKeys|last %}
+        <div class="breadcrumb-placeholder">
+            {% sw_icon 'breadcrumb-arrow' style {'pack' : 'WebwirkungIcons'} %}
+        </div>
+    {% endif %}
+{% endblock %}
+{% block layout_breadcrumb_list %}
+    {% if breadcrumbCategories|length > 1 %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,56 @@
+{% block block_category_listing %}
+    {% set left = block.slots.getSlot('left') %}
+    {% set center = block.slots.getSlot('center') %}
+    {% set right = block.slots.getSlot('right') %}
+    {% set baseSliderOptions = {
+        slider: {
+            navPosition: 'bottom',
+            speed: 500,
+            items: 1,
+            nav: true,
+            controls: true,
+            autoHeight: true,
+            edgePadding: 0,
+            autoplay: true,
+            gutter: 20,
+            responsive: {
+                md: {
+                    items: 1,
+                },
+                lg: {
+                    items: 3,
+                },
+                xl: {
+                    items: 3,
+                },
+                xxl: {
+                    items: 3,
+                }
+            }
+        }
+    } %}
+    <div class="icon-teaser-wrapper icon-teaser-three-column">
+        <div class="row">
+            <div class="base-slider icon-teaser-slider" data-base-slider="true"
+                 data-base-slider-options="{{ baseSliderOptions|json_encode }}">
+                <div class="icon-teaser-slider-container {% if element.config.color.value === true %} color-black{% endif %} slider-height-{{ element.config.size.value }}" data-base-slider-container="true">
+                    <div class="col-lg-4">
+                        {% sw_include "@Storefront/storefront/element/cms-element-" ~ left.type ~ ".html.twig" ignore missing with {
+                            element: left
+                        }  %}
+                    </div>
+                    <div class="col-lg-4">
+                        {% sw_include "@Storefront/storefront/element/cms-element-" ~ center.type ~ ".html.twig" ignore missing with {
+                            element: center
+                        }  %}
+                    </div>
+                    <div class="col-lg-4">
+                        {% sw_include "@Storefront/storefront/element/cms-element-" ~ right.type ~ ".html.twig" ignore missing with {
+                            element: right
+                        }  %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

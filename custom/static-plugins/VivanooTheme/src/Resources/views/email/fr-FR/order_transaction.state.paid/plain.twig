@@ -1,0 +1,9 @@
+{% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ ' ' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+
+Le statut de paiement de votre commande chez {{ salesChannel.translated.name }} (numéro : {{ order.orderNumber }}) du {{ order.orderDateTime|format_datetime('medium', 'short', locale='fr-FR') }} a changé !
+
+La commande a maintenant le statut de paiement suivant : {{ order.transactions.first.stateMachineState.translated.name }}.
+
+Vous pouvez consulter le statut actuel de votre commande à tout moment sur notre site web dans la rubrique « Mon compte » - « Mes commandes » : {{ rawUrl('frontend.account.order.single.page', { 'deepLinkCode': order.deepLinkCode }, salesChannel.domains|first.url) }}
+
+Toutefois, si vous avez choisi d'acheter sans vous inscrire, c'est-à-dire sans créer de compte client, cette option n'est pas disponible.

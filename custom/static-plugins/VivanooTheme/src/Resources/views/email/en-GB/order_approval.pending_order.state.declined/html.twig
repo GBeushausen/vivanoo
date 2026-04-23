@@ -1,0 +1,15 @@
+<div style="font-family:arial; font-size:12px;">
+    <br/>
+    {% set decidedBy = pendingOrder.decidedBy ?? pendingOrder.customer %}
+    <p>
+        Hello {{ pendingOrder.employee.firstName }} {{ pendingOrder.employee.lastName }},<br>
+        <br>
+        Your Pending Order at {{ salesChannel.translated.name }} (Pending Order number: <a href="{{ rawUrl('frontend.employee.pending-order.detail.page', { 'pendingId': pendingOrder.id }, salesChannel.domains|first.url) }}"> {{ pendingOrder.number }} </a>
+        ) has been declined by {{ decidedBy.firstName }} {{ decidedBy.lastName }}.
+        {% if pendingOrder.reason %}
+            <br>
+            <br>
+            <strong>Comment:</strong> {{ pendingOrder.reason }}
+        {% endif %}
+    </p>
+</div>

@@ -1,0 +1,125 @@
+{% sw_extends '@Storefront/storefront/component/line-item/type/product.html.twig' %}
+
+{% block component_line_item_type_product %}
+    <div class="{{ lineItemClasses }}">
+        <div class="row line-item-row">
+            {% block component_line_item_type_product_col_info %}
+                {% block component_line_item_product_number %}
+                    <div class="line-item-article-number col-md-1">
+                        <div class="line-item-ordernumber line-item-product-number">
+                            {{ lineItem.payload.productNumber }}
+                        </div>
+                    </div>
+                {% endblock %}
+                    <div class="line-item-info col-md-6">
+                        {% set showLineItemModal = controllerAction is same as('confirmPage') %}
+                        {% block component_line_item_type_product_details %}
+                            <div class="line-item-info-grid">
+                                <div class="line-item-details-image">
+                                    {% if nestingLevel < 1 %}
+                                        {% block component_line_item_type_product_image %}
+                                            {{ parent() }}
+                                        {% endblock %}
+                                    {% endif %}
+                                </div>
+                                <div class="line-item-details-info">
+                                    {% block component_line_item_type_product_label %}
+                                        {{ parent() }}
+                                    {% endblock %}
+                                    {% block component_line_item_type_product_variant_characteristics_wrapper %}
+                                        {% if lineItem.payload.options is not empty %}
+                                            {% block component_line_item_type_product_variant_characteristics %}
+                                                {{ parent() }}
+                                            {% endblock %}
+                                        {% endif %}
+                                    {% endblock %}
+
+                                </div>
+                            </div>
+                            <div class="line-item-details-footer">
+                                {% block component_line_item_type_product_color %}
+                                    {% set colorPropertyKey = config('WebwirkungVibraplastTheme.config.colorProperty') %}
+                                    {% set colorProperty = lineItem.payload.properties[colorPropertyKey] %}
+                                    {% if colorProperty %}
+                                        <div class="line-item-color">
+                                            <span class="line-item-details-footer-label">
+                                                {{ colorProperty.label }}
+                                            </span>
+                                            <div class="variant-color-wrapper">
+                                                <div class="variant-color">
+                                                    <span class="variant-color--color" style="background-color: {{ colorProperty.value }}"></span>
+                                                </div>
+                                                <span class="variant-color--name">{{ colorProperty.name }}</span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endblock %}
+                                {% if config('core.cart.showDeliveryTime') %}
+                                    {% block component_line_item_type_product_delivery_date %}
+                                        {{ parent() }}
+                                    {% endblock %}
+                                {% endif %}
+                                {% if lineItem.price.referencePrice.price %}
+                                    {% block component_line_item_type_product_col_reference_price %}
+                                        <div class="line-item-unit-price">
+                                            <div class="line-item-reference-price-label line-item-details-footer-label">
+                                                {{ 'cart.line-item.footer.reference-price'|trans|sw_sanitize }}
+                                            </div>
+                                            {{ lineItem.price.referencePrice.price|currency }}{{ "general.star"|trans|sw_sanitize }}/{% if lineItem.price.referencePrice.referenceUnit > 1 %}{{ lineItem.price.referencePrice.referenceUnit }}&nbsp;{% endif %}{{ lineItem.price.referencePrice.unitName }}
+                                        </div>
+                                    {% endblock %}
+                                {% endif %}
+                                {% block component_line_item_type_product_col_unit_price %}
+                                    <div class="line-item-unit-price{% if lineItem.quantity > 1 %} is-shown{% endif %}">
+                                        <span class="line-item-details-footer-label">
+                                            {{ "cart.line-item.footer.unit-price"|trans|sw_sanitize }}
+                                        </span>
+                                        {% sw_include '@Storefront/storefront/component/line-item/element/unit-price.html.twig' %}
+                                    </div>
+                                {% endblock %}
+                                {% block component_line_item_type_product_col_bulk_price %}
+                                    <div class="dropdown variant-bulk-price-dropdown">
+                                        <button class="dropdown-toggle" type="button"
+                                                id="dropdownMenuButton1"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                            {% sw_icon 'bulk-price' style {'pack' : 'WebwirkungIcons'} %}
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            {{ 'product.detail.variant-configurator.table.priceListContent'|trans }}
+                                        </div>
+                                    </div>
+                                {% endblock %}
+                                {% if config('core.cart.wishlistEnabled') %}
+                                    {% block component_line_item_type_product_wishlist %}
+                                        {{ parent() }}
+                                    {% endblock %}
+                                {% endif %}
+                            </div>
+                        {% endblock %}
+                    </div>
+            {% endblock %}
+
+            {% block component_line_item_type_product_col_quantity %}
+                <div class="line-item-quantity col-md-2">
+                    {% sw_include '@Storefront/storefront/component/line-item/element/quantity.html.twig' %}
+                </div>
+            {% endblock %}
+            {% block component_line_item_type_product_col_total_price %}
+                <div class="line-item-total-price line-item-price col-md-2">
+                    {% sw_include '@Storefront/storefront/component/line-item/element/total-price.html.twig' %}
+                </div>
+            {% endblock %}
+            {% if showRemoveButton %}
+                {% block component_line_item_type_product_col_remove %}
+                    {{ parent() }}
+                {% endblock %}
+            {% endif %}
+        </div>
+
+        {% if displayMode === 'order' %}
+            {% block component_line_item_type_product_downloads_table %}
+                {{ parent() }}
+            {% endblock %}
+        {% endif %}
+    </div>
+{% endblock %}

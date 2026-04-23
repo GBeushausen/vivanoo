@@ -1,0 +1,308 @@
+.is-ctl-checkout {
+  .content-main {
+    min-height: calc(100vh - 285px);
+    margin-top: 72px;
+  }
+}
+
+.is-ctl-checkout.is-act-confirmpage {
+  h1 {
+    word-wrap: normal;
+    overflow-wrap: normal;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    hyphens: none;
+  }
+  .checkout {
+    padding-top: 0;
+    .checkout-main {
+      @extend .offset-lg-0;
+      @extend .col-xl-6;
+    }
+    .checkout-aside {
+      @extend .col-xl-6;
+      margin-left: auto;
+    }
+    .checkout-additional {
+      @extend .offset-lg-0;
+      @extend .col-md-12;
+    }
+  }
+
+  .tab {
+    display: none;
+  }
+}
+
+h1.finish-header {
+  word-wrap: normal;
+  overflow-wrap: normal;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  hyphens: none;
+}
+
+.checkout-aside {
+  &-container {
+    padding: 32px;
+    background: $surface-overlay-light;
+    border-radius: $border-radius;
+
+    .line-item {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid $sw-border-color;
+      &-remove,
+      &-article-number,
+      &-details-footer,
+      &-details-characteristics,
+      .btn-minus,
+      .btn-plus {
+        display: none;
+      }
+      input[type="number"] {
+        padding: 0;
+        background: none;
+        pointer-events: none;
+      }
+      &-info {
+        min-width: 65%;
+      }
+      &-details {
+        &-image {
+          min-width: 84px;
+        }
+        &-info {
+          width: calc(100% - 84px);
+        }
+      }
+      &-total-price-value {
+        font-weight: 400;
+      }
+    }
+  }
+  // Hide checkout button until the last step
+  &-action {
+    display: none;
+
+    &.show {
+      display: block;
+      margin-bottom: 8px;
+      @include media-breakpoint-up(md) {
+        display: inline-block;
+        float: right;
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+// Step Shipping
+.confirm-shipping,
+.confirm-payment {
+  .card-title {
+    display: none;
+  }
+}
+.shipping-methods,
+.payment-methods {
+  .shipping-form-group,
+  .payment-form-group {
+    .shipping-method-radio,
+    .payment-method-radio {
+      display: flex;
+      gap: 16px;
+      padding: 24px;
+      border: 1px solid $sw-border-color;
+      border-radius: $border-radius;
+      cursor: pointer;
+
+      &:has(input:checked[type=radio]) {
+        border-color: $sw-color-brand-primary;
+      }
+
+      input {
+        margin-left: 0;
+        cursor: pointer;
+        &.form-check-input:checked[type=radio] {
+          background-size: 15px;
+        }
+      }
+      label {
+        cursor: pointer;
+
+        @extend .text-medium;
+        strong, b {
+          font-weight: 600;
+        }
+        p {
+          @extend .text-small;
+          color: $sw-headline-color;
+        }
+      }
+    }
+  }
+}
+
+// Step Overview
+.tab-card {
+  margin-bottom: 24px;
+  border-bottom: 1px solid $sw-border-color;
+
+  h5 {
+    margin-bottom: 16px;
+  }
+}
+
+// =====================
+// Step Navigation
+// =====================
+#stepNavigation {
+  display: flex;
+  margin-bottom: 32px;
+  padding: 40px 0;
+  border-bottom: 1px solid $sw-border-color;
+
+  .step {
+    position: relative;
+    flex-basis: 0;
+    flex-grow: 1;
+    padding: 0 7px;
+    color: $text-secondary;
+    font-weight: 600;
+    text-align: center;
+    @extend .text-medium;
+
+    @include media-breakpoint-down(md) {
+      padding: 0 10px;
+    }
+    &:after {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      width: 100%;
+      border-bottom: 2px solid $sw-border-color;
+      content: '';
+    }
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+      &:after {
+        display: none;
+      }
+    }
+    .step-title {
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
+    }
+    > span.step-number {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 40px;
+      margin: 0 auto 12px;
+      color: $text-secondary;
+      line-height: 36px;
+      text-align: center;
+      background: $white;
+      border: 2px solid $sw-border-color;
+      border-radius: 100%;
+      @extend .text-medium;
+    }
+    &.active {
+      color: $sw-headline-color;
+
+      &:after {
+        //border-color: $sw-color-brand-primary;
+      }
+
+      > span.step-number {
+        color: $white;
+        background-color: $sw-color-brand-primary;
+        border-color:  $sw-color-brand-primary;
+      }
+    }
+  }
+}
+
+// Todo: Checkout tos fix error message
+.is-act-confirmpage .is-validated.form-check-input[type=checkbox]:invalid + label {
+  color: $sw-color-danger;
+}
+
+.step-navigation-footer {
+  padding: 32px 8px 88px 8px;
+  //border-top: 1px solid $warmgrey-300;
+  background: $white;
+  .steps-controller {
+    display: flex;
+    flex-direction: column;
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      gap: 8px;
+      justify-content: end;
+    }
+    button {
+      width: 100%;
+      @include media-breakpoint-up(md) {
+        width: auto;
+      }
+    }
+    .step-navigation-prev {
+      order: 2;
+      @include media-breakpoint-up(md) {
+        order: 1;
+      }
+    }
+    .step-navigation-next {
+      order: 1;
+      margin-bottom: 8px;
+      @include media-breakpoint-up(md) {
+        order: 2;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Finish Page
+.is-act-finishpage {
+  .content-main {
+    margin-top: 0;
+    background-image: url("/bundles/webwirkungvibraplasttheme/img/bg-login-registration.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+  }
+  .container-main {
+    padding-bottom: 100px;
+  }
+  .finish-content {
+    margin-bottom: 64px;
+  }
+  .finish-address,
+  .finish-order-details {
+    > .row {
+      height: 100%;
+    }
+    .card {
+      height: 100%;
+      padding: 24px;
+      background: $white;
+
+    }
+    .col-sm-6 {
+      @include media-breakpoint-down(md) {
+        margin-bottom: 24px;
+      }
+    }
+  }
+  .checkout-aside-container,
+  .card.checkout-product-table {
+    padding: 24px;
+    background: $white;
+  }
+}

@@ -1,0 +1,50 @@
+{% block product_detail_tab_details %}
+    <div class="product-detail-tabs-content-technical-data row">
+        {% set technicalDataPropertySet = page.extensions['ww_property_groups'].get('TechnicalDataPropertySet') %}
+
+        {% if technicalDataPropertySet and technicalDataPropertySet.groups is not empty %}
+            <div class="product-detail-tabs-content-details--propertyset col-md-7">
+                {% set sortedGroups = technicalDataPropertySet.groups|sort((a, b) => a.position|default(999) <=> b.position|default(999)) %}
+                <div class="product-detail-tabs-content-details--propertyset-table table-responsive">
+                    <table class="table table-with-borders">
+                        <thead>
+                            <tr>
+                                <th>{{ 'product.detail.tabs.technical-data.table.data'|trans }}</th>
+                                <th>{{ 'product.detail.tabs.technical-data.table.norm'|trans }}</th>
+                                <th>{{ 'product.detail.tabs.technical-data.table.value'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for propertyGroup in sortedGroups %}
+                                {% set sortedProperties = propertyGroup.values|sort((a, b) => a.position|default(999) <=> b.position|default(999)) %}
+                                    <tr>
+                                        <td>{{ propertyGroup.name }}</td>
+                                        <td>
+                                            {% if propertyGroup.customFields.ww_vibraplast_theme_property_group_norm %}{{ propertyGroup.customFields.ww_vibraplast_theme_property_group_norm }}{% else %}-{% endif %}</td>
+                                        <td>
+                                            {% for propertyValue in sortedProperties %}
+                                                {{ propertyValue.name }}{% if propertyGroup.customFields.ww_vibraplast_theme_property_group_unit %} {{ ('product.detail.tabs.technical-data.table.' ~ propertyGroup.customFields.ww_vibraplast_theme_property_group_unit)|trans }}{% endif %}{% if not loop.last %}, {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+        {% if page.product.translated.customFields.ww_vibraplast_theme_product_technical_image %}
+            <div class="col-md-5">
+                {% set mediaCollectionBackground = searchMedia([page.product.translated.customFields.ww_vibraplast_theme_product_technical_image], context.context) %}
+                {% set technicalDataImage =  mediaCollectionBackground.elements|first %}
+                {% sw_thumbnails 'technical-data-image' with {
+                    media: technicalDataImage,
+                    attributes: {
+                        'alt': technicalDataImage.alt,
+                        'loading': 'lazy',
+                    }
+                } %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

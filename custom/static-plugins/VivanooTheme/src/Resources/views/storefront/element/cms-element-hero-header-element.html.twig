@@ -1,0 +1,45 @@
+{% block block_hero_header_element %}
+    {% set backgroundImage = null %}
+    {% if element.config.heroBackground.value %}
+        {% set mediaCollection = searchMedia([element.config.heroBackground.value], context.context) %}
+        {% set backgroundImage =  mediaCollection.elements|first %}
+    {% endif %}
+    <div class="hero-header" {% if backgroundImage is not null %}style="background-image: url({{ backgroundImage.url }}){% endif %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    {% if element.config.heroTitle.value %}
+                        <h1>{{ element.config.heroTitle.value }}</h1>
+                        <div class="hero-header-text intro-text">
+                            {{ element.config.heroText.value|raw }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-5">
+                    {% if element.config.heroImage.value is not null %}
+                        <div class="hero-header-image">
+                            {% set mediaCollection = searchMedia([element.config.heroImage.value], context.context) %}
+                            {% if mediaCollection|length > 0 %}
+                                {% set image =  mediaCollection.elements|first %}
+                                {% sw_thumbnails 'header-image' with {
+                                    media: image,
+                                    sizes: {
+                                        'xs': '680px',
+                                        'sm': '680px',
+                                        'md': '680px',
+                                        'lg': '1040px',
+                                        'xl': '1040px',
+                                    },
+                                    attributes: {
+                                        'alt': image.alt,
+                                        'loading': 'lazy',
+                                    }
+                                } %}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

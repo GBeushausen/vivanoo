@@ -1,0 +1,30 @@
+{% sw_extends '@WebwirkungProductDownloads/storefront/page/product-detail/index.html.twig' %}
+{% block page_product_detail_inner %}
+    {% block page_product_detail_content %}
+        {% sw_include '@Storefront/storefront/component/product/product-detail-intro.html.twig' %}
+    {% endblock %}
+    {{ block('page_product_detail_buy') }}
+
+    {% block page_product_detail_tabs %}
+        <div class="product-detail-tabs">
+            {% sw_include '@Storefront/storefront/page/product-detail/tabs.html.twig' %}
+        </div>
+    {% endblock %}
+
+
+    {% block page_product_detail_cross_selling %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}
+
+
+{% block page_product_detail_buy %}
+    {% set variantData = fetchVariantsTableData(page.product.parentId??page.product.id, context) %}
+    {% set productOnRequest = page.product.translated.customFields.ww_vibraplast_product_on_request %}
+    {% set shouldHideBuy = (productOnRequest == 'yes_not_purchasable') %}
+    {% if not shouldHideBuy and variantData.variants.elements %}
+        <div class="product-detail-buy">
+            {% sw_include '@WebwirkungVibraplastTheme/storefront/component/product/variants-buy-table.html.twig' with { data: variantData } %}
+        </div>
+    {% endif %}
+{% endblock %}

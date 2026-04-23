@@ -1,0 +1,13 @@
+<div style="font-family:arial; font-size:12px;">
+    <p>
+        Une nouvelle évaluation de produit a été soumise sur {{ salesChannel.translated.name }}.<br/>
+        <br/>
+        <strong>Titre :</strong> {{ review.title }}<br/>
+        <strong>Contenu :</strong><br/>
+        {{ review.content|nl2br }}<br/>
+        <br/>
+        <strong>Note :</strong> {{ review.points }}<br/>
+        <strong>Produit :</strong> {{ product.translated.name }} / {{ product.productNumber }}<br/>
+        <strong>Client :</strong> {{ review.externalEmail }} / {{ review.externalUser }}<br/>
+    </p>
+</div>

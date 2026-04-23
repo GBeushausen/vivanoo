@@ -1,0 +1,52 @@
+.double-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 0;
+  }
+
+  &--overlay {
+    position: absolute;
+    width: 117px;
+    height: 117px;
+    border: 4px solid $white;
+    border-radius: $border-radius-small;
+    box-shadow: 4px 8px 20px 0px rgba(33, 50, 70, 0.06);
+    @include media-breakpoint-up(lg) {
+      width: 186px;
+      height: 186px;
+      border: 6px solid $white;
+    }
+    img {
+      max-width: 100%;
+    }
+
+    &:first-child {
+      bottom: 23%;
+      left: 25%;
+      z-index: 10;
+      @include media-breakpoint-up(lg) {
+        bottom: 23%;
+        left: 25%;
+      }
+    }
+    &:nth-child(2) {
+      top: 23%;
+      right: 25%;
+      z-index: 1;
+      @include media-breakpoint-up(lg) {
+        top: 23%;
+        right: 25%;
+      }
+    }
+  }
+
+  &--background {
+    img {
+      max-width: 100%;
+    }
+  }
+}

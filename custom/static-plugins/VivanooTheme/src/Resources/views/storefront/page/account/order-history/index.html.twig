@@ -1,0 +1,30 @@
+{% sw_extends '@Storefront/storefront/page/account/order-history/index.html.twig' %}
+
+{% block page_account_orders_welcome_headline %}
+    <h3>{{ "account.ordersTitle"|trans|sw_sanitize }}</h3>
+{% endblock %}
+
+ {% block page_account_orders_overview %}
+     <div class="account-orders-overview">
+         <div class="account-order-table-header">
+             <div class="row flex-wrap d-none d-lg-flex">
+                 <div class="col-2">{{ "account.orderNumber"|trans|sw_sanitize }}</div>
+                 <div class="col-2">{{ "account.orderStatus"|trans|sw_sanitize }}</div>
+                 <div class="col-2">{{ "account.orderHeadline"|trans|sw_sanitize }}</div>
+                 <div class="col-2">{{ "account.orderDeliveryStatus"|trans|sw_sanitize }}</div>
+                 <div class="col-2">{{ "account.orderTotalPrice"|trans|sw_sanitize }}</div>
+                 <div class="col-2"></div>
+             </div>
+         </div>
+         {% block page_account_orders_table %}
+             {% block page_account_orders_table_body %}
+                 {% for order in page.orders %}
+                     <div class="order-table"
+                          data-order-detail-loader="true">
+                         {% sw_include '@Storefront/storefront/page/account/order-history/order-item.html.twig' %}
+                     </div>
+                 {% endfor %}
+             {% endblock %}
+         {% endblock %}
+     </div>
+ {% endblock %}

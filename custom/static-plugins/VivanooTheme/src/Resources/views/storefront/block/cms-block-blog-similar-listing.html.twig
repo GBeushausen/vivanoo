@@ -1,0 +1,4 @@
+{% block block_similar_listing %}
+    {% set element = block.slots.getSlot('listing') %}
+    {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+{% endblock %}

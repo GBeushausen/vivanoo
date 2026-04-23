@@ -1,0 +1,53 @@
+.alert {
+  margin-top: 15px;
+  padding: 16px;
+  color: $sw-headline-color;
+  border: 1px solid;
+  border-radius: 8px;
+  @extend .text-small;
+
+  .icon {
+    svg {
+      top: 0;
+    }
+  }
+
+  &.alert-success {
+    background-color: $success-background;
+    border-color: $success-border;
+  }
+  &.alert-info {
+    background-color: $info-background;
+    border-color: $sw-color-info;
+  }
+  &.alert-warning {
+    background-color: $warning-background;
+    border-color: $warning-border;
+  }
+  &.alert-danger {
+    background-color: $error-background;
+    border-color: $error-border;
+  }
+}
+
+.alert-has-icon .alert-content-container {
+  padding-left: 12px;
+}
+
+.badge {
+  &.invisible {
+    display: none;
+  }
+  .icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 3px;
+    > svg {
+      top: 3px;
+    }
+  }
+}
+
+.bg-grey {
+  background-color: $surface-overlay-dark;
+}

@@ -1,0 +1,61 @@
+{% block element_text_image_slider %}
+    {% set baseSliderOptions = {
+        slider: {
+            navPosition: 'bottom',
+            speed: 500,
+            nav: true,
+            controls: true,
+            autoHeight: false,
+            edgePadding: 0,
+            autoplay: true,
+            gutter: 0
+        }
+    } %}
+
+    <div class="cms-element-header-slider{% if element.config.verticalAlign.value %} has-vertical-alignment{% endif %}">
+        <div class="cms-element-alignment{% if element.config.verticalAlign.value == "center" %} align-self-center{% elseif config.verticalAlign.value == "flex-end" %} align-self-end{% else %} align-self-start{% endif %}">
+            <div class="base-slider header-slider" data-base-slider="true"
+                 data-base-slider-options="{{ baseSliderOptions|json_encode }}">
+                <div class="header-slider-container {% if element.config.color.value === true %} color-black{% endif %} slider-height-{{ element.config.size.value }}" data-base-slider-container="true">
+                    {% set slideIndex = 1 %}
+                    {% for slide in element.config.sliderItems.value %}
+                        {% if slide.backgroundMedia %}
+                            {% set mediaCollection = searchMedia([slide.backgroundMedia], context.context) %}
+                            {% set backgroundImage = mediaCollection|first %}
+                        {% endif %}
+                        <div class="header-slider-item">
+                            <div class="header-slider-inner">
+                                <div class="header-slider-content">
+                                    {% if slide.text %}
+                                        <span class="header-slider-content-label">
+                                            {{ slide.label }}
+                                        </span>
+                                        <div class="header-slider-content-text">
+                                            {{ slide.text|raw }}
+                                        </div>
+                                        {# Increment the slide index after processing each slide #}
+                                        {% set slideIndex = slideIndex + 1 %}
+                                    {% endif %}
+                                </div>
+                                <div class="header-slider-image" {% if slide.backgroundMedia %}style="background-image: url('{{ backgroundImage.url }}');"{% endif %}>
+                                    {% if slide.price %}
+                                        <div class="header-slider-price header-slider-price--{{ slide.pricePosition }}">
+                                            {% sw_icon 'discount' style {'pack' : 'WebwirkungIcons'} %}
+                                            <span class="header-slider-price-price">{{ slide.price }}</span>
+                                            {% if slide.strikePrice %}<span class="header-slider-price-strikePrice">{{ slide.strikePrice }}</span>{% endif %}
+                                        </div>
+                                    {% endif %}
+                                    {% if slide.overlayMedia %}
+                                        {% set mediaCollection = searchMedia([slide.overlayMedia], context.context) %}
+                                        {% set overlayImage = mediaCollection|first %}
+                                        <img src="{{ overlayImage.url }}" alt="{{ overlayImage.alt }}">
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

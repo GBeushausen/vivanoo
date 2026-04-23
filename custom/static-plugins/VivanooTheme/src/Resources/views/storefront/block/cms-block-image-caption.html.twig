@@ -1,0 +1,8 @@
+{% block block_image_caption %}
+    {% set element = block.slots.getSlot('content') %}
+    <div class="image-caption-wrapper">
+        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing with {
+            element: element
+        }  %}
+    </div>
+{% endblock %}

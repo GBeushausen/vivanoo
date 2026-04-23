@@ -1,0 +1,10 @@
+{% block element_label_text_buttons %}
+    <div class="label-text-buttons {% if element.config.alignment.value === 'center' %}label-text-buttons--center{% endif %}">
+        <div class="label-badge">
+            {{ element.config.label.value }}
+        </div>
+        <div class="long-text">
+            {{ element.config.longText.value|raw }}
+        </div>
+    </div>
+{% endblock %}

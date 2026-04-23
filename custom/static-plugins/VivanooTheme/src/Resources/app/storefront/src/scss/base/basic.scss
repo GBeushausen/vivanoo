@@ -1,0 +1,60 @@
+// Firefox display icon fix
+.icon {
+  display: inline-grid;
+}
+
+hr {
+  margin-top: 0;
+  border-color: $sw-border-color;
+  opacity: 1;
+}
+.label-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  color: $sw-text-color;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  background-color: $primary-100;
+  border-radius: 6px;
+}
+
+.cms-element-image .cms-image {
+  width: 100%;
+}
+
+blockquote {
+  padding: 16px 24px;
+  @extend .text-large;
+  font-weight: 600;
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 4px;
+    height: 100%;
+    background: $sw-color-brand-primary;
+    border-radius: 4px;
+    content: "";
+  }
+}
+
+.scroll-up-button {
+  .btn.btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    padding: 0;
+    border-radius: 100%;
+    .icon > svg {
+      top: 2px;
+      path, use {
+        fill: $white;
+      }
+    }
+  }
+}

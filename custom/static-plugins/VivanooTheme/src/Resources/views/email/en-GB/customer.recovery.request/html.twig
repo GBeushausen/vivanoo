@@ -1,0 +1,13 @@
+<div style="font-family:arial, sans-serif; font-size:12px;">
+    <h3>Hello {{ customerRecovery.customer.firstName }} {{ customerRecovery.customer.lastName }}</h3>
+    <p>
+        You have requested a new password for your {{ shopName }} account. Click on the following link to reset your password:<br/>
+        <br/>
+        {{ resetUrl }}
+        <br/>
+        This link is valid for the next 2 hours. If you do not wish to reset your password, ignore this e-mail. No changes will be made.<br/>
+        <br/>
+        Yours sincerely<br>
+        Your {{ shopName }} team
+    </p>
+</div>

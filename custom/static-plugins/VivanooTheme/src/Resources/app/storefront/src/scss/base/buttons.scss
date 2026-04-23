@@ -1,27 +1,169 @@
 .btn {
   &.btn-primary {
-    --bs-btn-bg: #0000B0;
-    --bs-btn-border-color: #0000B0;
-    --bs-btn-hover-bg: #00008D;
-    --bs-btn-hover-border-color: #00008D;
-    --bs-btn-active-bg: #00006A;
-    --bs-btn-active-border-color: #00006A;
-    --bs-btn-disabled-bg: #7070D8;
-    --bs-btn-disabled-border-color: #7070D8;
-  }
-  &.btn-secondary {
-    --bs-btn-bg: #ED1C24;
-    --bs-btn-border-color: #ED1C24;
-    --bs-btn-hover-bg: #C4151C;
-    --bs-btn-hover-border-color: #C4151C;
-    --bs-btn-active-bg: #9E1017;
-    --bs-btn-active-border-color: #9E1017;
-    --bs-btn-disabled-bg: #F47278;
-    --bs-btn-disabled-border-color: #F47278;
+    @extend .text-medium;
+    padding: 13px 40px;
+    color: $white;
+    font-weight: 600;
+    border-radius: $border-radius-small;
+    transition: all 0.3s ease;
+
+    &[disabled] {
+      background-color: $secondary-300;
+      border-color: $secondary-300;
+    }
+
+    &.btn-sm {
+      padding: 9px 25px;
+      @extend .text-small;
+    }
+    &.btn-md {
+      padding: 11px 40px;
+    }
 
     &:hover {
-      background-color: #C4151C;
-      border-color: #C4151C;
+      background-color: $primary-600;
+      border-color: $primary-600;
+    }
+
+    &:before {
+      position: relative;
+      top: 4px;
     }
   }
+  &.btn-secondary {
+    @extend .text-medium;
+    padding: 13px 40px;
+    font-weight: 600;
+    border-radius: $border-radius-small;
+    transition: all 0.3s ease;
+
+    &[disabled] {
+      background-color: $secondary-300;
+      border-color: $secondary-300;
+    }
+
+    &.btn-sm {
+      padding: 9px 25px;
+      @extend .text-small;
+
+      .icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 3px;
+        > svg {
+          top: 3px;
+        }
+      }
+    }
+    &.btn-md {
+      padding: 11px 40px;
+    }
+
+    &:hover {
+      background-color: $sw-color-brand-primary;
+      border-color: $sw-color-brand-primary;
+    }
+  }
+  &.btn-buy {
+    @extend .btn-secondary;
+  }
+
+  &.btn-link {
+    position: relative;
+    padding: 0;
+    @extend .text-small;
+    color: $sw-headline-color;
+    font-weight: 600;
+    &:before {
+      position: absolute;
+      bottom: -2px;
+      display: block;
+      width: 0;
+      border-bottom: 1px solid $sw-headline-color;
+      transition: width 0.3s ease;
+      content: '';
+    }
+    &:hover {
+      color: $sw-headline-color;
+      text-decoration: none;
+
+      &:before {
+        width: 100%;
+      }
+    }
+    &:after {
+      position: relative;
+      top: 4px;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+      background-image: url('/bundles/webwirkungvibraplasttheme/img/arrow-right.svg');
+      background-repeat: no-repeat;
+      background-size: 16px;
+      content: '';
+    }
+  }
+
+  &.btn-light {
+    border-radius: $border-radius-small;
+  }
+
+  &.btn-edit {
+    position: relative;
+    padding: 0;
+    @extend .text-small;
+    font-weight: 600;
+    border: 0;
+    .icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+
+      > svg {
+        top: 3px;
+      }
+    }
+    &:after {
+      position: absolute;
+      bottom: 0;
+      display: block;
+      width: 0;
+      height: 1px;
+      border-bottom: 1px solid $sw-headline-color;
+      transition: width 0.3s ease;
+      content: '';
+    }
+    &:hover {
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+  &.btn-request {
+    .icon {
+      width: 16px;
+      height: 16px;
+      > svg {
+        top: 2px;
+      }
+    }
+  }
+}
+
+a[data-ajax-modal] {
+  text-decoration: none;
+}
+
+.account-menu-login-button {
+  @extend .btn-sm;
+}
+
+.btn.btn-outline-primary,
+.btn.btn-outline-primary:not(.collapsed) {
+  padding: 2px 12px;
+  font-size: 14px;
+  line-height: 34px;
+  letter-spacing: normal;
+  border-radius: 8px;
 }

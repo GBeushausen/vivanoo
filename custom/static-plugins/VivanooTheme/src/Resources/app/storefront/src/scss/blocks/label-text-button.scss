@@ -1,0 +1,36 @@
+.label-text-buttons {
+  h2 {
+    margin-bottom: 20px;
+  }
+  p {
+    color: $text-secondary;
+  }
+  .label-badge {
+    margin-bottom: 16px;
+  }
+
+  &--center {
+    text-align: center;
+
+    .label-badge {
+      margin-bottom: 8px;
+    }
+  }
+
+  .btn {
+    margin-top: 20px;
+    @include media-breakpoint-down(md) {
+      width: 100%;
+    }
+  }
+}
+
+.cms-block-text-two-column {
+  &:has(.label-text-buttons) {
+    .cms-block-container-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  }
+}

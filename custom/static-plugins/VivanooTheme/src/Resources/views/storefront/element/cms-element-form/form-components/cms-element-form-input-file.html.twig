@@ -1,0 +1,24 @@
+{% block cms_element_form_input_file %}
+    <div class="form-group {{ additionalClass }}">
+        {% block cms_element_form_input_file_label %}
+            <label class="form-label" for="form-{{ fieldName }}">
+                {{- label|trans -}}
+            </label>
+        {% endblock %}
+        {% block cms_element_form_input_file_input %}
+            <div class="upload-file-wrapper"
+                 data-upload-field-plugin>
+                <input
+                    type="file"
+                    id="upload-file"
+                    name="{{ fieldName }}"
+                    accept="{{ accept }}"
+                    class="form-control"
+                />
+                <a href="#" id="delete-file" class="btn btn-remove">
+                    <img alt="{{ 'footer.contact.delete-file'|trans }}" src="{{ asset('/bundles/webwirkungvibraplasttheme/img/trash.svg') }}" />
+                </a>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
