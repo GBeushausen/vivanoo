@@ -195,7 +195,7 @@ class VariantTablePropertiesToDisplayExtension extends AbstractExtension
             !empty($customFields['ww_variant_table_properties_to_display'])
                 ? $customFields['ww_variant_table_properties_to_display']
                 : (
-            $this->getFallbackTranslatedCustomField($product->getTranslations(), 'ww_variant_table_properties_to_display')
+            $this->getFallbackTranslatedCustomField($product->getTranslations() ?? new ProductTranslationCollection(), 'ww_variant_table_properties_to_display')
                 ?: []
             );
         $variantTablePropertiesToDisplay = $this->filterVariantTablePropertiesToDisplay($product, $variantTablePropertiesToDisplay);
