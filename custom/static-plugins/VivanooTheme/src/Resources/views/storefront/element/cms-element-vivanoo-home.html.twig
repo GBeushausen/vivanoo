@@ -1,0 +1,139 @@
+<div class="vn">
+
+  <div class="vn-hero">
+    <div class="vn-hero-left">
+      <div class="vn-hero-left-pattern"></div>
+      <div class="vn-hero-claim">
+        <p class="vn-hero-sub">CONCEPT STORE · POWERED BY VIBRAPLAST AG</p>
+        <h1>weniger Standard,<br><em>just wow.</em></h1>
+        <a class="vn-hero-cta" href="#">Kollektion entdecken</a>
+      </div>
+    </div>
+    <div class="vn-hero-center">
+      <div class="vn-hero-center-inner">
+        <div class="vn-hero-center-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        Hauptbild Kampagne
+      </div>
+    </div>
+    <div class="vn-hero-right">
+      <div class="vn-hero-right-inner">
+        <div class="vn-hero-right-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        Stimmungsbild
+      </div>
+    </div>
+  </div>
+
+  <div class="vn-bar">
+    <div class="vn-bar-item"><strong>Versandkostenfrei</strong>ab CHF 75.–</div>
+    <div class="vn-bar-item"><strong>1–2 Werktage</strong>Lieferung CH-weit</div>
+    <div class="vn-bar-item"><strong>Kuratiert</strong>von unserem Team</div>
+    <div class="vn-bar-item"><strong>14 Tage</strong>Rückgaberecht</div>
+  </div>
+
+  <div class="vn-editorial">
+    <div class="vn-ed-img">
+      <div class="vn-ed-img-inner">
+        <div class="vn-ed-img-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        Lifestyle-Bild Platzhalter
+      </div>
+    </div>
+    <div class="vn-ed-text">
+      <div class="vn-ed-tag">Unser Ansatz</div>
+      <h2>Sorgfältig kuratiert.<br><em>Online &amp; offline.</em></h2>
+      <p>In unserem Concept Store vivanoo® – powered by Vibraplast AG – entdecken Sie eine sorgfältig kuratierte Auswahl rund um Wohnen, Lifestyle und Genuss: von stilvollen Accessoires und praktischen Haushaltshelfern bis hin zu originellen Geschenkideen und smarten Alltagslösungen.</p>
+      <a class="vn-ed-link" href="#">Mehr über vivanoo</a>
+    </div>
+  </div>
+
+  {% set products = element.data.vars.products ?? null %}
+  {% if products and products.count > 0 %}
+    <div class="vn-products">
+      <div class="vn-prod-head">
+        <h2>Neu im Sortiment</h2>
+        <a href="#">Alle Neuheiten ansehen →</a>
+      </div>
+      <div class="vn-prod-grid">
+        {% for product in products %}
+          {% set productUrl = seoUrl('frontend.detail.page', { productId: product.id }) %}
+          {% set coverUrl = product.cover.media.url ?? null %}
+          {% set categoryName = product.categories|first.translated.name ?? null %}
+          {% set price = product.price.first.gross ?? null %}
+          <a href="{{ productUrl }}" class="vn-prod-card">
+            <div class="vn-prod-img{% if coverUrl %} vn-prod-img-real{% endif %}">
+              {% if coverUrl %}
+                <img src="{{ coverUrl }}" alt="{{ product.translated.name }}">
+              {% else %}
+                Produktbild
+              {% endif %}
+            </div>
+            {% if categoryName %}<div class="vn-prod-tag">{{ categoryName }}</div>{% endif %}
+            <div class="vn-prod-name">{{ product.translated.name }} <span class="vn-prod-new">Neu</span></div>
+            {% if price %}<div class="vn-prod-price">CHF {{ price|number_format(2, '.', "'") }}</div>{% endif %}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="vn-manifesto">
+    <blockquote>«Vivanoo® – your choice,<br>on &amp; offline.»</blockquote>
+    <cite>— Das vivanoo-Versprechen</cite>
+  </div>
+
+  <div class="vn-categories">
+    <div class="vn-cat-item">
+      <div class="vn-cat-no">01</div>
+      <div class="vn-cat-name">Kochen &amp; Braten</div>
+      <div class="vn-cat-desc">Pfannen, Töpfe und alles für die perfekte Zubereitung.</div>
+      <div class="vn-cat-arrow">→</div>
+    </div>
+    <div class="vn-cat-item">
+      <div class="vn-cat-no">02</div>
+      <div class="vn-cat-name">Küchenzubehör</div>
+      <div class="vn-cat-desc">Messer, Bretter, Utensilien – das Werkzeug für jeden Tag.</div>
+      <div class="vn-cat-arrow">→</div>
+    </div>
+    <div class="vn-cat-item">
+      <div class="vn-cat-no">03</div>
+      <div class="vn-cat-name">Haushalt &amp; Ordnung</div>
+      <div class="vn-cat-desc">Aufbewahrung, Organisation und smarte Helfer fürs Zuhause.</div>
+      <div class="vn-cat-arrow">→</div>
+    </div>
+  </div>
+
+  <div class="vn-store">
+    <div class="vn-store-left">
+      <div class="vn-store-tag">Online &amp; Offline</div>
+      <h2>Vor Ort erleben.<br><em>In Aadorf.</em></h2>
+      <p>Besuchen Sie uns in unserem Concept Store – entdecken Sie Produkte zum Anfassen, testen Sie Materialien und Funktionen, und lassen Sie sich von unserem Team persönlich beraten.</p>
+      <div class="vn-store-addr">Wittenwilerstrasse 25<br>8355 Aadorf</div>
+      <a class="vn-store-cta" href="#">Anfahrt planen</a>
+    </div>
+    <div class="vn-store-right">
+      <div class="vn-store-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="vn-newsletter">
+    <div class="vn-nl-left">
+      <h2>Neue Produkte.<br>Direkt ins Postfach.</h2>
+      <p>Kein Spam. Nur ausgewählte Neuheiten, saisonale Highlights und gelegentlich eine gute Empfehlung.</p>
+    </div>
+    <div class="vn-nl-right">
+      <div class="vn-nl-row">
+        <input class="vn-nl-input" type="email" placeholder="deine@email.ch" />
+        <button class="vn-nl-btn">Anmelden</button>
+      </div>
+      <div class="vn-nl-note">Mit der Anmeldung akzeptierst du unsere Datenschutzbestimmungen. Abmeldung jederzeit möglich.</div>
+    </div>
+  </div>
+
+</div>

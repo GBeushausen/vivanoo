@@ -1,0 +1,35 @@
+// Vivanoo flyout: lay out level-0 subcategories in a responsive grid.
+// Parent theme's categories.html.twig picks col-2 (with image) or col-12 (no image),
+// which falls apart when some items lack images — force a consistent grid instead.
+@include media-breakpoint-up(lg) {
+  .navigation-flyout.is-open .navigation-flyout-content {
+    padding: 16px 24px 32px;
+  }
+
+  .navigation-flyout .navigation-flyout-categories.is-level-0 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px 32px;
+    margin: 0;
+
+    @include media-breakpoint-up(xxl) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    > .navigation-flyout-col {
+      flex: none;
+      max-width: none;
+      width: auto;
+      padding: 0;
+    }
+  }
+
+  .navigation-flyout .navigation-flyout-link.is-level-0 {
+    padding: 0;
+    font-weight: 600;
+
+    .nav-item-image {
+      margin-bottom: 8px;
+    }
+  }
+}

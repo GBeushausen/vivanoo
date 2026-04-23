@@ -11,3 +11,28 @@
     }
   }
 }
+
+// Vivanoo header: navigation wraps onto its own row below logo+search,
+// so the 8 main categories have full container width and don't collide with search.
+// Parent theme pins .bottom-bar and .header-row to a fixed 112px; release that
+// at lg+ so the wrapped nav row isn't overflowed and covered by page content.
+@include media-breakpoint-up(lg) {
+  .bottom-bar,
+  .bottom-bar .header-row {
+    height: auto;
+  }
+
+  .bottom-bar .header-row {
+    flex-wrap: wrap;
+
+    .nav-main {
+      flex: 0 0 100%;
+      max-width: 100%;
+      order: 10;
+      margin-top: 8px;
+      padding-top: 12px;
+      border-top: 1px solid $sw-border-color;
+    }
+  }
+}
+
