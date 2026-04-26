@@ -24,6 +24,7 @@ hr {
 }
 
 blockquote {
+  position: relative;
   padding: 16px 24px;
   @extend .text-large;
   font-weight: 600;

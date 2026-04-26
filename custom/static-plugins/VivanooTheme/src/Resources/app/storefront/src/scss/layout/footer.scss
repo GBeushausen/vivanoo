@@ -1,189 +1,236 @@
+// Reset Bootstrap-y wrapper coloring — the dark Vivanoo footer takes over.
 .footer-main,
 .footer-minimal {
+  background-color: #0E1130;
   color: $white;
-  background-color: $sw-color-brand-secondary;
+  margin-top: 60px;
 
-  hr {
-    margin-bottom: 32px;
-    border-color: $white;
-    opacity: .2;
-  }
-  &-newsletter {
-    padding: 17px 0;
-    color: $sw-headline-color;
-    background-color: $primary-100;
-    background-image: url('/bundles/webwirkungvibraplasttheme/img/footer-newsletter-background.svg');
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    background-size: contain;
+  hr { display: none; }
 
-    h5, p {
-      text-align: center;
-      @include media-breakpoint-up(lg) {
-        text-align: left;
-      }
+  // Hide the default Vibraplast newsletter strip — Vivanoo has the newsletter
+  // on the home page; pages without it can re-enable this if needed.
+  &-newsletter { display: none; }
+  &-content { display: none; }
+}
 
-    }
-
-    .row {
-      align-items: center;
-    }
-    .newsletter-form-row {
-      @include media-breakpoint-up(lg) {
-        display: flex;
-        gap: 16px;
-      }
-    }
-
-    .form-label[for="form-email"] {
-      display: none;
-    }
-    .form-group {
-      @include media-breakpoint-up(lg) {
-        margin-bottom: 0;
-      }
-    }
-
-    p {
-      @extend .text-small;
-      margin-bottom: 8px;
-      @include media-breakpoint-up(lg) {
-        margin-bottom: 10px
-      }
-    }
-
-    .btn-primary.float-end {
-      @include media-breakpoint-down(lg) {
-        display: block;
-        float: none !important;
-        width: 100%;
-      }
-    }
-  }
-
-  &-content {
-    padding: 40px 0 32px;
-
-    .footer-contact {
-      margin-bottom: 32px;
-
-      &-form {
-        .btn-primary {
-          width: 100%;
-        }
-      }
-
-      &-information-address {
-        .icon {
-          position: absolute;
-          width: 16px;
-          height: 16px;
-
-          svg {
-            //top: 0;
-          }
-        }
-
-        p, a {
-          padding-left: 25px;
-        }
-        &--email {
-          margin-bottom: 26px;
-        }
-      }
-    }
-
-    .footer-columns {
-      padding-bottom: 0;
-    }
-
-    .footer-column {
-
-      h4, a {
-        color: $white;
-      }
-      &-headline {
-        margin-bottom: 16px;
-        padding: 0;
-        @extend .text-medium;
-        font-weight: 600;
-      }
-      &-content {
-        @extend .text-small;
-        font-weight: 400;
-
-        h4 {
-          margin-bottom: 12px;
-        }
-
-        .footer-link-item {
-          margin-bottom: 8px;
-          padding: 0;
-        }
-      }
-    }
+// ===== Vivanoo footer =====
+.vn-footer-inner {
+  > .container {
+    padding-top: 64px;
+    padding-bottom: 32px;
   }
 }
 
-.footer-bottom {
-  padding: 0 0 40px;
+.vn-footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-  .row {
-    align-items: center;
-
-    &:last-child {
-      .col-md-6 {
-        &:first-child {
-          order: 2;
-          @include media-breakpoint-up(lg) {
-            order: 1;
-          }
-        }
-      }
-      .col-md-6 {
-        &:last-child {
-          order: 1;
-          @include media-breakpoint-up(lg) {
-            order: 2;
-          }
-        }
-      }
-    }
-  }
-  .container {
-    padding-right: calc(var(--bs-gutter-x)* 0.5);
-    padding-left: calc(var(--bs-gutter-x)* 0.5);
+  // Help-card always sits in the last grid column, regardless of how many
+  // nav columns the loop produces (1 or 2).
+  > .vn-footer-help {
+    grid-column: 4;
+    grid-row: 1;
   }
 
-  .footer-copyright {
-    @include media-breakpoint-up(lg) {
-      text-align: left;
+  @include media-breakpoint-down(lg) {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    > .vn-footer-help {
+      grid-column: 1 / -1;
+      grid-row: auto;
     }
   }
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    > .vn-footer-brand { grid-column: 1 / -1; }
+  }
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 1fr;
+  }
+}
 
-  .footer-follow-us {
-    margin-bottom: 32px;
-    text-align: center;
-    @include media-breakpoint-up(lg) {
-      margin-bottom: 0;
-      text-align: right;
-    }
-    &-icon {
-      margin-left: 20px;
-      a {
-        display: inline-block;
-        &:hover {
-          text-decoration: none;
-        }
-      }
-    }
-    .icon {
-      width: 32px;
-      height: 32px;
+// ===== Brand block =====
+.vn-footer-brand {
+  max-width: 360px;
+}
 
-      path {
-        fill: $white;
-      }
-    }
+.vn-footer-logo {
+  display: inline-block;
+  background: $white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+
+  img { height: 40px; width: auto; display: block; }
+}
+
+.vn-footer-tagline {
+  margin: 0 0 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.vn-footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vn-footer-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+
+  svg { color: var(--vn-accent, #{$sw-color-brand-secondary}); flex-shrink: 0; }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover { color: $sw-color-brand-secondary; }
+  }
+}
+
+// ===== Link columns =====
+.vn-footer-col-title {
+  margin: 0 0 16px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover { color: $sw-color-brand-secondary; }
+  }
+}
+
+.vn-footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li { margin: 8px 0; }
+
+  a, span {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: color .15s ease;
+  }
+
+  a:hover { color: $sw-color-brand-secondary; }
+  span { color: rgba(255, 255, 255, 0.55); }
+}
+
+// ===== Help-card (Direkt zu uns) =====
+.vn-footer-help {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+
+  .vn-footer-col-title { color: rgba(255, 255, 255, 0.7); }
+
+  p {
+    margin: 0 0 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
+
+.vn-footer-help-lede {
+  margin: 4px 0 12px;
+  font-family: 'Instrument Serif', 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  color: $white;
+}
+
+.vn-footer-help-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: $sw-color-brand-secondary;
+  color: $white;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color .15s ease, color .15s ease;
+
+  &:hover {
+    background: $white;
+    color: #0E1130;
+  }
+}
+
+// ===== Bottom bar =====
+.vn-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding-top: 24px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+.vn-footer-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.vn-footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color .15s ease;
+
+    &:hover { color: $sw-color-brand-secondary; }
+  }
+}
+
+.vn-footer-socials {
+  display: flex;
+  gap: 8px;
+}
+
+.vn-social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.85);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .15s ease, color .15s ease;
+
+  &:hover {
+    background: $sw-color-brand-secondary;
+    color: $white;
   }
 }
