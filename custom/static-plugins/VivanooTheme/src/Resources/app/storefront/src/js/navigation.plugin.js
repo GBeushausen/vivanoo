@@ -35,19 +35,6 @@ export default class NavigationPlugin extends Plugin {
 		return !['XS', 'SM', 'MD'].includes(ViewportDetection.getCurrentViewport());
 	}
 	setSubnavPos() {
-		this.navigationLi.forEach((elnav, index, array) => {
-			setTimeout(() => {
-				if(elnav.dataset.flyoutMenuTrigger) {
-					const subNavigation = DomAccess.querySelector(this.el, '[data-flyout-menu-id="'+ elnav.dataset.flyoutMenuTrigger + '"]')
-					// if subnavigation has no div with class "nav-item-image" inside it add offset
-					if(subNavigation.querySelector('.nav-item-image') === null || subNavigation.querySelector('.nav-item-image--icon')) {
-						const offsetLeft = elnav.offsetLeft
-						subNavigation.classList.add('subnav-no-image')
-						subNavigation.style.left = offsetLeft + 'px';
-					}
-					
-				}
-			}, "1000")
-		});
+		// Mega-flyout layout always spans the full container — no per-trigger offset.
 	}
 }

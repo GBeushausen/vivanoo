@@ -35,7 +35,7 @@
         "type": "color",
         "block": "settings",
         "section": "overriddenVariables",
-        "value": "#0000B0"
+        "value": "#1A1A8C"
       },
       "primary-100": {
         "value": "#D6D6F3",
@@ -78,7 +78,7 @@
         "block": "settings"
       },
       "sw-color-brand-secondary": {
-        "value": "#ED1C24"
+        "value": "#E30613"
       },
       "secondary-100": {
         "value": "#FCDCDE",
@@ -223,7 +223,7 @@
         "value": "#1A1A2E"
       },
       "sw-color-buy-button": {
-        "value": "#ED1C24"
+        "value": "#E30613"
       }
     }
   }

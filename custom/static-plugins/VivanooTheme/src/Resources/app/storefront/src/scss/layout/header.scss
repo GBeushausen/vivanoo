@@ -19,9 +19,8 @@
         flex: 0 0 100%;
         max-width: 100%;
         order: 10;
-        margin-top: 8px;
-        padding-top: 12px;
-        border-top: 1px solid $sw-border-color;
+        margin-top: 0;
+        padding: 0;
       }
     }
   }
@@ -97,24 +96,118 @@
     }
   }
 
+  // ===== Action icon buttons (account, wishlist, search-toggle) =====
+  .header-actions-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    border-radius: 50%;
+    color: $sw-text-color;
+    transition: background-color .15s ease;
+
+    &:hover,
+    &:focus {
+      background-color: $surface-overlay-light;
+      color: $sw-color-brand-primary;
+    }
+  }
+
+  // Wishlist count → small rounded badge in upper-right of the icon button
+  .header-wishlist {
+    .header-wishlist-badge {
+      top: 6px;
+      right: 4px;
+      min-width: 16px;
+      height: 16px;
+      padding: 0 5px;
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 16px;
+      color: $white;
+      background-color: $sw-color-brand-secondary;
+      border: 2px solid $white;
+      border-radius: 999px;
+    }
+  }
+
+  // ===== Cart pill =====
   .header-cart {
-    .header-cart {
-      &-badge {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 20px;
-        height: 20px;
-        padding: 0 6px;
-        color: $white;
-        font-weight: 600;
+    .header-cart-btn {
+      // override Bootstrap .btn defaults → pill-shaped, dark, white text
+      width: auto;
+      height: 44px;
+      padding: 0 14px 0 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 999px;
+      background-color: $sw-text-color;
+      color: $white;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1;
+      transition: background-color .15s ease;
+
+      &:hover,
+      &:focus {
         background-color: $sw-color-brand-primary;
-        border-radius: 100%;
-        @extend .caption;
+        color: $white;
       }
 
-      &-total {
-        display: none;
+      .icon {
+        color: inherit;
+
+        svg path,
+        svg use {
+          stroke: currentColor;
+          fill: currentColor;
+        }
+      }
+    }
+
+    .header-cart-icon {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .header-cart-label {
+      display: none;
+      @include media-breakpoint-up(md) {
+        display: inline-block;
+      }
+    }
+
+    .header-cart-badge {
+      position: static; // unstick from Bootstrap's absolute positioning
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 20px;
+      margin: 0;
+      padding: 0 7px;
+      color: $white;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1;
+      background-color: $sw-color-brand-secondary;
+      border-radius: 999px;
+    }
+
+    .header-cart-total {
+      display: none;
+      @include media-breakpoint-up(md) {
+        display: inline-block;
+        margin-left: 0;
+        color: $white;
+        font-size: 13px;
+        font-weight: 500;
       }
     }
   }

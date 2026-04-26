@@ -1,22 +1,78 @@
 {% sw_extends '@Storefront/storefront/layout/navigation/flyout.html.twig' %}
 
-{% block layout_navigation_flyout_bar %}
-{% endblock %}
+{% block layout_navigation_flyout %}
+    {% set category = navigationTree.category %}
+    {% set name = category.translated.name %}
+    {% set link = category_url(category) %}
 
-{% block layout_navigation_flyout_teaser %}
+    <div class="mega-inner">
+        {% block layout_navigation_flyout_feature %}
+            <a class="mega-feature" href="{{ link }}" title="{{ name }}">
+                {% if category.media %}
+                    {% sw_thumbnails 'navigation-flyout-teaser-image-thumbnails' with {
+                        media: category.media,
+                        sizes: { default: '420px' },
+                        attributes: {
+                            class: 'mega-feature-image',
+                            alt: (category.media.translated.alt ?: name),
+                            loading: 'lazy'
+                        }
+                    } %}
+                {% else %}
+                    <div class="mega-feature-ph"></div>
+                {% endif %}
+                <div class="mega-feature-label">
+                    <h4 class="mega-feature-title">{{ name }}</h4>
+                    <span class="mega-feature-cta">
+                        {{ "general.toCategory"|trans|sw_sanitize }}
+                        <span class="arr">→</span>
+                    </span>
+                </div>
+            </a>
+        {% endblock %}
 
-{% endblock %}
+        {% block layout_navigation_flyout_columns %}
+            <div class="mega-cols">
+                {% for child in navigationTree.children %}
+                    {% set childCategory = child.category %}
+                    {% set childName = childCategory.translated.name %}
+                    {% set childLink = category_url(childCategory) %}
+                    <div class="mega-col">
+                        <h5 class="mega-col-title">
+                            {% if childCategory.type == 'folder' %}
+                                <span>{{ childName }}</span>
+                            {% else %}
+                                <a href="{{ childLink }}"
+                                   title="{{ childName }}"
+                                   {% if category_linknewtab(childCategory) %}target="_blank"{% endif %}>{{ childName }}</a>
+                            {% endif %}
+                        </h5>
 
-{% block layout_navigation_flyout_categories %}
-    <div class="{% if category.media %}col-12 col-xl-12{% else %}col{% endif %}">
-        <div class="navigation-flyout-categories">
-            {% block layout_navigation_flyout_categories_recoursion %}
-                {% sw_include '@Storefront/storefront/layout/navigation/categories.html.twig' with {
-                    navigationTree: navigationTree.children,
-                    navigationMedia: category.media,
-                    page: page
-                } only %}
-            {% endblock %}
-        </div>
+                        {% if child.children|length > 0 %}
+                            <ul class="mega-col-list">
+                                {% for sub in child.children %}
+                                    {% set subCategory = sub.category %}
+                                    {% set subName = subCategory.translated.name %}
+                                    {% set subLink = category_url(subCategory) %}
+                                    <li>
+                                        {% if subCategory.type == 'folder' %}
+                                            <span class="mega-col-link is-folder">{{ subName }}</span>
+                                        {% else %}
+                                            <a class="mega-col-link"
+                                               href="{{ subLink }}"
+                                               title="{{ subName }}"
+                                               {% if category_linknewtab(subCategory) %}target="_blank"{% endif %}>
+                                                <span>{{ subName }}</span>
+                                                <span class="arr">→</span>
+                                            </a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock %}
     </div>
 {% endblock %}

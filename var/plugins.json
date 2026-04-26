@@ -1247,7 +1247,7 @@
             "webpack": null,
             "styleFiles": [
                 "vendor\/vivanoo\/theme\/src\/Resources\/app\/storefront\/src\/scss\/overrides.scss",
-                "vendor\/vivanoo\/theme\/src\/Resources\/@Storefront",
+                "vendor\/vivanoo\/theme\/src\/Resources\/@StorefrontBootstrap",
                 "vendor\/vivanoo\/theme\/src\/Resources\/app\/storefront\/src\/scss\/base.scss"
             ]
         }

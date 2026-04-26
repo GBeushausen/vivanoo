@@ -1,18 +1,55 @@
-// Header Field
+// Header Field — rounded pill design
 
 .header-search {
   form {
     .input-group {
-      background-color: $surface-overlay-light;
-      border-radius: $border-radius-small;
-      input[type="search"] {
-        padding: 12px 16px 12px 8px;
-        background-color: $surface-overlay-light;
-        border: none;
+      position: relative;
+      height: 46px;
+      background-color: #FAF8F5;
+      border: 1px solid #E8E4DC;
+      border-radius: 999px;
+      transition: border-color .15s ease, background-color .15s ease;
+
+      &:focus-within {
+        background-color: $white;
+        border-color: $sw-color-brand-primary;
       }
-      button {
-        padding: 0 0 0 16px;
+
+      input[type="search"] {
+        padding: 0 18px 0 0;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        font-size: 14px;
+        color: $sw-text-color;
+
+        &::placeholder {
+          color: $text-secondary;
+        }
+
+        &:focus {
+          background-color: transparent;
+          box-shadow: none;
+        }
+      }
+
+      // Search button sits as the leading icon (Vivanoo override puts it first)
+      .header-search-btn {
+        width: 46px;
+        height: 100%;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        color: $text-secondary;
         border: 0;
+
+        &:hover,
+        &:focus {
+          color: $sw-color-brand-primary;
+          background: transparent;
+        }
       }
     }
   }
