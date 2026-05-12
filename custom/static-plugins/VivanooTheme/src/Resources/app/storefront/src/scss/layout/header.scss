@@ -42,9 +42,9 @@
     }
     &-main {
       img {
-        width: 98px;
+        width: 120px;
         @include media-breakpoint-up(md) {
-          width: 152px;
+          width: 190px;
         }
       }
     }
